@@ -4,4 +4,4 @@
 
 cp -p tmux.conf $HOME/.tmux.conf
 
-cp -p prelude-personal/*.el $HOME/personal/
+cp -p prelude-personal/*.el $HOME/.emacs.d/personal/
