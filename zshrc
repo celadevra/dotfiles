@@ -46,6 +46,6 @@ export PATH
 
 alias im="/usr/local/sbin/bitlbee"
 alias lx="$HOME/src/xunlei-lixian/lixian_cli.py"
-alias ec="/usr/bin/emacsclient -a"
+alias ec="/usr/bin/emacsclient -a emacs"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
