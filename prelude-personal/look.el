@@ -39,6 +39,7 @@
                              mode-line-remote
                              mode-line-frame-identification
                              " %P of %I "
+                             " %l:%c "
                              '(vc-mode vc-mode)
                              " "
                              mode-line-modes
