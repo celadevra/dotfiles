@@ -16,6 +16,35 @@
 (defun my-linum-format (line-number)
   (propertize (format my-linum-format-string line-number) 'face 'linum))
 
+; Use color to signify current evil-mode state
+; Adapted from http://bit.ly/13ho93s (GitHub)
+(defun my-propertized-evil-mode-tag ()
+  (propertize evil-mode-line-tag 'font-lock-face
+              ;; Don't propertize if we're not in the selected buffer
+              (cond ((not (eq (current-buffer) (car (buffer-list)))) '())
+                    ((eq evil-state 'normal) '(:foreground "yellow"))
+                    ((eq evil-state 'replace)  '(:background "red" :foreground "white"))
+                    ((eq evil-state 'emacs)  '(:background "red"))
+                    ((eq evil-state 'motion) '(:background "orange"))
+                    ((eq evil-state 'visual) '(:background "blue" :foreground "white"))
+                    ((eq evil-state 'insert) '(:background "green"))
+                    (t '()))))
+
+(setq-default mode-line-format (list "%e "
+                             '(:eval (my-propertized-evil-mode-tag))
+                             "%b "
+                             mode-line-mule-info
+                             mode-line-client
+                             mode-line-modified
+                             mode-line-remote
+                             mode-line-frame-identification
+                             " %P of %I "
+                             '(vc-mode vc-mode)
+                             " "
+                             mode-line-modes
+                             mode-line-misc-info
+                             mode-line-end-spaces))
+
 (provide 'look)
 
 ;; look.el ends here
