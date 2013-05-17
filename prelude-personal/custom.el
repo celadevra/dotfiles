@@ -2,6 +2,16 @@
 (add-to-list 'package-archives
                  '("marmalade" .
                          "http://marmalade-repo.org/packages/"))
+
+(defun preview-in-marked-app ()
+  "Open current file in Marked.app.  OS X only."
+  (interactive)
+  (cond ((eq system-type 'darwin) (call-process-shell-command "open -a /Applications/Marked.app" buffer-file-name))
+        ('t (message "Marked.app is not available"))))
+
+(add-hook 'markdown-mode-hook
+          (lambda () (local-set-key (kbd "C-c C-e") #'preview-in-marked-app)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
