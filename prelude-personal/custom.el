@@ -8,7 +8,8 @@
   (interactive)
   (cond ((eq system-type 'darwin)
          (call-process-shell-command
-          "open -a /Applications/Marked.app" buffer-file-name))
+          (concat "open -a /Applications/Marked.app "
+                  (shell-quote-argument buffer-file-name))))
         ('t (message "Marked.app is not available"))))
 
 (add-hook 'markdown-mode-hook
