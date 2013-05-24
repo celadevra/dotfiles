@@ -1,0 +1,38 @@
+#source "/etc/Muttrc"   # Not available on OS X
+source "gpg --batch --passphrase-file ~/.sec/.passphrase --textmode -d ~/.sec/mutt.gpg |"
+set realname="Haoyang Xu"
+
+set sig_dashes
+
+set envelope_from=yes
+set reverse_name
+
+set alias_file="~/.mutt/aliases"
+source ~/.mutt/aliases
+
+set query_command="goobook query %s"
+bind editor <Tab> complete-query
+macro index,pager a "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
+
+
+# Account hooks
+account-hook . 'unset imap_user ; unset imap_pass ; unset tunnel'
+account-hook 'imaps://celadevra@imap.gmail.com/' "\
+             set imap_user=celadevra imap_pass=$my_gpass "
+
+# IMAP settings
+set folder="imaps://celadevra@imap.gmail.com/"
+mailboxes ='Work' =INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam =[Gmail]/'All Mail'
+folder-hook 'imaps://celadevra@imap.gmail.com' ' \
+            set folder="imaps://celadevra@imap.gmail.com/" ;\
+            set postponed="+[Gmail]/Drafts" ;\
+            set record="+[Gmail]/'Sent Mail'" ;\
+            set smtp_url="smtp://xu.haoyang@mail.mepfeco.org.cn" ;\
+            set smtp_pass=$my_mpass ;\
+            set from="Haoyang Xu <xu.haoyang@mepfeco.org.cn> " ;\
+            set signature="~/.mutt/signature.feco" ;\
+            set noaskcc ;\
+            set realname="Haoyang Xu" '
+
+# Mail-check preferences
+set timeout=60
