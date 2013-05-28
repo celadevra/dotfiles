@@ -36,5 +36,8 @@ folder-hook 'imaps://celadevra@imap.gmail.com' ' \
             set noaskcc ;\
             set realname="Haoyang Xu" '
 
+# send settings
+send-hook '\.org\.cn' "set create_rfc2047_parameters=yes"
+
 # Mail-check preferences
 set timeout=60
