@@ -1,7 +1,7 @@
 ;;; Look.el --- customize the interface
 
 (disable-theme 'zenburn)
-(load-theme 'molokai)
+(load-theme 'solarized-dark)
 
 ;; set English font
 
