@@ -1,7 +1,6 @@
 ;;; Look.el --- customize the interface
 
-(disable-theme 'zenburn)
-(load-theme 'wombat)
+(load-theme 'zenburn)
 
 (if (display-graphic-p nil)
     (progn ;; set English font
