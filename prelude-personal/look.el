@@ -1,19 +1,17 @@
 ;;; Look.el --- customize the interface
 
 (disable-theme 'zenburn)
-(load-theme 'solarized-dark)
+(load-theme 'wombat)
 
-;; set English font
-
-(set-face-attribute 'default nil :font "Source Code Pro-12")
-
-;; Chinese font
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-  (set-fontset-font (frame-parameter nil 'font)
-                    charset (font-spec :family "STHeiti"
-                                       :size 12)))
-
-(setq face-font-rescale-alist '(("STHeiti" . 1.2)))
+(if (display-graphic-p nil)
+    (progn ;; set English font
+      (set-face-attribute 'default nil :font "Source Code Pro-12")
+      ;; Chinese font
+      (dolist (charset '(kana han symbol cjk-misc bopomofo))
+        (set-fontset-font (frame-parameter nil 'font)
+                          charset (font-spec :family "STHeiti"
+                                             :size 12)))
+      (setq face-font-rescale-alist '(("STHeiti" . 1.2)))))
 
 ; Add space between linum and text
 ; from http://www.emacswiki.org/emacs/LineNumbers#toc7
