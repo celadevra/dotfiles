@@ -1,1 +1,1 @@
-(global-set-key "RET" evil-ret-and-indent)
+(define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent)
