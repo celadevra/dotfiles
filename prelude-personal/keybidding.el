@@ -1,1 +1,1 @@
-(global-set-key ("RET") evil-ret-and-indent)
+(global-set-key "RET" evil-ret-and-indent)
