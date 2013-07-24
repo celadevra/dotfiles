@@ -49,5 +49,6 @@ alias lx="$HOME/src/xunlei-lixian/lixian_cli.py"
 export EDITOR="vim"
 export ALTERNATE_EDITOR=""
 alias e="/usr/local/bin/emacsclient -t"
+alias psg="ps aux | grep"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
