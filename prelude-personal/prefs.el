@@ -6,7 +6,7 @@
 ;;;; Custom functions
 (defun init-imenu (p)
     (interactive "P")
-      (find-file-existing "~/Codes/dotfiles/prelude-personal/custom.el")
+      (find-file-existing "~/Codes/dotfiles/prelude-personal/prefs.el")
         (widen)
           (helm-imenu)
             (if p (init-narrow-to-section)))
