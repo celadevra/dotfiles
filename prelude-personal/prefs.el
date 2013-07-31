@@ -157,6 +157,7 @@ i.e. (org-install-series-time-stamp 9 18)"
 (add-hook 'org-mode-hook (lambda () (whitespace-mode 0)))
 (add-hook 'org-mode-hook (lambda () (define-key evil-normal-state-map
                                       (kbd "TAB") 'org-cycle)))
+(add-hook 'org-mode-hook (lambda () (git-auto-commit-mode 1)))
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-e") #'preview-in-marked-app)))
 
