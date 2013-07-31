@@ -143,12 +143,9 @@ i.e. (org-install-series-time-stamp 9 18)"
          "* %u \n** %i%(org-install-series-time-stamp 9 18)")))
 ; subscribe to RSS
 (setq org-feed-alist
-      '(("Aeon Magazine"
-         "http://feeds.feedburner.com/AeonMagazineEssays"
-         "~/org/feed.org" "Aeon Magazine")
-        ("XKCD"
-         "http://xkcd.com/rss.xml"
-         "~/org/feed.org" "XKCD")))
+      '(("Instapaper"
+         "http://www.instapaper.com/rss/303832/bf24ZocjTFsYE7Jn33qROfsLM"
+         "~/org/tasks.org" "Read later")))
 ; refile settings
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
 (setq org-refile-use-outline-path 1)
