@@ -46,6 +46,33 @@
                   (shell-quote-argument buffer-file-name))))
         ('t (message "Marked.app is not available"))))
 
+(defun org-install-series-time-stamp (a b)
+  "For inserting a morning diary using org's template system.
+At the function call, it calls org-insert-time-stamp to
+insert a series of active time stamps, one line each. The
+function is called with 2 parameters: a hour of the
+work day and the b, in the form of int N and M.
+
+i.e. (org-install-series-time-stamp 9 18)"
+  ()
+  (cond ((< b a) (org-install-series-time-stamp b a))
+        ((< a (- b 1)) (concat (org-insert-time-stamp
+                                 (current-time)
+                                 nil nil nil nil
+                                 (concat
+                                  " " (number-to-string a) ":00-"
+                                  (number-to-string (+ 1 a)) ":00"))
+                         "\n" (make-string (org-outline-level) 42) " "
+                         (org-install-series-time-stamp (+ 1 a) b)))
+        ((= a (- b 1)) (concat (org-insert-time-stamp
+                                 (current-time)
+                                 nil nil nil nil
+                                 (concat
+                                  " " (number-to-string a) ":00-"
+                                  (number-to-string (+ 1 a)) ":00"))
+                                (org-install-series-time-stamp (+ 1 a) b)))
+        ((= a b) ())))
+
 ;;;; Look --- customize the interface
 
 (load-theme 'zenburn)
@@ -98,12 +125,10 @@
 (require 'org)
 
 (setq org-mobile-directory "/ssh:dev.idenizen.net#2121:/home/snakehsu/mobileorg")
-(setq org-agenda-files (list
-                        "~/org/office.org"
-                        "~/org/personal.org"
-                        "~/org/birthday.org"))
+(setq org-agenda-files (list "~/org/tasks.org"))
+
 ; capture settings
-(setq org-default-notes-file (concat org-directory "/inbox.org"))
+(setq org-default-notes-file (concat org-directory "/tasks.org"))
 ; capture templates
 (setq org-capture-templates
       '(("o" "Office Todo" entry (file+headline org-default-notes-file "Office INBOX")
@@ -113,7 +138,9 @@
         ("b" "Bugs" entry (file+headline org-default-notes-file "Bugs")
          "* TODO %?\n %i\n %F")
         ("j" "Journal" entry (file+headline (concat org-directory "/journal.org") "STREAM")
-         "* %? %U %^g\n %i\n")))
+         "* %? %U %^g\n %i\n")
+        ("m" "Diary" entry (file+headline org-default-notes-file "Diary")
+         "* %u \n** %i%(org-install-series-time-stamp 9 18)")))
 ; subscribe to RSS
 (setq org-feed-alist
       '(("Aeon Magazine"
