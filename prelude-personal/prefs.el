@@ -164,3 +164,5 @@ i.e. (org-install-series-time-stamp 9 18)"
 ;;;; Keybindings
 (define-key global-map "\C-cc" 'org-capture)
 (define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent)
+(setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'super)
