@@ -198,7 +198,8 @@ i.e. (org-install-series-time-stamp 9 18)"
          "~/org/tasks.org" "Read later")))
 ; refile settings
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
-(setq org-refile-use-outline-path 1)
+(setq org-refile-use-outline-path 'full-file-path)
+(setq org-outline-path-complete-in-steps 'nil)
 
 ;;;; Hooks and mode-based keybindings
 (add-hook 'emacs-lisp-mode-hook 'imenu-elisp-sections)
