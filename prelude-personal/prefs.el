@@ -132,9 +132,9 @@ i.e. (org-install-series-time-stamp 9 18)"
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
-                          charset (font-spec :family "STSong"
+                          charset (font-spec :family "STFangsong"
                                              :size 12)))
-      (setq face-font-rescale-alist '(("STSong" . 1.2)))))
+      (setq face-font-rescale-alist '(("STFangsong" . 1.2)))))
 
 (setq linum-format 'my-linum-format)
 (setq-default mode-line-format (list "%e "
