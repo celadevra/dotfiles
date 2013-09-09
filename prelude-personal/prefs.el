@@ -124,7 +124,7 @@ i.e. (org-install-series-time-stamp 9 18)"
                                     (setq char-width-table table)))
 ;;;; Look --- customize the interface
 
-(load-theme 'zenburn)
+(load-theme 'solarized-dark)
 
 (if (display-graphic-p nil)
     (progn ;; set English font
