@@ -124,11 +124,11 @@ i.e. (org-install-series-time-stamp 9 18)"
                                     (setq char-width-table table)))
 ;;;; Look --- customize the interface
 
-(load-theme 'solarized-dark)
+(load-theme 'zen-and-art)
 
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "Source Code Pro-12")
+      (set-face-attribute 'default nil :font "Anonymous Pro-12")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
