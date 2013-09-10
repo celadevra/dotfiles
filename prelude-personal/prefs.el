@@ -122,6 +122,21 @@ i.e. (org-install-series-time-stamp 9 18)"
                         (optimize-char-table table)
                               (set-char-table-parent table char-width-table)
                                     (setq char-width-table table)))
+(defvar powerline-separator 'arrow
+  "Shape of separator used by powerline-my-evil-theme")
+(defface my-powerline-active1 '((t (:background "DeepSkyBlue4" :inherit mode-line)))
+  "custom Powerline face 1"
+  :group 'powerline)
+(defface my-powerline-active2 '((t (:background "SeaGreen" :inherit mode-line)))
+  "custom Powerline face 2"
+  :group 'powerline)
+(defface my-powerline-inactive2 '((t (:background "LightSlateGray" :inherit mode-line)))
+  "custom Powerline face 2"
+  :group 'powerline)
+(defface my-powerline-inactive1 '((t (:background "gray36" :inherit mode-line)))
+  "custom Powerline face 1"
+  :group 'powerline)
+
 (defun powerline-my-evil-theme ()
   "Set up the powerline for evil-mode"
   (interactive)
@@ -130,27 +145,34 @@ i.e. (org-install-series-time-stamp 9 18)"
                   (:eval
                    (let* ((active (powerline-selected-window-active))
                           (mode-line (if active 'mode-line 'mode-line-inactive))
-                           (face1 (if active 'powerline-active1 'powerline-inactive1))
-                           (face2 (if active 'powerline-active2 'powerline-inactive2))
-                           (separator-left (intern (format "powerline-%s-%s"
-                                                           powerline-default-separator
-                                                           (car powerline-default-separator-dir))))
-                           (separator-right (intern (format "powerline-%s-%s"
-                                                            powerline-default-separator
-                                                            (cdr powerline-default-separator-dir))))
-                           (lhs (list (powerline-raw (my-propertized-evil-mode-tag) nil 'l)
-                                      (powerline-raw "%b " nil 'l)
-                                      (powerline-raw mode-line-modified nil 'l)
-                                      (powerline-buffer-size nil 'l)
-                                      (powerline-narrow face1 'l)
-                                      (powerline-vc face1)))
-                           (rhs (list (powerline-raw global-mode-string face2 'r)
-                                      (powerline-raw "%4l" face1 'l)
-                                      (powerline-raw ":" face1 'l)
-                                      (powerline-raw "%3c" face1 'r))))
-                          (concat (powerline-render lhs)
-                                  (powerline-fill face2 (powerline-width rhs))
-                                  (powerline-render rhs)))))))
+                          (face1 (if active 'my-powerline-active1 'my-powerline-inactive1))
+                          (face2 (if active 'my-powerline-active2 'my-powerline-inactive2))
+                          (separator-left (intern (format "powerline-%s-%s"
+                                                          powerline-separator
+                                                          (car powerline-default-separator-dir))))
+                          (separator-right (intern (format "powerline-%s-%s"
+                                                           powerline-separator
+                                                           (cdr powerline-default-separator-dir))))
+                          (lhs (list (powerline-raw (my-propertized-evil-mode-tag) nil 'l)
+                                     (funcall separator-left mode-line face1)
+                                     (powerline-raw "%b " face1 'l)
+                                     (powerline-raw mode-line-modified face1 'l)
+                                     (funcall separator-left face1 face2)
+                                     (powerline-buffer-size face2 'l)
+                                     (powerline-narrow face2 'l)
+                                     (powerline-hud face1 face2)
+                                     (powerline-narrow face2 'l)
+                                     (powerline-vc face2)))
+                          (rhs (list (powerline-major-mode face2 'r)
+                                     (funcall separator-right face2 face1)
+                                     (powerline-raw "%4l" face1 'l)
+                                     (powerline-raw ":" face1 'l)
+                                     (powerline-raw "%3c" face1 'r)
+                                     (funcall separator-right face1 mode-line)
+                                     (powerline-minor-modes nil 'r))))
+                     (concat (powerline-render lhs)
+                             (powerline-fill face2 (powerline-width rhs))
+                             (powerline-render rhs)))))))
 ;;;; Look --- customize the interface
 
 (load-theme 'zen-and-art)
@@ -166,7 +188,9 @@ i.e. (org-install-series-time-stamp 9 18)"
       (setq face-font-rescale-alist '(("STFangsong" . 1.2)))))
 
 (setq linum-format 'my-linum-format)
-(require 'powerline)
+;(require 'powerline)
+(setq powerline-separator 'contour)
+(setq powerline-height 20)
 (powerline-my-evil-theme)
 ;; (setq-default mode-line-format (list "%e "
 ;;                              '(:eval (my-propertized-evil-mode-tag))
