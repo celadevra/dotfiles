@@ -43,7 +43,7 @@
   (cond ((eq system-type 'darwin)
          (call-process-shell-command
           (concat "open -a /Applications/Marked.app "
-                  (shell-quote-argument buffer-file-name))))
+                  (shell-quote-argument (buffer-file-name)))))
         ('t (message "Marked.app is not available"))))
 
 (defun org-install-series-time-stamp (a b)
@@ -211,6 +211,7 @@ i.e. (org-install-series-time-stamp 9 18)"
 
 ;;;; Environment
 ;; Use proxy if on a box in China
+(set-language-environment "UTF-8")
 (if (string-equal system-type "darwin")
     (setq url-gateway-method 'socks))
 
