@@ -221,6 +221,12 @@ i.e. (org-install-series-time-stamp 9 18)"
                          "http://marmalade-repo.org/packages/"))
 ;; Don't let whitespace-mode whine about longer lines
 (setq whitespace-style '(face tabs empty trailing))
+
+;;;; Auto-Complete
+(require 'auto-complete-config)
+(ac-config-default)
+(setq ac-quick-help-delay 1)
+
 ;;;; Evil-mode
 (require 'evil)
 (evil-mode 1)
