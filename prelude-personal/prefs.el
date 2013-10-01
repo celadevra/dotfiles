@@ -264,6 +264,9 @@ i.e. (org-install-series-time-stamp 9 18)"
 (setq org-refile-use-outline-path 'full-file-path)
 (setq org-outline-path-complete-in-steps 'nil)
 
+;;;; yasnippet
+(yas-global-mode 1)
+
 ;;;; Hooks and mode-based keybindings
 (add-hook 'emacs-lisp-mode-hook 'imenu-elisp-sections)
 (add-hook 'linum-before-numbering-hook 'my-linum-get-format-string)
