@@ -234,6 +234,10 @@ i.e. (org-install-series-time-stamp 9 18)"
 (key-chord-mode 0)
 (global-linum-mode 1)
 
+;;;; Helm
+; helm-rb
+(setq helm-rb-get-methods-path "/Users/snakehsu/.emacs.d/get_methods.rb")
+
 ;;;; Org-mode
 (require 'org)
 
