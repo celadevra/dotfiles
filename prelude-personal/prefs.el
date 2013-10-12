@@ -173,6 +173,29 @@ i.e. (org-install-series-time-stamp 9 18)"
                      (concat (powerline-render lhs)
                              (powerline-fill face2 (powerline-width rhs))
                              (powerline-render rhs)))))))
+
+(defvar default-im "com.apple.keylayout.Dvorak" "Default ascii-only input method")
+(defvar prev-im (substring (shell-command-to-string "/Users/snakehsu/bin/im-select") 0 -1) "IM that I use when starting Emacs and exiting insert mode")
+(defun im-use-dvorak ()
+  "Switch to Dvorak input method on a Mac. im-select is a tool provided at http://git.io/ndA8Mw"
+  (interactive)
+  (cond ((eq system-type 'darwin)
+         (call-process-shell-command (concat "/Users/snakehsu/bin/im-select " default-im)))))
+
+(defun im-remember ()
+  "Remember the input method being used in insert mode, so we can switch to it in other modes."
+  (interactive)
+  (cond ((eq system-type 'darwin)
+         (setq prev-im (substring (shell-command-to-string "/Users/snakehsu/bin/im-select") 0 -1)))))
+
+(defun im-use-prev ()
+  "Use previous input method. If previous input method is not defined, use default method"
+  (interactive)
+  (cond ((eq system-type 'darwin)
+         (if prev-im
+             (call-process-shell-command (concat "/Users/snakehsu/bin/im-select " prev-im))
+           (call-process-shell-command (concat "/Users/snakehsu/bin/im-select " default-im))))))
+
 ;;;; Look --- customize the interface
 
 (load-theme 'zen-and-art)
@@ -281,6 +304,12 @@ i.e. (org-install-series-time-stamp 9 18)"
 (add-hook 'org-mode-hook (lambda () (git-auto-commit-mode 1)))
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-e") #'preview-in-marked-app)))
+(add-hook 'evil-normal-state-entry-hook 'im-use-dvorak)
+(add-hook 'evil-insert-state-entry-hook 'im-use-prev)
+(add-hook 'evil-insert-state-exit-hook 'im-remember)
+(add-hook 'evil-replace-state-entry-hook 'im-use-prev)
+(add-hook 'evil-replace-state-exit-hook 'im-remember)
+(add-hook 'evil-emacs-state-entry-hook 'im-use-dvorak)
 
 ;;;; Keybindings
 (define-key global-map "\C-cc" 'org-capture)
