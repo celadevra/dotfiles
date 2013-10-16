@@ -202,13 +202,13 @@ i.e. (org-install-series-time-stamp 9 18)"
 
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "Anonymous Pro-12")
+      (set-face-attribute 'default nil :font "Source Code Pro ExtraLight-14")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
-                          charset (font-spec :family "STFangsong"
-                                             :size 12)))
-      (setq face-font-rescale-alist '(("STFangsong" . 1.2)))))
+                          charset (font-spec :family "Lantinghei SC"
+                                             :size 16)))
+      (setq face-font-rescale-alist '(("Lantinghei SC" . 1.2)))))
 
 (setq linum-format 'my-linum-format)
 ;(require 'powerline)
