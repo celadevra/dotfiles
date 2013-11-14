@@ -236,7 +236,7 @@ i.e. (org-install-series-time-stamp 9 18)"
 ;; Use proxy if on a box in China
 (set-language-environment "UTF-8")
 (if (string-equal system-type "darwin")
-    (setq url-gateway-method 'socks))
+    (setq url-gateway-method 'native))
 
 (require 'package)
 (add-to-list 'package-archives
