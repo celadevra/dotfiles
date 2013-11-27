@@ -207,7 +207,7 @@ i.e. (org-install-series-time-stamp 9 18)"
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
                           charset (font-spec :family "Lantinghei SC"
-                                             :size 16)))
+                                             :size 14)))
       (setq face-font-rescale-alist '(("Lantinghei SC" . 1.2)))))
 
 (setq linum-format 'my-linum-format)
