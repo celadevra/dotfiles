@@ -202,7 +202,7 @@ i.e. (org-install-series-time-stamp 9 18)"
 
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "Source Code Pro ExtraLight-14")
+      (set-face-attribute 'default nil :font "CosmicSansNeueMono-14")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
