@@ -198,7 +198,8 @@ i.e. (org-install-series-time-stamp 9 18)"
 
 ;;;; Look --- customize the interface
 
-(load-theme 'zen-and-art)
+(require 'color-theme-sanityinc-tomorrow)
+(color-theme-sanityinc-tomorrow-bright)
 
 (if (display-graphic-p nil)
     (progn ;; set English font
