@@ -11,3 +11,5 @@ cp -p muttrc $HOME/.muttrc
 cp -p tmux.conf $HOME/.tmux.conf
 
 cp -p prelude-personal/*.el $HOME/.emacs.d/personal/
+
+cp -p vimrc.local $HOME/.vimrc.local
