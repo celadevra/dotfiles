@@ -1,2 +1,2 @@
-set guifont=CosmicSansNeueMono\ 12
-colorscheme solarized
+set guifont=CosmicSansNeueMono:h12
+colorscheme molokai
