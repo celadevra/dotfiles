@@ -34,7 +34,6 @@ plugins=(git brew gnu-utils osx ruby rvm github debian gem tmux taskwarrior)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$HOME/.cabal/bin:$PATH
 PATH=/usr/brlcad/rel-7.12.2/bin:$PATH
 PATH=/usr/local/bin:$PATH
@@ -42,6 +41,7 @@ PATH=/usr/local/sbin:$PATH
 PATH=/usr/texbin:$PATH
 PATH=/usr/local/Cellar/smlnj/110.75/libexec/bin:$PATH
 PATH=/Applications/Racket\ v5.3.3/bin:$PATH
+PATH=$HOME/.rbenv/bin:$PATH
 export PATH
 
 alias im="/usr/local/sbin/bitlbee"
@@ -51,4 +51,4 @@ export ALTERNATE_EDITOR=""
 alias e="/usr/local/bin/emacsclient -t"
 alias psg="ps aux | grep"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+eval "$(rbenv init -)"
