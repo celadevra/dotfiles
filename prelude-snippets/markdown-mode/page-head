@@ -6,7 +6,6 @@
 ---
 title: $1
 created: `(format-time-string "%Y-%m-%d" (current-time))`
-modified:
 author: Haoyang Xu
 description: $2
 status: ${3:draft}
@@ -16,4 +15,3 @@ tags: $5
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
-<!-- Update modified date as you modify the article! -->
