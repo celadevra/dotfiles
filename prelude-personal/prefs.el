@@ -262,6 +262,9 @@ i.e. (org-install-series-time-stamp 9 18)"
 ; helm-rb
 (setq helm-rb-get-methods-path "/Users/snakehsu/.emacs.d/get_methods.rb")
 
+;;;; Markdown
+(add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
+
 ;;;; Org-mode
 (require 'org)
 
