@@ -214,7 +214,7 @@ i.e. (org-install-series-time-stamp 9 18)"
 (setq linum-format 'my-linum-format)
 ;(require 'powerline)
 (setq powerline-separator 'contour)
-(setq powerline-height 20)
+(setq powerline-height 14)
 (powerline-my-evil-theme)
 ;; (setq-default mode-line-format (list "%e "
 ;;                              '(:eval (my-propertized-evil-mode-tag))
