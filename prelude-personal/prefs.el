@@ -309,6 +309,7 @@ i.e. (org-install-series-time-stamp 9 18)"
 (add-hook 'org-mode-hook (lambda () (git-auto-commit-mode 1)))
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-e") #'preview-in-marked-app)))
+(add-hook 'markdown-mode-hook 'pandoc-mode)
 (add-hook 'evil-normal-state-entry-hook 'im-use-dvorak)
 (add-hook 'evil-insert-state-entry-hook 'im-use-prev)
 (add-hook 'evil-insert-state-exit-hook 'im-remember)
