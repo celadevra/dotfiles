@@ -262,8 +262,9 @@ i.e. (org-install-series-time-stamp 9 18)"
 ; helm-rb
 (setq helm-rb-get-methods-path "/Users/snakehsu/.emacs.d/get_methods.rb")
 
-;;;; Markdown
+;;;; Markdown and Pandoc
 (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
+(setq pandoc-binary "~/.cabal/bin/pandoc")
 
 ;;;; Org-mode
 (require 'org)
