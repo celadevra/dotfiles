@@ -310,6 +310,10 @@ i.e. (org-install-series-time-stamp 9 18)"
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-e") #'preview-in-marked-app)))
 (add-hook 'markdown-mode-hook 'pandoc-mode)
+(add-hook 'markdown-mode-hook
+          (lambda () (local-set-key (kbd "C-c p w") #'pandoc-set-write)))
+(add-hook 'markdown-mode-hook
+          (lambda () (local-set-key (kbd "C-c p r") #'pandoc-run-pandoc)))
 (add-hook 'evil-normal-state-entry-hook 'im-use-dvorak)
 (add-hook 'evil-insert-state-entry-hook 'im-use-prev)
 (add-hook 'evil-insert-state-exit-hook 'im-remember)
