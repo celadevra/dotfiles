@@ -11,7 +11,7 @@ description: $2
 status: ${3:draft}
 belief: ${4:possible}
 tags: $5
----
+...
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
