@@ -266,6 +266,9 @@ i.e. (org-install-series-time-stamp 9 18)"
 (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
 (setq pandoc-binary "~/.cabal/bin/pandoc")
 
+;;;; Mediawiki.el
+(add-to-list 'mediawiki-site-alist '("Wikipedia-zh" "http://zh.wikipedia.org/w/" "Haoyangxu" "" "Plan 9"))
+
 ;;;; Org-mode
 (require 'org)
 
