@@ -10,4 +10,4 @@ filetype plugin indent on
 set guifont=CosmicSansNeueMono:h13
 syntax on
 
-" colorscheme molokai
+colorscheme Dracula
