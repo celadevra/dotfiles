@@ -36,7 +36,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 set -o vi
 PATH=$HOME/.cabal/bin:$PATH
-PATH=/usr/brlcad/rel-7.12.2/bin:$PATH
 PATH=/usr/local/bin:$PATH
 PATH=/usr/local/sbin:$PATH
 PATH=/usr/texbin:$PATH
