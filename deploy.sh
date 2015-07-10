@@ -18,5 +18,4 @@ cp -pr prelude-snippets/* $HOME/.emacs.d/snippets/
 
 cp -pr irssi $HOME/.irssi
 
-unlink $HOME/.vim
-ln -s vim $HOME/.vim
+cp -pr vim $HOME/.vim
