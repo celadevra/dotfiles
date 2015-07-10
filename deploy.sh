@@ -17,3 +17,5 @@ cp -p vimrc $HOME/.vimrc
 cp -pr prelude-snippets/* $HOME/.emacs.d/snippets/
 
 cp -pr irssi $HOME/.irssi
+
+ln -s vim $HOME/.vim
