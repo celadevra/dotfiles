@@ -14,8 +14,8 @@ cp -p prelude-personal/*.el $HOME/.emacs.d/personal/
 
 cp -p vimrc $HOME/.vimrc
 
-cp -pr prelude-snippets/* $HOME/.emacs.d/snippets/
+cp -pR prelude-snippets/* $HOME/.emacs.d/snippets/
 
-cp -pr irssi $HOME/.irssi
+cp -pR irssi $HOME/.irssi
 
-cp -pr vim $HOME/.vim
+cp -R vim/ $HOME/.vim
