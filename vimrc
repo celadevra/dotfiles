@@ -4,6 +4,7 @@
 set nocompatible
 execute pathogen#infect()
 filetype plugin indent on
+set nobackup
 """"""""""""""""""""
 " > User Interface
 """"""""""""""""""""
