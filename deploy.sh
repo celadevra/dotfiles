@@ -12,7 +12,7 @@ cp -p tmux.conf $HOME/.tmux.conf
 
 cp -p prelude-personal/*.el $HOME/.emacs.d/personal/
 
-cp -p vimrc.local $HOME/.vimrc.local
+cp -p vimrc $HOME/.vimrc
 
 cp -pr prelude-snippets/* $HOME/.emacs.d/snippets/
 
