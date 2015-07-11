@@ -14,6 +14,7 @@ set guifont=CosmicSansNeueMono:h13
 syntax on
 color PaperColor-Dark
 let g:airline_theme='PaperColor'
+let g:airline_powerline_fonts = 1
 set laststatus=2
 function! AirLineInit()
   let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
