@@ -7,6 +7,7 @@ filetype plugin indent on
 set nobackup
 set expandtab
 set tabstop=2
+set bs=2
 """"""""""""""""""""
 " > User Interface
 """"""""""""""""""""
@@ -25,4 +26,10 @@ function! AirLineInit()
   let g:airline_section_z = airline#section#create_right(['%P', '%l:%c'])
 endfunction
 autocmd VimEnter * call AirLineInit()
-
+""""""""""""""""""""
+" > Completion
+""""""""""""""""""""
+imap <Tab> <C-P>
+set complete=.,b,u,]
+set wildmode=longest,list:longest
+set completeopt=menu,preview
