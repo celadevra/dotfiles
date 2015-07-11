@@ -16,6 +16,7 @@ color PaperColor-Dark
 let g:airline_theme='PaperColor'
 let g:airline_powerline_fonts = 1
 set laststatus=2
+set number
 function! AirLineInit()
   let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
   let g:airline_section_b = airline#section#create_left(['ffenc', '%f'])
