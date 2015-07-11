@@ -51,4 +51,6 @@ export ALTERNATE_EDITOR=""
 alias e="/usr/local/bin/emacsclient -t"
 alias psg="ps aux | grep"
 
-eval "$(rbenv init -)"
+if [ -n "$TMUX" ]; then
+  eval "$(rbenv init -)"
+fi
