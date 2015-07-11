@@ -12,3 +12,4 @@ set guifont=CosmicSansNeueMono:h13
 syntax on
 color PaperColor-Dark
 let g:airline_theme='PaperColor'
+set laststatus=2
