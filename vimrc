@@ -3,6 +3,7 @@
 """"""""""""""""""""
 set nocompatible
 execute pathogen#infect()
+set autoindent
 filetype plugin indent on
 set nobackup
 set expandtab
