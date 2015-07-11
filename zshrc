@@ -35,15 +35,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 set -o vi
-PATH=$HOME/.cabal/bin:$PATH
-PATH=/usr/local/bin:$PATH
-PATH=/usr/local/sbin:$PATH
-PATH=/usr/texbin:$PATH
-PATH=/usr/local/Cellar/smlnj/110.75/libexec/bin:$PATH
-PATH=/Applications/Racket\ v5.3.3/bin:$PATH
-PATH=$HOME/.rbenv/bin:$PATH
-export PATH
-
 alias im="/usr/local/sbin/bitlbee"
 alias lx="$HOME/src/xunlei-lixian/lixian_cli.py"
 export EDITOR="vim"
@@ -51,6 +42,4 @@ export ALTERNATE_EDITOR=""
 alias e="/usr/local/bin/emacsclient -t"
 alias psg="ps aux | grep"
 
-if [ -n "$TMUX" ]; then
-  eval "$(rbenv init -)"
-fi
+eval "$(rbenv init -)"
