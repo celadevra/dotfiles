@@ -4,6 +4,8 @@
 
 cp -p zshrc $HOME/.zshrc
 
+cp -p zprofile $HOME/.zprofile
+
 cp -p goobookrc $HOME/.goobookrc
 
 cp -p muttrc $HOME/.muttrc
