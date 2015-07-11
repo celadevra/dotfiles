@@ -8,6 +8,7 @@ filetype plugin indent on
 set nobackup
 set expandtab
 set tabstop=2
+set shiftwidth=2
 set bs=2
 """"""""""""""""""""
 " > User Interface
