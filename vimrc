@@ -19,7 +19,7 @@ function! AirLineInit()
   let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
   let g:airline_section_b = airline#section#create_left(['ffenc', '%f'])
   let g:airline_section_c = airline#section#create(['filetype'])
-  let g:airline_section_z = airline#section#create(['%P', '-', '%l', ':', '%c'])
+  let g:airline_section_z = airline#section#create_right(['%P', '%l:%c'])
 endfunction
 autocmd VimEnter * call AirLineInit()
 
