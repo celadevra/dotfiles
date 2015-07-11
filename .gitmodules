@@ -1,3 +1,6 @@
 [submodule "vim/bundle/papercolor-theme"]
 	path = vim/bundle/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme.git
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
