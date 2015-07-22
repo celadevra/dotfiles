@@ -10,6 +10,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set bs=2
+set paste
 """"""""""""""""""""
 " > User Interface
 """"""""""""""""""""
