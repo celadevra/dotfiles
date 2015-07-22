@@ -3,6 +3,7 @@
 """"""""""""""""""""
 set nocompatible
 execute pathogen#infect()
+set paste
 set autoindent
 filetype plugin indent on
 set nobackup
@@ -10,7 +11,6 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set bs=2
-set paste
 """"""""""""""""""""
 " > User Interface
 """"""""""""""""""""
@@ -50,5 +50,5 @@ let g:ctrlp_cmd = 'CtrlP'
 " > Key bindings
 """"""""""""""""""""
 let mapleader = ","
-map ,gs :Gstatus
-map ,gp :Gpush
+map ,gs :Gstatus<CR>
+map ,gp :Gpush<CR>
