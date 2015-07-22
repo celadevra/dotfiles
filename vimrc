@@ -46,3 +46,9 @@ map <C-T> :NERDTreeToggle<CR>
 """"""""""""""""""""
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+""""""""""""""""""""
+" > Key bindings
+""""""""""""""""""""
+let mapleader = ","
+map ,gs :Gstatus
+map ,gp :Gpush
