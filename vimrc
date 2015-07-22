@@ -53,3 +53,4 @@ map <leader>gs :Gstatus<CR>
 map <leader>gp :Gpush<CR>
 map <leader>p :set paste<CR>
 map <leader>P :set nopaste<CR>
+map <C-3> :Tagbar<CR>
