@@ -3,7 +3,6 @@
 """"""""""""""""""""
 set nocompatible
 execute pathogen#infect()
-set paste
 set autoindent
 filetype plugin indent on
 set nobackup
@@ -50,5 +49,7 @@ let g:ctrlp_cmd = 'CtrlP'
 " > Key bindings
 """"""""""""""""""""
 let mapleader = ","
-map ,gs :Gstatus<CR>
-map ,gp :Gpush<CR>
+map <leader>gs :Gstatus<CR>
+map <leader>gp :Gpush<CR>
+map <leader>p :set paste<CR>
+map <leader>P :set nopaste<CR>
