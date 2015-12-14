@@ -510,7 +510,7 @@ A few settings needed after installation, according to the[[https://wiki.haskell
 ** Indent
 Javascript can have a lot of levels of indent, so I think making indent smaller makes sense.
 #+BEGIN_SRC emacs-lisp
-  (setq js2-basic-offset 2)
+  (setq-default js2-basic-offset 2)
 #+END_SRC
 * Markdown
 ** auto start markdown for .page files
