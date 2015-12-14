@@ -1,0 +1,33 @@
+""""""""""""""""""""
+" > Basic Settings
+""""""""""""""""""""
+set nocompatible
+execute pathogen#infect()
+set autoindent
+filetype plugin indent on
+set nobackup
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set bs=2
+""""""""""""""""""""
+" > User Interface
+""""""""""""""""""""
+set guifont=CosmicSansNeueMono:h13
+syntax on
+color desert
+set laststatus=2
+set number
+""""""""""""""""""""
+" > Completion
+""""""""""""""""""""
+imap <Tab> <C-P>
+set complete=.,b,u,]
+set wildmode=longest,list:longest
+set completeopt=menu,preview
+""""""""""""""""""""
+" > Key bindings
+""""""""""""""""""""
+let mapleader = ","
+map <leader>p :set paste<CR>
+map <leader>P :set nopaste<CR>

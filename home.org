@@ -1,0 +1,126 @@
+# -*- org-confirm-babel-evaluate: nil -*-
+* Installation
+  This section is not automatically run when exporting.
+** Mac
+   The following deps will be installed (mostly with brew): wget, emacs, git, oh-my-zsh, rbenv, ruby-build, irssi, mutt, offlineimap, ruby, tmux, keybase.
+
+Will also use brew cask to install the following: iterm2, alfred 2, 1password, dropbox, dash, shiftit, bartender, devonthink-pro-office, racket.
+
+Before installing brew, make sure you have XCode and commandline utils installed.
+
+#+BEGIN_SRC sh :dir /usr/local
+PATH=/usr/local/bin:$PATH
+mkdir homebrew && curl -L https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C homebrew
+brew update
+#+END_SRC
+
+#+BEGIN_SRC sh
+brew install wget emacs git irssi mutt offline-imap tmux keybase
+#+END_SRC
+
+#+BEGIN_SRC sh
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+chsh -s /bin/zsh
+#+END_SRC
+
+#+BEGIN_SRC sh
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+~/.rbenv/plugins/ruby-build/bin/rbenv-install 2.2.0
+#+END_SRC
+
+#+BEGIN_SRC sh
+brew tap caskroom/cask
+#+END_SRC
+
+#+BEGIN_SRC sh
+brew cask install iterm2 alfred 1password dropbox dash shiftit bartender devonthink-pro-office racket
+#+END_SRC
+* Emacs
+
+Install emacs init file and my settings (itself an Org file) to .emacs.d:
+
+#+NAME: emacs
+#+BEGIN_SRC sh :results silent :dir emacs
+unlink $HOME/.emacs.d/init.el
+unlink $HOME/.emacs.d/Haoyang.org
+unlink $HOME/.emacs.d/snippets
+ln -s $PWD/init.el $HOME/.emacs.d/init.el
+ln -s $PWD/Haoyang.org $HOME/.emacs.d/Haoyang.org
+ln -s $PWD/snippets $HOME/.emacs.d/snippets
+#+END_SRC
+
+* Git
+
+For now, I only store some configs of Git on the system.
+
+#+NAME: git
+#+BEGIN_SRC sh :results silent :dir git
+unlink $HOME/.gitconfig
+ln -s $PWD/gitconfig $HOME/.gitconfig
+#+END_SRC
+
+* Irssi
+
+#+NAME: irssi
+#+BEGIN_SRC sh :results silent :dir irssi
+unlink $HOME/.irssi
+ln -s $PWD $HOME/.irssi
+#+END_SRC
+
+* Mutt
+  
+#+NAME: mutt
+#+BEGIN_SRC sh :results silent :dir mutt
+unlink $HOME/.mutt
+unlink $HOME/.muttrc
+unlink $HOME/.goobookrc
+chmod 600 muttcert
+ln -s $PWD/dotmutt $HOME/.mutt
+ln -s $PWD/muttrc $HOME/.muttrc
+ln -s $PWD/goobookrc $HOME/.goobookrc
+#+END_SRC
+
+* Ruby
+
+#+NAME: ruby
+#+BEGIN_SRC sh :results silent :dir ruby
+unlink $HOME/.gemrc
+ln -s $PWD/gemrc $HOME/.gemrc
+#+END_SRC
+
+* tmux
+
+#+NAME: tmux
+#+BEGIN_SRC sh :results silent :dir tmux
+unlink $HOME/.tmux.conf
+ln -s $PWD/tmux.conf $HOME/.tmux.conf
+#+END_SRC
+
+* Vim
+
+I only sometimes use vim to do quick editing and send git commit message, so the vimrc is quite simple.
+
+#+NAME: vim
+#+BEGIN_SRC sh :results silent :dir vim
+unlink $HOME/.vimrc
+ln -s $PWD/vimrc $HOME/.vimrc
+#+END_SRC
+
+* zsh
+  
+#+NAME: zsh
+#+BEGIN_SRC sh :results silent :dir zsh
+unlink $HOME/.zshrc
+ln -s $PWD/zshrc $HOME/.zshrc
+#+END_SRC
+
+* Execute
+#+CALL: emacs() :results silent
+#+CALL: git() :results silent
+#+CALL: irssi() :results silent
+#+CALL: mutt() :results silent
+#+CALL: ruby() :results silent
+#+CALL: tmux() :results silent
+#+CALL: vim() :results silent
+#+CALL: zsh() :results silent
