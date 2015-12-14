@@ -1,0 +1,532 @@
+* README
+
+Haoyang's GNU Emacs configuration, the n-th iteration.
+
+Ideas are from [[http://eschulte.me/emacs24-starter-kit/#installation][Emacs Starter Kit]], [[http://pages.sachachua.com/.emacs.d/Sacha.html][Sache Chua's config]], and my desire to use Org-mode as an effective project management tool.
+
+** Principles
+
+- Effective navigation (hence Evil-mode)
+- Easy to read and edit (hence evil-leader, visual-line-mode)
+- Simlified shortcuts
+- Self documenting
+
+* Basic information
+
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Haoyang Xu")
+(setq user-mail-address "github@expoundite.net")
+#+END_SRC
+* Dependencies
+
+This config requires Org-mode newer than 8.0, and Emacs > 23.
+
+#+BEGIN_SRC emacs-lisp
+(when (version<= emacs-version "24")
+  (message "This config requires at least Emacs 24, please upgrade."))
+#+END_SRC
+
+This config utilizes Emacs' package support. Some additional repositories are added.
+
+#+BEGIN_SRC emacs-lisp
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("marmalade" . "https://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("org" . "http://orgmode.org/elpa/")))
+#+END_SRC
+
+Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
+
+#+BEGIN_SRC emacs-lisp
+(setq package-list '(ace-window
+                     company
+		     company-ghci
+                     company-web
+                     evil
+                     evil-leader
+                     evil-numbers
+                     evil-paredit
+		     evil-smartparens
+		     exec-path-from-shell
+		     flycheck-haskell
+          ;           guide-key
+	             haskell-mode
+		     haskell-snippets
+                     helm
+		     helm-ag
+                     helm-c-yasnippet
+                     helm-git
+		     helm-projectile
+		     jade-mode
+		     js2-mode
+                     magit
+		     markdown-mode
+		     nm
+                     org
+                     org-bullets
+		     ox-pandoc
+		     projectile
+                     relative-line-numbers
+                     robe
+                     smart-mode-line
+		     vc-fossil
+		     vc-darcs
+                     yasnippet
+		     zenburn))
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+#+END_SRC
+* Behaviour
+I am too used to Vim keybindings, esp. the movement keys, to go back to Emacs' default.
+
+evil-leader is a very useful add on to save a lot of key strokes.
+
+#+BEGIN_SRC emacs-lisp
+(setq evil-want-C-i-jump nil)
+(require 'evil-leader)
+(global-evil-leader-mode) ; must be activated before evil-mode
+(evil-leader/set-leader "<SPC>")
+
+(require 'evil)
+(evil-mode 1)
+#+END_SRC
+
+What I do most would be text editing in contrast to code editing, thus visual line would be nice.
+
+#+BEGIN_SRC emacs-lisp
+(global-visual-line-mode t)
+#+END_SRC
+
+Magit doesn't have to revert unsaved buffers:
+
+#+BEGIN_SRC emacs-lisp
+(setq magit-auto-revert-mode nil)
+#+END_SRC
+
+# Use guide-key to show what to press next:
+
+# #+BEGIN_SRC emacs-lisp
+# (setq guide-key/guide-key-sequence '("<SPC>"))
+# (guide-key-mode 1)
+# #+END_SRC
+
+Automatically expand to full screen after startup. Giving me more screen estate to work on.
+
+#+BEGIN_SRC emacs-lisp
+(toggle-frame-fullscreen)
+#+END_SRC
+
+** Backup
+
+Stop emacs from making backup in the same dir as the file being edited. But use a special dir for backup files.
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist '(("." . "~/backup")))
+(setq version-control t)
+(setq delete-old-versions t)
+#+END_SRC
+
+Must control the population of the backup dir, lest it becomes too crowded.
+#+BEGIN_SRC emacs-lisp
+(call-process-shell-command "find ~/backup/* -mtime +5 -exec rm {} \\;" nil 0)
+#+END_SRC
+
+** Environment Variables
+   Emacs in GUI mode should get the exec paths from shell:
+#+BEGIN_SRC emacs-lisp
+  (exec-path-from-shell-initialize)
+#+END_SRC
+Let Emacs in GUI mode recognize rbenv settings:
+#+BEGIN_SRC emacs-lisp
+;; Setting rbenv path
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
+#+END_SRC
+
+[[http://marc-bowes.com/2012/03/10/rbenv-with-emacs.html][Source]]
+** Version Control with Fossil and darcs
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'vc-handled-backends 'Fossil)
+(add-to-list 'vc-handled-backends 'darcs)
+#+END_SRC
+** Web browsing
+Always use built-in eww browser:
+#+BEGIN_SRC emacs-lisp
+(setq browse-url-browser-function 'eww-browse-url)
+#+END_SRC
+* Look
+
+Many elements of vanilla Emacs can be safely disabled:
+
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode 0)
+(setq inhibit-startup-screen 1)
+#+END_SRC
+
+** Code highlighting in org code blocks
+
+#+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t)
+#+END_SRC
+   
+** Org-mode ellipsis
+#+BEGIN_SRC emacs-lisp
+  (unless (eq window-system nil)
+    (setq org-ellipsis " ¶"))
+#+END_SRC
+** Theming
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'after-init-hook
+	  (lambda ()
+            (if (eq window-system nil)
+              (load-theme 'wombat t)
+	    (load-theme 'ample-flat t))))
+#+END_SRC
+
+** Font
+#+BEGIN_SRC emacs-lisp
+(if (display-graphic-p nil)
+    (progn ;; set English font
+      (set-face-attribute 'default nil :font "Input-16")
+      ;; Chinese font
+      (dolist (charset '(kana han symbol cjk-misc bopomofo))
+        (set-fontset-font (frame-parameter nil 'font)
+                          charset (font-spec :family "PingFang SC"
+                                             :size 16)))
+      (setq face-font-rescale-alist '(("PingFang SC" . 1.3)))))
+#+END_SRC
+** Auto display task list after start
+#+BEGIN_SRC emacs-lisp
+(add-hook 'after-init-hook
+          (lambda ()
+          (org-agenda-list)))
+#+END_SRC
+** Mode line
+
+I am trying out smart-mode-line.
+#+BEGIN_SRC emacs-lisp
+(setq sml/no-confirm-load-theme t)
+(setq sml/theme 'respectful)
+(sml/setup)
+#+END_SRC
+
+A few extra things I want to show in mode line:
+#+BEGIN_SRC emacs-lisp
+(column-number-mode 1)
+(display-battery-mode 1)
+#+END_SRC
+** Visual aids for programming
+   Show relative line numbers:
+#+BEGIN_SRC emacs-lisp
+(global-relative-line-numbers-mode)
+#+END_SRC
+
+Show corresponding parentheses:
+#+BEGIN_SRC emacs-lisp
+(smartparens-global-mode 1)
+(show-smartparens-global-mode +1)
+#+END_SRC
+* Custom functions
+
+** Find (open) emacs configuration files:
+
+#+BEGIN_SRC emacs-lisp
+(defun find-init-file () (interactive)
+  "Find configuration files"
+  (progn
+    (delete-other-windows)
+    (find-file "~/.emacs.d/init.el")
+    (find-file-other-window "~/.emacs.d/Haoyang.org")))
+#+END_SRC
+
+** Issue numbering automation in Org-mode
+
+Find the largest number from issues in the buffer, for example, when there are tags like "issue5" "issue31" "issue33", it returns 33.
+
+#+BEGIN_SRC emacs-lisp
+(defun largest-issue-number ()
+  "Find the largest number in issue tags"
+  (let* ((issue-regexp ":issue[0-9]*:")
+         (issues-list (re-seq issue-regexp 
+                        (substring-no-properties (buffer-string)))))
+    (if issues-list 
+      (apply 'max (mapcar (lambda (str) (string-to-number str))
+	  (mapcar (lambda (str) (replace-regexp-in-string "[:isue]*" "" str)) issues-list)))
+ 0)))
+
+; from http://emacs.stackexchange.com/questions/7148/get-all-regexp-matches-in-buffer-as-a-list
+(defun re-seq (regexp string)
+  "Get a list of all regexp matches in a string"
+  (save-match-data
+    (let ((pos 0)
+          matches)
+      (while (string-match regexp string pos)
+        (push (match-string 0 string) matches)
+        (setq pos (match-end 0)))
+      matches)))
+#+END_SRC
+
+Then when the key for assigning issue is pressed, get org-mode to assign tag with incresed issue count:
+
+#+BEGIN_SRC emacs-lisp
+(defun assign-issue-number ()
+  "Assign issue number to heading."
+  (interactive)
+  (org-set-tags-to (cons (concat "issue" 
+    (number-to-string (+ 1 (largest-issue-number)))) 
+    (org-get-tags-at (point) t))))
+#+END_SRC
+** My context-aware tab key
+   #+BEGIN_SRC emacs-lisp
+     (defun hy-org-tab ()
+       "Part of the effort to make the <TAB> key behaviour
+       context-dependent. In Org-mode
+       and Evil Normal mode, fold/unfold the outline."
+       (evil-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle))
+   #+END_SRC
+** Org-bullets only enabled under GUI
+#+BEGIN_SRC emacs-lisp
+  (defun hy-enable-org-bullets ()
+    "Only allow org-bullets in GUI environment, as many terms don't
+  know how to show UTF-8 chars correctly."
+    (if (eq window-system nil)
+        (progn
+          (org-bullets-mode -1)
+          (setq org-hide-leading-stars t))
+      (org-bullets-mode 1)))
+#+END_SRC
+* Keybindings
+** evil-leader
+First, some combinations using evil-leader:
+
+#+BEGIN_SRC emacs-lisp
+(evil-leader/set-key "x" 'helm-M-x)
+(evil-leader/set-key
+  "gs" 'magit-status
+  "gb" 'magit-checkout)
+(evil-leader/set-key 
+  "oc" 'org-capture
+  "oa" 'org-agenda
+  "ol" 'org-store-link
+  "oL" 'org-insert-link
+  "ot" 'org-todo-list
+  "oi" 'assign-issue-number)
+(evil-leader/set-key
+  "ff" 'helm-find-files
+  "fa" 'find-file-at-point
+  "fi" 'find-init-file
+  "fd" 'dired-at-point
+  "fs" 'save-buffer)
+(evil-leader/set-key
+  "hi" 'helm-imenu
+  "hg" 'helm-projectile-ag
+  "hp" 'helm-projectile)
+(evil-leader/set-key
+  "bb" 'helm-buffers-list
+  "bd" 'kill-buffer)
+(evil-leader/set-key
+  "vv" 'vc-next-action)
+(evil-leader/set-key
+  "w0" 'delete-window
+  "ww" 'ace-window
+  "wv" 'split-window-horizontally
+  "ws" 'split-window-vertically
+  "wl" 'evil-window-right
+  "wh" 'evil-window-left
+  "wj" 'evil-window-down
+  "wk" 'evil-window-up
+  "w=" 'balance-windows)
+#+END_SRC
+
+** The tricky TAB key
+   Mapping tab key in emacs with Evil and org-mode can be a little tricky as it can do so much, esp in org-mode. The goal is to make it behave as indent, completion, and fold/unfold key. #This involves writing custom functions to make it more context-aware.#
+
+   #+BEGIN_SRC emacs-lisp
+   (evil-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle)
+   #+END_SRC
+   
+   above makes tab key work in Org-mode in Cocoa and terminal again. I don't use C-i jump anyway.
+   
+   In other places, when in Evil's insert mode, M-tab serves as the pcompletion key. Vi's C-n and C-p key also works. I guess I have to get used to them.
+* Mail
+** mu4e settings
+   
+Start ~gpg-agent~ with emacs:
+#+BEGIN_SRC emacs-lisp
+  (async-shell-command "eval $(gpg-agent --daemon)" nil)
+#+end_SRC
+
+WARNING: This setting will save clear text email in Gmail's draft folder, regardless if you use GPG to encrypt email.
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e/")
+(require 'mu4e)
+(setq mu4e-maildir "~/Maildir")
+(setq mu4e-drafts-folder "/[Gmail].Drafts")
+(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
+(setq mu4e-trash-folder  "/[Gmail].Trash")
+#+END_SRC
+
+Gmail will automatically save sent messages, so no need to save it in mu4e.
+#+BEGIN_SRC emacs-lisp
+(setq mu4e-sent-messages-behavior 'delete)
+#+END_SRC
+
+Update folder in mu4e interface:
+#+BEGIN_SRC emacs-lisp
+(setq mu4e-get-mail-command "offlineimap")
+#+END_SRC
+
+User info:
+#+BEGIN_SRC emacs-lisp
+  (setq user-mail-address "haoyang@expoundite.net"
+        user-full-name "Haoyang Xu")
+#+END_SRC
+
+Send mail settings:
+#+BEGIN_SRC emacs-lisp
+  (require 'smtpmail)
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-stream-type 'starttls
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587)
+#+END_SRC
+
+Close buffer when finish editing:
+#+BEGIN_SRC emacs-lisp
+  (setq message-kill-buffer-on-exit t)
+#+END_SRC
+
+Use OSX textutil to carry out html2text actions:
+#+BEGIN_SRC emacs-lisp
+(setq mu4e-html2text-command
+  "textutil -stdin -format html -convert txt -stdout")
+#+END_SRC
+
+Verify GPG signatures and decrypt crypt emails:
+#+BEGIN_SRC emacs-lisp
+  (setq mu4e-decryption-policy t)
+#+END_SRC
+* Org-mode
+** Scope
+
+The following controls which org-files are read for agenda items:
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-files (list 
+                          (if (file-exists-p "~/codes/org/tasks.org") 
+                              "~/codes/org/tasks.org" 
+                            "C:/Users/haoyang/Dropbox/org/tasks.org")
+                          "~/codes/org/projects/"))
+#+END_SRC
+
+I have a "org" dir in my codes dir, version controlled with git, to store org files. In which a "project" dir are all the org files containing tasks and related notes. Each file describes a project.
+
+** Task identifiers
+
+By default, Org-mode uses "TODO" and "DONE" to identify tasks to be completed and those already completed. I have a different view about todos. If you call them "todo", you tend to think of them as something others tells you /to do/. I call them "AVAILABLE", which signifies something you /want/ to do next.
+
+Since August 2015 I quit the (boring) day job and decided to make something of my own. This requires writing documents and programming in a one-man army style. Thus the todo status has to be refined to reflect this new style of work.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keywords
+        '((sequence "ISSUE(i)" "MILESTONE(m)" "STORY(s)" "|" "DONEISSUE(!)" "DONEMS(!)" "DONESTORY(!)" "CANCELLED(c!)")))
+  (setq org-use-fast-todo-selection t)
+  (setq org-use-fast-tag-selection t)
+#+END_SRC
+
+** Capture
+
+All captured items go into a inbox file.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-default-notes-file (if (file-exists-p "~/codes/org/") "~/codes/org/tasks.org" "C:/Users/haoyang/Dropbox/org/tasks.org"))
+#+END_SRC
+
+Setup capture templates:
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-capture-templates
+   '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
+      "* AVAILABLE %?\n %i\n %a")
+     ("n" "Notes" entry (clock)
+      "* %^{Title|%U}\n %^C \n\n %?")
+     ("i" "Item" entry (file "~/codes/org/read.org")
+      "* %^{Status|TOREAD|READING|READ} %^{Title} %^g\n %^{Link|%x|%c} \n")
+     ("j" "Journal" entry (file+datetree "~/codes/org/Chronological.org")
+      "* %?\nEntered on %U\n %i\n %a")))
+#+END_SRC
+** Code blocks
+   To execute code blocks in languages other than Emacs Lisp, we must load babel support for these languages:
+#+BEGIN_SRC emacs-lisp
+(setq org-babel-load-languages
+  '((sh . t)
+    (emacs-lisp . t)
+    (ruby . t)))
+(org-babel-do-load-languages 'l t)
+#+END_SRC
+   Honestly I don't know why org-babel-do-load-languages needs a symbol as an argument, and the symbol seems can be anything.
+   
+** Org-bullets
+   Make leading stars UTF-8 chars:
+   #+BEGIN_SRC emacs-lisp
+   (require 'org-bullets)
+   (add-hook 'org-mode-hook 'hy-enable-org-bullets)
+   #+END_SRC
+* Company mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-backend-list '(company-robe
+                             company-web
+                             company-capf))
+(dolist (backend company-backend-list)
+  (eval-after-load 'company
+  '(push 'company-robe company-backends)))
+#+END_SRC
+* Robe
+  #+BEGIN_SRC emacs-lisp
+  (add-hook 'ruby-mode-hook 'robe-mode)
+  #+END_SRC
+* Haskell
+A few settings needed after installation, according to the[[https://wiki.haskell.org/Emacs/Installing_haskell-mode][ Official Page]].
+#+BEGIN_SRC emacs-lisp
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+#+END_SRC
+* JavaScript
+** auto start js2-mode
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+#+END_SRC
+** Indent
+Javascript can have a lot of levels of indent, so I think making indent smaller makes sense.
+#+BEGIN_SRC emacs-lisp
+  (setq js2-basic-offset 2)
+#+END_SRC
+* Markdown
+** auto start markdown for .page files
+   
+   My personal website uses ".page" as the extension for source files, which are actually Markdown files. So I want to switch to that mode when I open them.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
+#+END_SRC
+** also use pandoc mode to edit markdown
+   When in markdown-mode, start pandoc-mode automatically, too.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'markdown-mode-hook 'pandoc-mode)
+#+END_SRC
+* Yasnippet
+#+BEGIN_SRC emacs-lisp
+(yas-global-mode 1)
+#+END_SRC
+* Scratch Pad
+  Experiment ground.

@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Org writing project head
+# key: orgwrite_
+# binding: direct-keybinding
+# --
+\#+TITLE: $1
+\#+AUTHOR: Haoyang Xu
+\#+DATE: `(insert (format-time-string "%Y-%m-%d"))`
+
+\#+TAGS: DRAFT NOTES REFERENCES
+$0
