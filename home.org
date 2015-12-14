@@ -115,6 +115,15 @@ unlink $HOME/.zshrc
 ln -s $PWD/zshrc $HOME/.zshrc
 #+END_SRC
 
+* Credentials
+
+#+NAME: cred
+#+BEGIN_SRC sh :results silent :dir creds :var PPH=(read-passwd "GnuPG Passphrase: ")
+gpg -o credentials.org --passphrase="$PPH" -d credentials.org.gpg 
+emacs credentials.org --batch --eval '(setq org-confirm-babel-evaluate nil)' -f org-org-export-as-org --kill
+rm credentials.org
+#+END_SRC
+
 * Execute
 #+CALL: emacs() :results silent
 #+CALL: git() :results silent
