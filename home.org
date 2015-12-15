@@ -15,7 +15,7 @@ brew update
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew install wget emacs git irssi mutt offline-imap tmux keybase
+brew install wget ag emacs git irssi gpg2 mutt offline-imap tmux keybase
 #+END_SRC
 
 #+BEGIN_SRC sh
@@ -34,7 +34,25 @@ brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install iterm2 alfred 1password dropbox dash shiftit bartender devonthink-pro-office racket
+brew cask install iterm2 alfred 1password gpgtools dropbox dash shiftit bartender devonthink-pro-office racket
+#+END_SRC
+
+*** Language-dependence installations
+
+Node:
+#+BEGIN_SRC sh
+brew install node npm
+npm install npm -g
+#+END_SRC
+
+Python:
+#+BEGIN_SRC sh
+brew install python3
+#+END_SRC
+
+Haskell:
+#+BEGIN_SRC sh
+brew install ghc
 #+END_SRC
 * Emacs
 
