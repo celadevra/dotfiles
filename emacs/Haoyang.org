@@ -416,7 +416,7 @@ Since August 2015 I quit the (boring) day job and decided to make something of m
 
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "ISSUE(i)" "MILESTONE(m)" "STORY(s)" "|" "DONEISSUE(!)" "DONEMS(!)" "DONESTORY(!)" "CANCELLED(c!)")))
+        '((sequence "NEW(n)" "WORKING(w)" "WAITING(i@/!)" "|" "DONE(d)" "CANCELLED(c@)")))
   (setq org-use-fast-todo-selection t)
   (setq org-use-fast-tag-selection t)
 #+END_SRC
