@@ -375,14 +375,6 @@ User info:
         user-full-name "Haoyang Xu")
 #+END_SRC
 
-Update notmuch db from inside Emacs:
-#+BEGIN_SRC emacs-lisp
-  (define-key notmuch-show-mode-map "u"
-      (lambda ()
-        (interactive)
-          (async-shell-command "offlineimap; notmuch new")))
-#+END_SRC
-
 Send mail settings:
 #+BEGIN_SRC emacs-lisp
   (require 'smtpmail)
