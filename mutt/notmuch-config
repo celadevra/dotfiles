@@ -51,7 +51,7 @@ primary_email=haoyang@expoundite.net
 
 [new]
 tags=inbox;unread;
-ignore=
+ignore=[Gmail].All\ Mail;[Gmail].Important;[Gmail].Spam;[Gmail].Trash;[Gmail].Drafts;[Gmail].Sent\ Mail;[Gmail].Starred;Notes;Personal;Sent;Trash;
 
 # Search configuration
 #
@@ -100,4 +100,4 @@ synchronize_flags=true
 #
 
 [crypto]
-gpg_path=gpg
+gpg_path=gpg2

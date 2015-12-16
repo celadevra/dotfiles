@@ -245,8 +245,8 @@ Show corresponding parentheses:
   "Find configuration files"
   (progn
     (delete-other-windows)
-    (find-file "~/.emacs.d/init.el")
-    (find-file-other-window "~/.emacs.d/Haoyang.org")))
+    (find-file "~/Codes/dotfiles/emacs/init.el")
+    (find-file-other-window "~/Codes/dotfiles/emacs/Haoyang.org")))
 #+END_SRC
 
 ** Issue numbering automation in Org-mode
@@ -328,6 +328,8 @@ First, some combinations using evil-leader:
   "fd" 'dired-at-point
   "fs" 'save-buffer)
 (evil-leader/set-key
+  "h-" 'helm-dash-at-point
+  "hd" 'helm-dash
   "hi" 'helm-imenu
   "hg" 'helm-projectile-ag
   "hp" 'helm-projectile)
