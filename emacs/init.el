@@ -13,7 +13,7 @@
    (quote
     ("f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" "12b4427ae6e0eef8b870b450e59e75122d5080016a9061c9696959e50d578057" default)))
  '(magit-diff-options nil)
- '(org-bullets-bullet-list (quote ("◎" "⦿" "✪" "❖" "✺")))
+ '(org-bullets-bullet-list (quote ("⦿" "❥" "▼" "❖" "✫" "✻")))
  '(send-mail-function (quote smtpmail-send-it))
  '(sml/battery-format " %b%p%%")
  '(sml/modified-char "x")
