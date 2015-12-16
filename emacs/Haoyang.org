@@ -55,6 +55,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                      helm
 		     helm-ag
                      helm-c-yasnippet
+		     helm-dash
                      helm-git
 		     helm-projectile
 		     jade-mode
