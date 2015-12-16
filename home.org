@@ -6,7 +6,7 @@
 
 Will also use brew cask to install the following: iterm2, alfred 2, 1password, dropbox, dash, shiftit, bartender, devonthink-pro-office, racket.
 
-Before installing brew, make sure you have XCode and commandline utils installed.
+Brew may ask you to install Xcode command line tools first.
 
 #+BEGIN_SRC sh :dir /usr/local
 PATH=/usr/local/bin:$PATH
@@ -15,7 +15,7 @@ brew update
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew install wget ag emacs notmuch git irssi gpg2 mutt offline-imap tmux keybase
+brew install wget ag emacs notmuch git irssi gpg2 s3cmd duplicity mutt offline-imap tmux keybase
 #+END_SRC
 
 #+BEGIN_SRC sh
@@ -28,6 +28,8 @@ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ~/.rbenv/plugins/ruby-build/bin/rbenv-install 2.2.0
 #+END_SRC
+
+#+RESULTS:
 
 #+BEGIN_SRC sh
 brew tap caskroom/cask
