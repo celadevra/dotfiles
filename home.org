@@ -93,10 +93,12 @@ ln -s $PWD $HOME/.irssi
 unlink $HOME/.mutt
 unlink $HOME/.muttrc
 unlink $HOME/.goobookrc
+unlink $HOME/.notmuch-config
 chmod 600 muttcert
 ln -s $PWD/dotmutt $HOME/.mutt
 ln -s $PWD/muttrc $HOME/.muttrc
 ln -s $PWD/goobookrc $HOME/.goobookrc
+ln -s $PWD/notmuch-config $HOME/.notmuch-config
 #+END_SRC
 
 * Ruby
