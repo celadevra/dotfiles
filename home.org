@@ -37,7 +37,7 @@ brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install iterm2 alfred 1password gpgtools dropbox dash shiftit bartender devonthink-pro-office racket
+brew cask install iterm2 alfred caffeine 1password gpgtools dropbox dash shiftit bartender devonthink-pro-office racket
 #+END_SRC
 
 *** Language-dependence installations
