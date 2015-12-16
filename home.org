@@ -15,7 +15,7 @@ brew update
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew install wget ag emacs git irssi gpg2 mutt offline-imap tmux keybase
+brew install wget ag emacs notmuch git irssi gpg2 mutt offline-imap tmux keybase
 #+END_SRC
 
 #+BEGIN_SRC sh

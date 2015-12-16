@@ -359,32 +359,13 @@ First, some combinations using evil-leader:
    
    In other places, when in Evil's insert mode, M-tab serves as the pcompletion key. Vi's C-n and C-p key also works. I guess I have to get used to them.
 * Mail
-** mu4e settings
+** notmuch/nevermore settings
    
 Start ~gpg-agent~ with emacs:
 #+BEGIN_SRC emacs-lisp
   (async-shell-command "eval $(gpg-agent --daemon)" nil)
 #+end_SRC
 
-WARNING: This setting will save clear text email in Gmail's draft folder, regardless if you use GPG to encrypt email.
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e/")
-(require 'mu4e)
-(setq mu4e-maildir "~/Maildir")
-(setq mu4e-drafts-folder "/[Gmail].Drafts")
-(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
-(setq mu4e-trash-folder  "/[Gmail].Trash")
-#+END_SRC
-
-Gmail will automatically save sent messages, so no need to save it in mu4e.
-#+BEGIN_SRC emacs-lisp
-(setq mu4e-sent-messages-behavior 'delete)
-#+END_SRC
-
-Update folder in mu4e interface:
-#+BEGIN_SRC emacs-lisp
-(setq mu4e-get-mail-command "offlineimap")
-#+END_SRC
 
 User info:
 #+BEGIN_SRC emacs-lisp
@@ -402,21 +383,6 @@ Send mail settings:
         smtpmail-smtp-service 587)
 #+END_SRC
 
-Close buffer when finish editing:
-#+BEGIN_SRC emacs-lisp
-  (setq message-kill-buffer-on-exit t)
-#+END_SRC
-
-Use OSX textutil to carry out html2text actions:
-#+BEGIN_SRC emacs-lisp
-(setq mu4e-html2text-command
-  "textutil -stdin -format html -convert txt -stdout")
-#+END_SRC
-
-Verify GPG signatures and decrypt crypt emails:
-#+BEGIN_SRC emacs-lisp
-  (setq mu4e-decryption-policy t)
-#+END_SRC
 * Org-mode
 ** Scope
 
