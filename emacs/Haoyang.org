@@ -433,7 +433,8 @@ Setup capture templates:
       "* %^{Status|TOREAD|READING|READ} %^{Title} %^g\n %^{Link|%x|%c} \n")
      ("j" "Journal" entry (file+datetree "~/codes/org/Chronological.org")
       "* %?\nEntered on %U\n %i\n %a")
-     ("s" "Snippet" entry (file+headline "~/codes/org/notes.org"))))
+     ("s" "Snippet" entry (file "~/codes/org/notes.org")
+     "* %^{Title} %^g\n %U \n %^C \n %?")))
 #+END_SRC
 ** Code blocks
    To execute code blocks in languages other than Emacs Lisp, we must load babel support for these languages:
