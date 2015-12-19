@@ -238,7 +238,7 @@ Show corresponding parentheses:
 #+END_SRC
 * Custom functions
 
-** Find (open) emacs configuration files:
+** Find (open) emacs configuration files
 
 #+BEGIN_SRC emacs-lisp
 (defun find-init-file () (interactive)
@@ -249,6 +249,19 @@ Show corresponding parentheses:
     (find-file-other-window "~/Codes/dotfiles/emacs/Haoyang.org")))
 #+END_SRC
 
+** Find task file
+   It would be nice to open task file with simple keystrokes.
+   #+BEGIN_SRC emacs-lisp
+     (defun find-task-file () (interactive)
+            "Find task file"
+            (find-file "~/Codes/org/tasks.org"))
+   #+END_SRC
+** Find notes file
+   #+BEGIN_SRC emacs-lisp
+     (defun find-notes-file () (interactive)
+            "Find notes file"
+            (find-file "~/Codes/org/notes.org"))
+   #+END_SRC
 ** Issue numbering automation in Org-mode
 
 Find the largest number from issues in the buffer, for example, when there are tags like "issue5" "issue31" "issue33", it returns 33.
@@ -326,7 +339,9 @@ First, some combinations using evil-leader:
   "fa" 'find-file-at-point
   "fi" 'find-init-file
   "fd" 'dired-at-point
-  "fs" 'save-buffer)
+  "fn" 'find-notes-file
+  "fs" 'save-buffer
+  "ft" 'find-task-file)
 (evil-leader/set-key
   "h-" 'helm-dash-at-point
   "hd" 'helm-dash
@@ -426,7 +441,7 @@ Setup capture templates:
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
    '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
-      "* AVAILABLE %?\n %i\n %a")
+      "* NEW %?\n %i\n %a")
      ("n" "Notes" entry (clock)
       "* %^{Title|%U}\n %^C \n\n %?")
      ("i" "Item" entry (file "~/codes/org/read.org")
