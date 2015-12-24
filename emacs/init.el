@@ -11,8 +11,9 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" "12b4427ae6e0eef8b870b450e59e75122d5080016a9061c9696959e50d578057" default)))
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" "12b4427ae6e0eef8b870b450e59e75122d5080016a9061c9696959e50d578057" default)))
  '(magit-diff-options nil)
+ '(org-agenda-files (quote ("~/codes/org/tasks.org")))
  '(org-bullets-bullet-list (quote ("⦿" "❥" "▼" "❖" "✫" "✻")))
  '(send-mail-function (quote smtpmail-send-it))
  '(sml/battery-format " %b%p%%")

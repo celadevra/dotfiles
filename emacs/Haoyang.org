@@ -190,7 +190,7 @@ Many elements of vanilla Emacs can be safely disabled:
 	  (lambda ()
             (if (eq window-system nil)
               (load-theme 'wombat t)
-	    (load-theme 'ample-flat t))))
+	    (load-theme 'solarized-light t))))
 #+END_SRC
 
 ** Font
@@ -441,13 +441,13 @@ Setup capture templates:
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
    '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
-      "* NEW %?\n %i\n %a")
+      "* NEW %?\n")
      ("n" "Notes" entry (clock)
       "* %^{Title|%U}\n %^C \n\n %?")
      ("i" "Item" entry (file "~/codes/org/read.org")
       "* %^{Status|TOREAD|READING|READ} %^{Title} %^g\n %^{Link|%x|%c} \n")
      ("j" "Journal" entry (file+datetree "~/codes/org/Chronological.org")
-      "* %?\nEntered on %U\n %i\n %a")
+      "* %?\nEntered on %U\n %a")
      ("s" "Snippet" entry (file "~/codes/org/notes.org")
      "* %^{Title} %^g\n %U \n %^C \n %?")))
 #+END_SRC
