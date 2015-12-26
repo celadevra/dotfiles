@@ -27,7 +27,7 @@ chsh -s /bin/zsh
 #+BEGIN_SRC sh
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-~/.rbenv/plugins/ruby-build/bin/rbenv-install 2.2.0
+~/.rbenv/plugins/ruby-build/bin/rbenv-install 2.3.0
 #+END_SRC
 
 #+RESULTS:
