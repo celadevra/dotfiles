@@ -494,7 +494,7 @@ Generate tags on save, need ~hasktags~ installed and in ~exec-path~.
 #+BEGIN_SRC emacs-lisp
   (custom-set-variables
     '(haskell-tags-on-save t))
-  (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
+  (define-key haskell-mode-map (kbd "C-,") 'haskell-mode-jump-to-def-or-tag)
 #+END_SRC
 * JavaScript
 ** auto start js2-mode
