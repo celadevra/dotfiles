@@ -190,7 +190,7 @@ Many elements of vanilla Emacs can be safely disabled:
 	  (lambda ()
             (if (eq window-system nil)
               (load-theme 'wombat t)
-	    (load-theme 'solarized-dark t))))
+	    (load-theme 'molokai t))))
 #+END_SRC
 
 ** Font
