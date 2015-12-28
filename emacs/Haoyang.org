@@ -73,6 +73,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
 		     vc-fossil
 		     vc-darcs
                      yasnippet
+		     yaml-mode
 		     zenburn))
 
 (package-initialize)
