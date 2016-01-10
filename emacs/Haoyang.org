@@ -423,11 +423,31 @@ Since August 2015 I quit the (boring) day job and decided to make something of m
 
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "NEW(n)" "WORKING(w)" "WAITING(i@/!)" "|" "DONE(d)" "CANCELLED(c@)")))
+        '((sequence "NEW(n)" "TODO(t@/!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELLED(c@/!)")))
   (setq org-use-fast-todo-selection t)
   (setq org-use-fast-tag-selection t)
 #+END_SRC
 
+** Agenda
+   This part borrows heavily from John Wiegley's article /[[http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner/][Using org-mode as a day planner]]/.
+
+   The following code set org-agenda to show 7 days in the future, counting from today.
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-ndays 7)
+(setq org-agenda-show-all-dates t)
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-start-on-weekday nil)
+#+END_SRC
+
+   I often attach some notes to the task at hand, it is easier to read if the notes are ordered from the newest to the oldest.
+#+BEGIN_SRC emacs-lisp
+(setq org-reverse-note-order t)
+#+END_SRC
+
+   Set warnings for deadline to 14.
+#+BEGIN_SRC emacs-lisp
+(setq org-deadline-warning-days 14)
+#+END_SRC
 ** Capture
 
 All captured items go into a inbox file.
