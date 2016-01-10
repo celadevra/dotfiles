@@ -72,9 +72,11 @@ Install emacs init file and my settings (itself an Org file) to .emacs.d:
 unlink $HOME/.emacs.d/init.el
 unlink $HOME/.emacs.d/Haoyang.org
 unlink $HOME/.emacs.d/snippets
+unlink $HOME/.emacs.d/eshell/profile
 ln -s $PWD/init.el $HOME/.emacs.d/init.el
 ln -s $PWD/Haoyang.org $HOME/.emacs.d/Haoyang.org
 ln -s $PWD/snippets $HOME/.emacs.d/snippets
+ln -s $PWD/eshell/rc $HOME/.emacs.d/eshell/profile
 #+END_SRC
 
 * Git
