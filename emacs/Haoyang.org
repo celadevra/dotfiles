@@ -119,12 +119,6 @@ Magit doesn't have to revert unsaved buffers:
 # (guide-key-mode 1)
 # #+END_SRC
 
-Automatically expand to full screen after startup. Giving me more screen estate to work on.
-
-#+BEGIN_SRC emacs-lisp
-(toggle-frame-fullscreen)
-#+END_SRC
-
 ** Backup
 
 Stop emacs from making backup in the same dir as the file being edited. But use a special dir for backup files.
