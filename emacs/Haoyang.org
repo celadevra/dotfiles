@@ -471,6 +471,11 @@ Setup capture templates:
      ("s" "Snippet" entry (file "~/codes/org/notes.org")
      "* %^{Title} %^g\n %U \n %^C \n %?")))
 #+END_SRC
+** Refiling
+   I refile tasks to deeper levels, so I define the maxlevel of =org-refile= to at least 2.
+#+BEGIN_SRC emacs-lisp
+(setq org-refile-targets '((nil . (:maxlevel . 2))))
+#+END_SRC
 ** Code blocks
    To execute code blocks in languages other than Emacs Lisp, we must load babel support for these languages:
 #+BEGIN_SRC emacs-lisp
