@@ -184,7 +184,7 @@ Many elements of vanilla Emacs can be safely disabled:
 (add-hook 'after-init-hook
 	  (lambda ()
             (if (eq window-system nil)
-              (load-theme 'wombat t)
+              (load-theme 'molokai t)
 	    (load-theme 'molokai t))))
 #+END_SRC
 
