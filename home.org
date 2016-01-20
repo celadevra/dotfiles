@@ -15,15 +15,17 @@ brew update
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew install wget ag emacs notmuch git irssi gpg2 awscli mutt offline-imap tmux keybase mpw
+brew install wget bash ag emacs notmuch git irssi gpg2 awscli mutt offline-imap tmux keybase mpw
 brew install duplicity
 brew install ghc cabal-install
 #+END_SRC
 
 #+BEGIN_SRC sh
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-chsh -s /bin/zsh
+echo "/usr/local/bin/bash" | sudo tee -a /etc/shells
 #+END_SRC
+
+#+RESULTS:
+: /usr/local/bin/bash
 
 #+BEGIN_SRC sh
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -157,6 +159,13 @@ unlink $HOME/.zshrc
 ln -s $PWD/zshrc $HOME/.zshrc
 #+END_SRC
 
+* bash
+  #+BEGIN_SRC sh :results silent :dir bash
+  unlink $HOME/.profile
+  unlink $HOME/.bashrc
+  ln -s $PWD/profile $HOME/.profile
+  ln -s $PWD/rc $HOME/.bashrc
+  #+END_SRC
 * Credentials
 
 #+NAME: cred

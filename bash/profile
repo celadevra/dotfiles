@@ -1,0 +1,2 @@
+# Customize prompt
+export PS1='\[\e[1;31m\]\][\A] \[\e[1;34m\]\u \[\e[1;32m\]@ \h > \w \n\e[0m\]$ '
