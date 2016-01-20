@@ -29,7 +29,7 @@
 	   (quote deadline)
 	   (quote regexp)
 	   "]+>"))))))))
- '(org-agenda-files (quote ("~/codes/org/tasks.org")))
+ '(org-agenda-files (quote ("~/org/tasks.org")))
  '(org-bullets-bullet-list (quote ("⦿" "❥" "▼" "❖" "✫" "✻")))
  '(send-mail-function (quote smtpmail-send-it))
  '(sml/battery-format " %b%p%%")
