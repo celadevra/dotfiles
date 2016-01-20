@@ -112,6 +112,11 @@ Magit doesn't have to revert unsaved buffers:
 (setq magit-auto-revert-mode nil)
 #+END_SRC
 
+Use projectile globally:
+#+BEGIN_SRC emacs-lisp
+(projectile-global-mode)
+#+END_SRC
+
 # Use guide-key to show what to press next:
 
 # #+BEGIN_SRC emacs-lisp
