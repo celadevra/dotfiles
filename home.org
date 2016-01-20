@@ -31,19 +31,30 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ~/.rbenv/plugins/ruby-build/bin/rbenv-install 2.3.0
 #+END_SRC
 
+#+RESULTS:
+
 #+BEGIN_SRC sh
 cabal update
 cabal install cabal
 #+END_SRC
 
 #+RESULTS:
+| Config      | file              | path                     | source  | is                       | default | config              | file. |
+| Config      | file              | /Users/xhy/.cabal/config | not     | found.                   |         |                     |       |
+| Writing     | default           | configuration            | to      | /Users/xhy/.cabal/config |         |                     |       |
+| Downloading | the               | latest                   | package | list                     | from    | hackage.haskell.org |       |
+| Resolving   | dependencies...   |                          |         |                          |         |                     |       |
+| Downloading | Cabal-1.22.6.0... |                          |         |                          |         |                     |       |
+| Configuring | Cabal-1.22.6.0... |                          |         |                          |         |                     |       |
+| Building    | Cabal-1.22.6.0... |                          |         |                          |         |                     |       |
+| Installed   | Cabal-1.22.6.0    |                          |         |                          |         |                     |       |
 
 #+BEGIN_SRC sh
 brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install iterm2 alfred caffeine 1password gpgtools dropbox dash shiftit bartender devonthink-pro-office racket
+brew cask install iterm2 alfred caffeine gpgtools dropbox shiftit devonthink-pro-office racket
 #+END_SRC
 
 *** Language-dependence installations
@@ -150,7 +161,7 @@ ln -s $PWD/zshrc $HOME/.zshrc
 
 #+NAME: cred
 #+BEGIN_SRC sh :results silent :dir creds :var PPH=(read-passwd "GnuPG Passphrase: ")
-gpg -o credentials.org --passphrase="$PPH" -d credentials.org.gpg 
+gpg2 -o credentials.org --passphrase="$PPH" -d credentials.org.gpg 
 emacs credentials.org --batch --eval '(setq org-confirm-babel-evaluate nil)' -f org-org-export-as-org --kill
 rm credentials.org
 #+END_SRC
