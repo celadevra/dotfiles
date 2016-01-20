@@ -56,7 +56,7 @@ brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install iterm2 alfred caffeine gpgtools dropbox shiftit devonthink-pro-office racket
+brew cask install iterm2 quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket
 #+END_SRC
 
 *** Language-dependence installations
@@ -160,6 +160,7 @@ ln -s $PWD/zshrc $HOME/.zshrc
 #+END_SRC
 
 * bash
+  #+NAME: bash
   #+BEGIN_SRC sh :results silent :dir bash
   unlink $HOME/.profile
   unlink $HOME/.bashrc
@@ -169,11 +170,13 @@ ln -s $PWD/zshrc $HOME/.zshrc
 * Credentials
 
 #+NAME: cred
-#+BEGIN_SRC sh :results silent :dir creds :var PPH=(read-passwd "GnuPG Passphrase: ")
+#+BEGIN_SRC sh :dir creds :var PPH=(read-passwd "GnuPG Passphrase: ")
 gpg2 -o credentials.org --passphrase="$PPH" -d credentials.org.gpg 
-emacs credentials.org --batch --eval '(setq org-confirm-babel-evaluate nil)' -f org-org-export-as-org --kill
+/usr/local/bin/emacs-24.5 credentials.org --batch --eval '(setq org-confirm-babel-evaluate nil)' -f org-org-export-as-org --kill
 rm credentials.org
 #+END_SRC
+
+#+RESULTS: cred
 
 * Execute
 #+CALL: emacs() :results silent
@@ -184,3 +187,4 @@ rm credentials.org
 #+CALL: tmux() :results silent
 #+CALL: vim() :results silent
 #+CALL: zsh() :results silent
+#+CALL: bash() :results silent
