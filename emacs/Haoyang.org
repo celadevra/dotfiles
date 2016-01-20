@@ -198,9 +198,9 @@ Many elements of vanilla Emacs can be safely disabled:
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
-                          charset (font-spec :family "STFangsong"
-                                             :size 13)))
-      (setq face-font-rescale-alist '(("STFangsong" . 1.3)))))
+        charset (font-spec :family "Lantinghei_SC"
+        :size 13)))
+	(setq face-font-rescale-alist '(("Lantinghei_SC" . 1.3)))))
 #+END_SRC
 ** Auto display task list after start
 #+BEGIN_SRC emacs-lisp
@@ -397,6 +397,11 @@ Send mail settings:
         smtpmail-smtp-service 587)
 #+END_SRC
 
+* EPG/EPA
+  On Mac, Homebrew installs GnuPG 2.x as gpg2, so I customize this variable to point EPG to the binary:
+#+BEGIN_SRC emacs-lisp
+(setq epg-gpg-program "/usr/local/bin/gpg2")
+#+END_SRC
 * Org-mode
 ** Scope
 
