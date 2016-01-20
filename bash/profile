@@ -1,2 +1,22 @@
 # Customize prompt
 export PS1='\[\e[1;31m\]\][\A] \[\e[1;34m\]\u \[\e[1;32m\]@ \h > \w \n\e[0m\]$ '
+
+# rbenv settings
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# MasterPassword settings
+export MP_FULLNAME="Haoyang Xu"
+
+# Aliases
+alias 'ls'='ls -G'
+alias 'll'='ls -l'
+alias 'la'='ls -a'
+
+alias 'gst'='git status'
+alias 'ga'='git add'
+alias 'gaa'='git add -A'
+alias 'gc'='git commit'
+alias 'gp'='git push'
+
+alias 'be'='bundle exec'
