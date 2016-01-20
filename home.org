@@ -16,7 +16,7 @@ brew update
 
 #+BEGIN_SRC sh
 brew install wget ag emacs notmuch git irssi gpg2 awscli mutt offline-imap tmux keybase
-brew install duplicity --devel
+brew install duplicity
 brew install ghc cabal-install
 #+END_SRC
 
