@@ -4,7 +4,7 @@
 ** Mac
    The following deps will be installed (mostly with brew): wget, emacs, git, oh-my-zsh, rbenv, ruby-build, irssi, mutt, offlineimap, ruby, tmux, keybase, ghc and cabal.
 
-Will also use brew cask to install the following: iterm2, alfred 2, 1password, dropbox, dash, shiftit, bartender, devonthink-pro-office, racket.
+Will also use brew cask to install the following: iterm2, quicksilver, 1password, dropbox, shiftit, bartender, devonthink-pro-office, racket, zotero standalone.
 
 Brew may ask you to install Xcode command line tools first.
 
@@ -56,7 +56,7 @@ brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install iterm2 quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket
+brew cask install iterm2 quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket scrivener transmission zotero
 #+END_SRC
 
 *** Language-dependence installations
