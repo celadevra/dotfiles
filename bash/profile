@@ -1,6 +1,5 @@
 # Customize prompt
-export PS1='\[\e[1;31m\]\][\A] \[\e[1;34m\]\u \[\e[1;32m\]@ \h > \w \n\e[0m\]$ '
-
+export PS1="\[\e[1;31m\]\][\A] \[\e[1;34m\]\u \[\e[1;32m\]@ \h > \w \[\e[1;30m\]\$(git_branch)\n\[\e[0m\]$ " 
 # rbenv settings
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -8,6 +7,10 @@ eval "$(rbenv init -)"
 # MasterPassword settings
 export MP_FULLNAME="Haoyang Xu"
 
+# Show git branch/status in prompt
+function git_branch {
+    echo -e $(git branch 2>/dev/null | awk '/^*/{ print $2 }')
+}
 # Aliases
 alias 'ls'='ls -G'
 alias 'll'='ls -l'
