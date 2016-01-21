@@ -56,7 +56,11 @@ brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install flux iterm2 quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket scrivener transmission zotero
+brew cask install calibre flux firefox iterm2 quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket scrivener transmission zotero
+#+END_SRC
+
+#+BEGIN_SRC sh
+brew cask install shadowsocksx
 #+END_SRC
 
 *** Language-dependence installations
