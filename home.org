@@ -15,7 +15,7 @@ brew update
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew install wget bash ag emacs notmuch git irssi gpg2 awscli mutt offline-imap tmux keybase mpw
+brew install wget bash ag emacs notmuch git irssi gpg2 awscli mutt offline-imap tmux keybase mpw shadowsocks-libev
 brew install duplicity
 brew install ghc cabal-install
 #+END_SRC
@@ -56,7 +56,7 @@ brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install calibre flux firefox iterm2 quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket scrivener transmission zotero
+brew cask install calibre flux firefox iterm2 karabiner keka quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket scrivener transmission zotero
 #+END_SRC
 
 #+BEGIN_SRC sh
