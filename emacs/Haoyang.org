@@ -67,6 +67,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                      org
                      org-bullets
 		     ox-pandoc
+		     pandoc-mode
 		     projectile
                      relative-line-numbers
                      robe
