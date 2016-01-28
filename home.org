@@ -18,6 +18,8 @@ brew update
 brew install wget bash ag emacs notmuch git irssi gpg2 awscli mutt offline-imap tmux keybase mpw shadowsocks-libev
 brew install duplicity
 brew install ghc cabal-install
+brew tap homebrew/python
+brew install matplotlib matplotlib/basemap
 #+END_SRC
 
 #+BEGIN_SRC sh
@@ -56,11 +58,28 @@ brew tap caskroom/cask
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew cask install calibre flux firefox iterm2 karabiner keka quicksilver caffeine gpgtools dropbox shiftit devonthink-pro-office racket scrivener transmission zotero
+brew cask install calibre flux firefox iterm2 karabiner keka quicksilver caffeine gpgtools dropbox shiftit squirrel devonthink-pro-office qgis racket scrivener transmission zotero
 #+END_SRC
 
 #+BEGIN_SRC sh
 brew cask install shadowsocksx
+#+END_SRC
+
+Docker used to be difficult and cumbersome to install on OS X, thanks to [[https://blog.andyet.com/2016/01/25/easy-docker-on-osx/][&yet]], there is now a simpler solution for using docker on my machine.
+
+#+BEGIN_SRC sh
+wget https://github.com/nlf/dlite/releases/download/1.1.1/dlite -o /usr/local/bin/dlite
+sudo dlite install
+#+END_SRC
+
+Start the Dlite service:
+#+BEGIN_SRC sh
+launchctl start local.dlite
+#+END_SRC
+
+Then just install docker with Homebrew:
+#+BEGIN_SRC sh
+brew install docker
 #+END_SRC
 
 *** Language-dependence installations
