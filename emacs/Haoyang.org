@@ -412,7 +412,8 @@ The following controls which org-files are read for agenda items:
   (setq org-agenda-files (list 
                           (if (file-exists-p "~/org/tasks.org") 
                               "~/org/tasks.org" 
-                            "C:/Users/haoyang/Dropbox/org/tasks.org")))
+                            "C:/Users/haoyang/Dropbox/org/tasks.org")
+			    "~/org/notes.org"))
 #+END_SRC
 
 I have a "org" dir in my codes dir, version controlled with git, to store org files. In which a "project" dir are all the org files containing tasks and related notes. Each file describes a project.
