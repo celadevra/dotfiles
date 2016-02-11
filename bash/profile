@@ -4,7 +4,7 @@ set -o vi
 # Customize prompt
 export PS1="\[\e[1;31m\]\][\A] \[\e[1;34m\]\u \[\e[1;32m\]@ \h > \w \[\e[1;30m\]\$(git_branch)\n\[\e[0m\]$ " 
 # rbenv settings
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # MasterPassword settings
