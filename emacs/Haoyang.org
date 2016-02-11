@@ -333,6 +333,8 @@ First, some combinations using evil-leader:
 (evil-leader/set-key 
   "oc" 'org-capture
   "oa" 'org-agenda
+  "ohh" 'helm-org-in-buffer-headings
+  "ohc" 'helm-occur
   "ol" 'org-store-link
   "oL" 'org-insert-link
   "ot" 'org-todo-list
@@ -347,6 +349,7 @@ First, some combinations using evil-leader:
   "ft" 'find-task-file)
 (evil-leader/set-key
   "h-" 'helm-dash-at-point
+  "hc" 'helm-occur
   "hd" 'helm-dash
   "hi" 'helm-imenu
   "hg" 'helm-projectile-ag
