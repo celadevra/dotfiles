@@ -30,6 +30,7 @@
 	   (quote regexp)
 	   "]+>"))))))))
  '(org-agenda-files (quote ("~/org/tasks.org")))
+ '(org-babel-python-command "python3")
  '(org-bullets-bullet-list (quote ("⦿" "❥" "▼" "❖" "✫" "✻")))
  '(send-mail-function (quote smtpmail-send-it))
  '(sml/battery-format " %b%p%%")
