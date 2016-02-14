@@ -492,7 +492,7 @@ Setup capture templates:
     (ruby . t)
     (R . t)
     (python . t)
-    (haskell .t)))
+    (haskell . t)))
 (org-babel-do-load-languages 'l t)
 #+END_SRC
    Honestly I don't know why org-babel-do-load-languages needs a symbol as an argument, and the symbol seems can be anything.
