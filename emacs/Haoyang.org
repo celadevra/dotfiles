@@ -350,6 +350,7 @@ First, some combinations using evil-leader:
   "ft" 'find-task-file)
 (evil-leader/set-key
   "h-" 'helm-dash-at-point
+  "ha" 'helm-ag
   "hc" 'helm-occur
   "hd" 'helm-dash
   "hi" 'helm-imenu
@@ -503,6 +504,11 @@ Setup capture templates:
    (require 'org-bullets)
    (add-hook 'org-mode-hook 'hy-enable-org-bullets)
    #+END_SRC
+* ESS
+  Initialize ESS library:
+#+BEGIN_SRC emacs-lisp
+  (require 'ess-site)
+#+END_SRC
 * Company mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
