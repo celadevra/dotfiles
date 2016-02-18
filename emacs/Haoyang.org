@@ -510,49 +510,93 @@ Setup capture templates:
    First of all, I need to define a project.
 
    #+BEGIN_SRC emacs-lisp
+     (require 'ox-rss)
      (setq org-publish-project-alist
            '(("expoundite.net" :components ("essays"
+                                          "assets"
                                           "blog"
                                           "movies"
                                           "books"
                                           "tv"
                                           "docs"
+                                          "rss"
                                           "gallery"))
            ("essays" :base-directory "~/org/publishing/essays"
             :publishing-directory "~/org/published"
+            :html-postamble t
             :recursive t
             :auto-sitemap t
+            :html-doctype "html5"
             :sitemap-sans-extension t
-	    :publishing-function org-html-publish-to-html)
+            :publishing-function org-html-publish-to-html)
+           ("assets" :base-directory "~/org/publishing/assets"
+            :base-extension any
+            :publishing-directory "~/org/published"
+            :publishing-function org-publish-attachment
+            :recursive t)
            ("docs" :base-directory "~/org/publishing/docs"
             :publishing-directory "~/org/published/docs"
             :recursive t
             :base-extension any
-	    :publishing-function org-html-publish-to-html)
+            :html-postamble t
+            :html-doctype "html5"
+            :publishing-function org-html-publish-to-html)
            ("blog" :base-directory "~/org/publishing/blog"
             :publishing-directory "~/org/published/blog"
             :recursive t
-	    :publishing-function org-html-publish-to-html)
+            :html-postamble t
+            :html-doctype "html5"
+            :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\">"
+            :publishing-function org-html-publish-to-html)
            ("movies" :base-directory "~/org/publishing/movies"
             :publishing-directory "~/org/published/movies"
             :recursive t
-	    :with-drawers t
-	    :publishing-function org-html-publish-to-html)
+            :html-postamble t
+            :html-doctype "html5"
+            :with-drawers t
+            :publishing-function org-html-publish-to-html)
            ("books" :base-directory "~/org/publishing/books"
             :publishing-directory "~/org/published/books"
             :recursive t
-	    :with-drawers t
-	    :publishing-function org-html-publish-to-html)
+            :html-postamble t
+            :html-doctype "html5"
+            :with-drawers t
+            :publishing-function org-html-publish-to-html)
            ("tv" :base-directory "~/org/publishing/tv"
             :publishing-directory "~/org/published/tv"
             :recursive t
-	    :with-drawers t
-	    :publishing-function org-html-publish-to-html)
+            :html-postamble t
+            :html-doctype "html5"
+            :with-drawers t
+            :publishing-function org-html-publish-to-html)
+           ("rss" :base-directory "~/org/publishing/blog"
+            :base-extension "org"
+            :publishing-directory "~/org/published/blog"
+            :publishing-function (org-rss-publish-to-rss)
+	    :exclude ".*"
+	    :include ("rss.org")
+            :html-link-home "https://expoundite.net/blog"
+            :html-link-use-abs-url t)
            ("gallery" :base-directory "~/org/publishing/gallery"
             :publishing-directory "~/org/published/gallery"
+            :html-doctype "html5"
+            :html-postamble t
             :recursive t
-	    :publishing-function org-html-publish-to-html)
+            :publishing-function org-html-publish-to-html)
            ))
+   #+END_SRC
+   
+   The next thing is to set up a template for the outputs. This is done by customizing ~org-html-preamble-format~ and ~org-html-postamble-format~.
+   
+   #+BEGIN_SRC emacs-lisp
+     (setq org-html-postamble-format
+           '(("en" "<footer>Created by <span class=\"author\">%a (%e)</span> under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
+
+     (setq org-html-preamble-format
+           '(("en" "<nav></nav>")))
+
+     (setq org-html-head
+           "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">")
    #+END_SRC
 * ESS
   Initialize ESS library:
