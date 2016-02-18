@@ -504,6 +504,56 @@ Setup capture templates:
    (require 'org-bullets)
    (add-hook 'org-mode-hook 'hy-enable-org-bullets)
    #+END_SRC
+** Publishing
+   For the past two years (2014-2015), I have mainly used [[https://jaspervdj.be/hakyll/][Hakyll]] to generate my website, with intermittent flirting with various static site generators written in Ruby or Python or JavaScript. Since I am an Emacs and Org-mode bitch I am trying to do it in Org-mode, using its native publishing capabilities.
+   
+   First of all, I need to define a project.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-publish-project-alist
+           '(("expoundite.net" :components ("essays"
+                                          "blog"
+                                          "movies"
+                                          "books"
+                                          "tv"
+                                          "docs"
+                                          "gallery"))
+           ("essays" :base-directory "~/org/publishing/essays"
+            :publishing-directory "~/org/published"
+            :recursive t
+            :auto-sitemap t
+            :sitemap-sans-extension t
+	    :publishing-function org-html-publish-to-html)
+           ("docs" :base-directory "~/org/publishing/docs"
+            :publishing-directory "~/org/published/docs"
+            :recursive t
+            :base-extension any
+	    :publishing-function org-html-publish-to-html)
+           ("blog" :base-directory "~/org/publishing/blog"
+            :publishing-directory "~/org/published/blog"
+            :recursive t
+	    :publishing-function org-html-publish-to-html)
+           ("movies" :base-directory "~/org/publishing/movies"
+            :publishing-directory "~/org/published/movies"
+            :recursive t
+	    :with-drawers t
+	    :publishing-function org-html-publish-to-html)
+           ("books" :base-directory "~/org/publishing/books"
+            :publishing-directory "~/org/published/books"
+            :recursive t
+	    :with-drawers t
+	    :publishing-function org-html-publish-to-html)
+           ("tv" :base-directory "~/org/publishing/tv"
+            :publishing-directory "~/org/published/tv"
+            :recursive t
+	    :with-drawers t
+	    :publishing-function org-html-publish-to-html)
+           ("gallery" :base-directory "~/org/publishing/gallery"
+            :publishing-directory "~/org/published/gallery"
+            :recursive t
+	    :publishing-function org-html-publish-to-html)
+           ))
+   #+END_SRC
 * ESS
   Initialize ESS library:
 #+BEGIN_SRC emacs-lisp
