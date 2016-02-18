@@ -14,6 +14,10 @@ export MP_FULLNAME="Haoyang Xu"
 function git_branch {
     echo -e $(git branch 2>/dev/null | awk '/^*/{ print $2 }')
 }
+
+# set editors
+export GIT_EDITOR="vim"
+export EDITOR="emacsclient -a -t"
 # Aliases
 alias 'ls'='ls -G'
 alias 'll'='ls -l'
