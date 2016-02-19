@@ -31,7 +31,7 @@ This config utilizes Emacs' package support. Some additional repositories are ad
 #+BEGIN_SRC emacs-lisp
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")
+			 ;("melpa" . "http://melpa.milkbox.net/packages/")
 			 ("org" . "http://orgmode.org/elpa/")))
 #+END_SRC
 
@@ -59,6 +59,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
 		     helm-dash
                      helm-git
 		     helm-projectile
+		     htmlize
 		     jade-mode
 		     js2-mode
                      magit
@@ -523,6 +524,7 @@ Setup capture templates:
                                           "gallery"))
            ("essays" :base-directory "~/org/publishing/essays"
             :publishing-directory "~/org/published"
+	    :base-extension "page\\|org"
             :html-postamble t
             :recursive t
             :auto-sitemap t
@@ -544,6 +546,7 @@ Setup capture templates:
            ("blog" :base-directory "~/org/publishing/blog"
             :publishing-directory "~/org/published/blog"
             :recursive t
+	    :with-toc nil
             :html-postamble t
             :html-doctype "html5"
             :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\">"
@@ -589,15 +592,29 @@ Setup capture templates:
    The next thing is to set up a template for the outputs. This is done by customizing ~org-html-preamble-format~ and ~org-html-postamble-format~.
    
    #+BEGIN_SRC emacs-lisp
-     (setq org-html-postamble-format
-           '(("en" "<footer>Created by <span class=\"author\">%a (%e)</span> under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
+          (setq org-html-postamble-format
+                '(("en" "<footer><hr>Created by <span class=\"author\">%a (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
 
-     (setq org-html-preamble-format
-           '(("en" "<nav></nav>")))
+          (setq org-html-preamble-format
+                '(("en" "<nav><ul>
+                  <li><a href=\"/\">Home</a></li>
+                  <li><a href=\"/about\">About</a></li>
+                  <li><a href=\"/read-me\">Readme</a></li>
+                  <li><a href=\"/blog/rss\">Blog</a></li>
+                  <li><a href=\"https://github.com/celadevra\">GitHub</a></li>
+                  <li><a href=\"https://twitter.com/celadevra\">Twitter</a></li>
+                  </ul>
+                  </nav>")))
 
-     (setq org-html-head
-           "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">")
+          (setq org-html-head
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">")
    #+END_SRC
+*** auto enter org-mode for .page files
+   
+    My personal website uses ".page" as the extension for source files, which are actually org-mode files. So I want to switch to that mode when I open them.
+ #+BEGIN_SRC emacs-lisp
+   (add-to-list 'auto-mode-alist '("\\.page\\'" . org-mode))
+ #+END_SRC
 * ESS
   Initialize ESS library:
 #+BEGIN_SRC emacs-lisp
@@ -643,12 +660,6 @@ Javascript can have a lot of levels of indent, so I think making indent smaller 
   (setq-default js2-basic-offset 2)
 #+END_SRC
 * Markdown
-** auto start markdown for .page files
-   
-   My personal website uses ".page" as the extension for source files, which are actually Markdown files. So I want to switch to that mode when I open them.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
-#+END_SRC
 ** also use pandoc mode to edit markdown
    When in markdown-mode, start pandoc-mode automatically, too.
 #+BEGIN_SRC emacs-lisp
