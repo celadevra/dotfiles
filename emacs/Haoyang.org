@@ -193,7 +193,7 @@ Many elements of vanilla Emacs can be safely disabled:
 	  (lambda ()
             (if (eq window-system nil)
               (load-theme 'molokai t)
-	    (load-theme 'molokai t))))
+	    (load-theme 'solarized-light t))))
 #+END_SRC
 
 ** Font
@@ -202,7 +202,7 @@ Many elements of vanilla Emacs can be safely disabled:
 #+BEGIN_SRC emacs-lisp
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "Input-13")
+      (set-face-attribute 'default nil :font "Menlo-13")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
