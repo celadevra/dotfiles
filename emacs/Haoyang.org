@@ -516,15 +516,10 @@ Setup capture templates:
            '(("expoundite.net" :components ("essays"
                                           "assets"
                                           "blog"
-                                          "movies"
-                                          "books"
-                                          "tv"
-                                          "docs"
-                                          "rss"
-                                          "gallery"))
-           ("essays" :base-directory "~/org/publishing/essays"
+                                          "rss"))
+           ("essays" :base-directory "~/org/publishing"
             :publishing-directory "~/org/published"
-	    :base-extension "page\\|org"
+	    :base-extension "org"
             :html-postamble t
             :recursive t
             :auto-sitemap t
@@ -536,13 +531,6 @@ Setup capture templates:
             :publishing-directory "~/org/published"
             :publishing-function org-publish-attachment
             :recursive t)
-           ("docs" :base-directory "~/org/publishing/docs"
-            :publishing-directory "~/org/published/docs"
-            :recursive t
-            :base-extension any
-            :html-postamble t
-            :html-doctype "html5"
-            :publishing-function org-html-publish-to-html)
            ("blog" :base-directory "~/org/publishing/blog"
             :publishing-directory "~/org/published/blog"
             :recursive t
@@ -551,27 +539,6 @@ Setup capture templates:
             :html-doctype "html5"
             :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\">"
             :publishing-function org-html-publish-to-html)
-           ("movies" :base-directory "~/org/publishing/movies"
-            :publishing-directory "~/org/published/movies"
-            :recursive t
-            :html-postamble t
-            :html-doctype "html5"
-            :with-drawers t
-            :publishing-function org-html-publish-to-html)
-           ("books" :base-directory "~/org/publishing/books"
-            :publishing-directory "~/org/published/books"
-            :recursive t
-            :html-postamble t
-            :html-doctype "html5"
-            :with-drawers t
-            :publishing-function org-html-publish-to-html)
-           ("tv" :base-directory "~/org/publishing/tv"
-            :publishing-directory "~/org/published/tv"
-            :recursive t
-            :html-postamble t
-            :html-doctype "html5"
-            :with-drawers t
-            :publishing-function org-html-publish-to-html)
            ("rss" :base-directory "~/org/publishing/blog"
             :base-extension "org"
             :publishing-directory "~/org/published/blog"
@@ -579,32 +546,14 @@ Setup capture templates:
 	    :exclude ".*"
 	    :include ("rss.org")
             :html-link-home "https://expoundite.net/blog"
-            :html-link-use-abs-url t)
-           ("gallery" :base-directory "~/org/publishing/gallery"
-            :publishing-directory "~/org/published/gallery"
-            :html-doctype "html5"
-            :html-postamble t
-            :recursive t
-            :publishing-function org-html-publish-to-html)
-           ))
+            :html-link-use-abs-url t)))
    #+END_SRC
    
    The next thing is to set up a template for the outputs. This is done by customizing ~org-html-preamble-format~ and ~org-html-postamble-format~.
    
    #+BEGIN_SRC emacs-lisp
           (setq org-html-postamble-format
-                '(("en" "<footer><hr>Created by <span class=\"author\">%a (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
-
-          (setq org-html-preamble-format
-                '(("en" "<nav><ul>
-                  <li><a href=\"/\">Home</a></li>
-                  <li><a href=\"/about\">About</a></li>
-                  <li><a href=\"/read-me\">Readme</a></li>
-                  <li><a href=\"/blog/rss\">Blog</a></li>
-                  <li><a href=\"https://github.com/celadevra\">GitHub</a></li>
-                  <li><a href=\"https://twitter.com/celadevra\">Twitter</a></li>
-                  </ul>
-                  </nav>")))
+                '(("en" "<footer><p>Lost? You can always go <a href=\"/\">home</a>, and take the <a href=\"/sitemap\">site map</a>.</p><hr>Created by <span class=\"author\"><a href=\"https://about.me/haoyangxu\">%a</a> (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
 
           (setq org-html-head
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">")
