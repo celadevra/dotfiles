@@ -64,7 +64,6 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
 		     js2-mode
                      magit
 		     markdown-mode
-		     molokai-theme
 		     nm
                      org
                      org-bullets
