@@ -31,7 +31,7 @@ This config utilizes Emacs' package support. Some additional repositories are ad
 #+BEGIN_SRC emacs-lisp
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")
+			 ;("melpa" . "http://melpa.milkbox.net/packages/")
 			 ("org" . "http://orgmode.org/elpa/")))
 #+END_SRC
 
@@ -230,10 +230,7 @@ A few extra things I want to show in mode line:
 (display-battery-mode 1)
 #+END_SRC
 ** Visual aids for programming
-   Show relative line numbers:
-#+BEGIN_SRC emacs-lisp
-(global-relative-line-numbers-mode)
-#+END_SRC
+   I used to let emacs show line numbers on the left side, just like vim. But I find it distracting, as Emacs' linum function is not well implemented, so I disabled it.
 
 Show corresponding parentheses:
 #+BEGIN_SRC emacs-lisp
