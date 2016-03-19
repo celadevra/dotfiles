@@ -515,6 +515,7 @@ Setup capture templates:
            ("essays" :base-directory "~/org/publishing"
             :publishing-directory "~/org/published"
 	    :base-extension "org"
+	    :exclude "upload\.org"
             :html-postamble t
             :recursive t
             :auto-sitemap t
