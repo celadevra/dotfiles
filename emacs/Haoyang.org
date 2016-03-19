@@ -70,7 +70,6 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
 		     ox-pandoc
 		     pandoc-mode
 		     projectile
-                     relative-line-numbers
                      robe
                      smart-mode-line
 		     vc-fossil
