@@ -928,12 +928,20 @@ For now, I only store some configs of Git on the system.
   | Deleted:     | f32095d4ba8a9cbc622d10ae515b127cf863e47db3d63ed140f4ae85c7afb0cc |
 
 * Ruby
+  :PROPERTIES:
+  :tangle:   ~/.gemrc
+  :END:
 
-#+NAME: ruby
-#+BEGIN_SRC sh :results silent :dir ruby
-unlink $HOME/.gemrc
-ln -s $PWD/gemrc $HOME/.gemrc
-#+END_SRC
+  #+BEGIN_SRC yaml
+    ---
+    :backtrace: false
+    :bulk_threshold: 1000
+    :sources:
+    - http://ruby.taobao.org/
+    - https://ruby.taobao.org/
+    :update_sources: true
+    :verbose: true
+  #+END_SRC
 
 * tmux
 
@@ -982,7 +990,6 @@ rm credentials.org
 
 * Execute
 #+CALL: emacs() :results silent
-#+CALL: ruby() :results silent
 #+CALL: tmux() :results silent
 #+CALL: vim() :results silent
 #+CALL: zsh() :results silent
