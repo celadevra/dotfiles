@@ -1085,14 +1085,6 @@ I only sometimes use vim to do quick editing and send git commit message, so the
 
    #+RESULTS:
 
-* zsh
-  
-#+NAME: zsh
-#+BEGIN_SRC sh :results silent :dir zsh
-unlink $HOME/.zshrc
-ln -s $PWD/zshrc $HOME/.zshrc
-#+END_SRC
-
 * bash
   #+NAME: bash
   #+BEGIN_SRC sh :results silent :dir bash
