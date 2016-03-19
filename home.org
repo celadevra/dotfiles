@@ -1086,13 +1086,59 @@ I only sometimes use vim to do quick editing and send git commit message, so the
    #+RESULTS:
 
 * bash
-  #+NAME: bash
-  #+BEGIN_SRC sh :results silent :dir bash
-  unlink $HOME/.profile
-  unlink $HOME/.bashrc
-  ln -s $PWD/profile $HOME/.profile
-  ln -s $PWD/rc $HOME/.bashrc
-  #+END_SRC
+** profile
+   :PROPERTIES:
+   :tangle:   ~/.profile
+   :END:
+   ~.profile~ is the per-user setting read by bash when starting a login shell.
+
+   #+BEGIN_SRC sh
+     # settings
+     set -o vi
+
+     # Customize prompt
+     export PS1="\[\e[1;31m\]\][\A] \[\e[1;34m\]\u \[\e[1;32m\]@ \h > \w \[\e[1;30m\]\$(git_branch)\n\[\e[0m\]$ " 
+     # rbenv settings
+     export PATH="$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.rbenv/bin:$PATH"
+     eval "$(rbenv init -)"
+
+     # MasterPassword settings
+     export MP_FULLNAME="Haoyang Xu"
+
+     # Show git branch/status in prompt
+     function git_branch {
+         echo -e $(git branch 2>/dev/null | awk '/^*/{ print $2 }')
+     }
+
+     # set editors
+     export GIT_EDITOR="vim"
+     export EDITOR="emacsclient -a -t"
+     # Aliases
+     alias 'ls'='ls -G'
+     alias 'll'='ls -l'
+     alias 'la'='ls -a'
+
+     alias 'gst'='git status'
+     alias 'ga'='git add'
+     alias 'gaa'='git add -A'
+     alias 'gc'='git commit'
+     alias 'gp'='git push'
+
+     alias 'be'='bundle exec'
+
+     alias 'psg'='ps aux | grep'
+   #+END_SRC
+** bashrc
+   :PROPERTIES:
+   :tangle:   ~/.bashrc
+   :END:
+   
+   ~.bashrc~ is the per-user setting for non-login shells. In many cases, justing sourcing ~.profile~ would suffice.
+
+   #+BEGIN_SRC sh
+     source ~/.profile
+   #+END_SRC
+
 * Credentials
 
 #+NAME: cred
@@ -1106,7 +1152,3 @@ rm credentials.org
 
 * Execute
 #+CALL: emacs() :results silent
-#+CALL: tmux() :results silent
-#+CALL: vim() :results silent
-#+CALL: zsh() :results silent
-#+CALL: bash() :results silent
