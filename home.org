@@ -944,12 +944,74 @@ For now, I only store some configs of Git on the system.
   #+END_SRC
 
 * tmux
+  :PROPERTIES:
+  :tangle:   ~/.tmux.conf
+  :END:
 
-#+NAME: tmux
-#+BEGIN_SRC sh :results silent :dir tmux
-unlink $HOME/.tmux.conf
-ln -s $PWD/tmux.conf $HOME/.tmux.conf
-#+END_SRC
+  #+BEGIN_SRC conf
+    # adapted from https://github.com/davidbrewer/tmux-conf/blob/master/tmux.conf
+    unbind C-b
+    set -g prefix `
+    bind-key ` send-prefix
+
+    set -g default-terminal "xterm-256color"
+
+    # Remove delay for esc so I can use evil-mode faster
+    set -s escape-time 0
+
+    # better mnemonics for splitting panes
+    bind | split-window -h
+    bind - split-window -v
+
+    # vim / xmonad style bindings for pane movement
+    bind -r h select-pane -L
+    bind -r j select-pane -D
+    bind -r k select-pane -U
+    bind -r l select-pane -R
+
+    # shift-movement keys will resize panes
+    bind -r H resize-pane -L 5
+    bind -r J resize-pane -D 5
+    bind -r K resize-pane -U 5
+    bind -r L resize-pane -R 5
+
+    # fiddle with colors of status bar
+    set -g status-fg white
+    set -g status-bg colour234
+
+    # fiddle with colors of inactive windows
+    setw -g window-status-fg cyan
+    setw -g window-status-bg colour234
+    setw -g window-status-attr dim
+
+    # change color of active window
+    setw -g window-status-current-fg white
+    setw -g window-status-current-bg colour88
+    setw -g window-status-current-attr bright
+
+    # set color of regular and active panes
+    set -g pane-border-fg colour238
+    set -g pane-border-bg default
+    set -g pane-active-border-fg green
+    set -g pane-active-border-bg default
+
+    # set color of command line
+    set -g message-fg white
+    set -g message-bg colour22
+    set -g message-attr bright
+
+    # configure contents of status bar
+    set -g status-utf8 on
+    set -g status-left-length 40
+    set -g status-left "#[fg=green]\"#S\""
+
+    set -g status-right "#[fg=green] #h | %d %b %R"
+
+    set -g status-justify centre
+    setw -g monitor-activity on
+    set -g visual-activity on
+
+  #+END_SRC
 
 * Vim
 
