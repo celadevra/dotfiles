@@ -172,6 +172,9 @@ For now, I only store some configs of Git on the system.
   #+BEGIN_SRC sh
   mkdir ~/.irssi
   #+END_SRC
+
+  #+RESULTS:
+
 ** Config
   :PROPERTIES:
   :tangle:   ~/.irssi/config
@@ -1014,14 +1017,73 @@ For now, I only store some configs of Git on the system.
   #+END_SRC
 
 * Vim
+  Preparation:
 
+  #+BEGIN_SRC sh
+  mkdir -p ~/.config/nvim
+  mkdir -p ~/.vim/autoload ~/.vim/bundle
+  #+END_SRC
+
+  #+RESULTS:
+
+  
+  Install pathogen:
+
+  #+BEGIN_SRC sh
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  #+END_SRC
+
+  #+RESULTS:
+
+** Vimrc
+  :PROPERTIES:
+  :tangle:   ~/.vimrc
+  :END:
 I only sometimes use vim to do quick editing and send git commit message, so the vimrc is quite simple.
 
-#+NAME: vim
-#+BEGIN_SRC sh :results silent :dir vim
-unlink $HOME/.vimrc
-ln -s $PWD/vimrc $HOME/.vimrc
+#+BEGIN_SRC conf
+  """"""""""""""""""""
+  " > Basic Settings
+  """"""""""""""""""""
+  set nocompatible
+  execute pathogen#infect()
+  set autoindent
+  filetype plugin indent on
+  set nobackup
+  set expandtab
+  set tabstop=2
+  set shiftwidth=2
+  set bs=2
+  """"""""""""""""""""
+  " > User Interface
+  """"""""""""""""""""
+  set guifont=CosmicSansNeueMono:h13
+  syntax on
+  color desert
+  set laststatus=2
+  set number
+  """"""""""""""""""""
+  " > Completion
+  """"""""""""""""""""
+  imap <Tab> <C-P>
+  set complete=.,b,u,]
+  set wildmode=longest,list:longest
+  set completeopt=menu,preview
+  """"""""""""""""""""
+  " > Key bindings
+  """"""""""""""""""""
+  let mapleader = ","
+  map <leader>p :set paste<CR>
+  map <leader>P :set nopaste<CR>
 #+END_SRC
+
+** Nvim
+   #+BEGIN_SRC sh
+   cp ~/.vimrc ~/.config/nvim/init.vim
+   cp -r ~/.vim/* ~/.config/nvim/
+   #+END_SRC
+
+   #+RESULTS:
 
 * zsh
   
