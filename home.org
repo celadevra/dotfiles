@@ -116,14 +116,56 @@ ln -s $PWD/eshell/rc $HOME/.emacs.d/eshell/profile
 #+END_SRC
 
 * Git
+  :PROPERTIES:
+  :tangle:   ~/.gitconfig
+  :END:
 
 For now, I only store some configs of Git on the system.
 
-#+NAME: git
-#+BEGIN_SRC sh :results silent :dir git
-unlink $HOME/.gitconfig
-ln -s $PWD/gitconfig $HOME/.gitconfig
-#+END_SRC
+** User information
+   They can be set with ~git config --global user.name~ and ~git config --global user.email~, respectively.
+
+  #+BEGIN_SRC conf
+    [user]
+            name = Haoyang Xu
+            email = github@expoundite.net
+  #+END_SRC
+
+** Core configs
+  #+BEGIN_SRC conf
+    [core]
+            excludesfile = /Users/snakehsu/.gitignore_global
+            autocrlf = input
+  #+END_SRC
+** diff and merge tools
+   - TODO Use meld and other tools to replace these.
+  #+BEGIN_SRC conf
+    [difftool "sourcetree"]
+            cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+            path = 
+    [mergetool "sourcetree"]
+            cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+            trustExitCode = true
+  #+END_SRC
+** Push settings
+
+   With ~push.default~ set to ~simple~, ~git push~ will fail if the current local branch is not tracking a remote branch, even if remote has a branch with the same name. This seems to be the safest option. Other possible values are:
+
+   - ~upstream~: push the local branch to its upstream branch.
+   - ~current~: push the local branch to a branch of the same name.
+
+  #+BEGIN_SRC conf
+    [push]
+            default = simple
+  #+END_SRC
+** Saving credentials
+
+   Under OS X, credentials are stored in system keychain.
+
+  #+BEGIN_SRC conf
+    [credential]
+            helper = osxkeychain
+  #+END_SRC
 
 * Irssi
 
@@ -293,7 +335,6 @@ rm credentials.org
 
 * Execute
 #+CALL: emacs() :results silent
-#+CALL: git() :results silent
 #+CALL: irssi() :results silent
 #+CALL: mutt() :results silent
 #+CALL: ruby() :results silent
