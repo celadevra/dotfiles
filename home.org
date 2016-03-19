@@ -148,6 +148,96 @@ ln -s $PWD/goobookrc $HOME/.goobookrc
 ln -s $PWD/notmuch-config $HOME/.notmuch-config
 #+END_SRC
 
+* Nginx
+  Here is the config file I use to set up a very simple docker image, that is built on newest Nginx image, and serve the simple function to serve contents in a directory to the Web.
+
+  The first step would be pulling the newest Nginx image:
+
+  #+NAME: nginx-pull
+  #+BEGIN_SRC sh :dir /snakehsu@ssh.expoundite.net:/home/snakehsu/src/docker-nginx
+  docker pull nginx
+  #+END_SRC
+
+  Next, check my Nginx config:
+
+  #+NAME: nginx-config
+  #+BEGIN_SRC conf :tangle /snakehsu@ssh.expoundite.net:/home/snakehsu/src/docker-nginx/config
+
+    worker_processes 1;
+
+    events { worker_connections 1024; }
+
+    http {
+        include /etc/nginx/mime.types;
+        default_type text/html;
+        server {
+            listen 443 ssl http2;
+            server_name expoundite.net;
+            ssl_certificate /etc/nginx/fullchain.pem;
+            ssl_trusted_certificate /etc/nginx/chain.pem;
+            ssl_certificate_key /etc/nginx/privkey.pem;
+            location / {
+                root /data/www;
+                try_files $uri $uri/ $uri.html;
+            }
+        }
+
+        server {
+            listen 80;
+            return 301 https://expoundite.net$request_uri;
+        }
+    }
+  #+END_SRC
+  
+  and the Docker file:
+
+  #+NAME: nginx-dockerfile
+  #+BEGIN_SRC conf :tangle /snakehsu@ssh.expoundite.net:/home/snakehsu/src/docker-nginx/Dockerfile
+    FROM nginx
+    COPY config /etc/nginx/nginx.conf
+    COPY privkey.pem /etc/nginx/privkey.pem
+    COPY chain.pem /etc/nginx/chain.pem
+    COPY fullchain.pem /etc/nginx/fullchain.pem
+  #+END_SRC
+  
+  Then I can build an Nginx docker image with the right configs:
+
+  #+NAME: nginx-build
+  #+BEGIN_SRC sh :dir /snakehsu@ssh.expoundite.net:src/docker-nginx
+    docker build -t org-nginx .
+  #+END_SRC
+  
+  #+NAME: nginx-restart
+  #+BEGIN_SRC sh :dir /snakehsu@ssh.expoundite.net:
+    docker ps | grep 'org-nginx' | awk '{ print $9 }'
+    docker kill $(docker ps -a -q --filter ancestor=org-nginx --format='{{.ID}}')
+    docker run -d -p 443:443 -p 80:80 -v /home/snakehsu/site:/data/www org-nginx
+  #+END_SRC
+
+  #+NAME: nginx-cleanup
+  #+BEGIN_SRC sh :dir /snakehsu@ssh.expoundite.net:
+    # delete all stopped containers
+    docker rm $(docker ps -q -f status=exited)
+    # remove untagged images
+    docker images | grep "<none>" | awk '{print $3}' | xargs docker rmi
+  #+END_SRC
+
+  #+RESULTS: nginx-cleanup
+  | 5a7d373e43cc |                                                                  |
+  | 3e9ea94ac4c6 |                                                                  |
+  | Deleted:     | 534e8c575bd054ae830fbc92a5dbcf7b153df0cd413da6a6ae079b3f133041e5 |
+  | Deleted:     | ce86d1d92b637a7649060428d63232c6cfbe5defb2de98cb403da6977e8f2558 |
+  | Deleted:     | 0444eb3575183be736dbbdc512641b1988363129c4732eae7b644e5e3e10af98 |
+  | Deleted:     | 45831dd8ef5c9801cfb256a3a5e2467b7e86627cbd5fce46205ed09e1ed3f7e6 |
+  | Deleted:     | ae8e1e9c54b3fcaed87ff6ded395690df8dbd2bb4e9842485ab36a89d491c6f9 |
+  | Deleted:     | bf58831fd41ca27d5d1f0c42b30b21d5963d0e6ff2b65e1054ecc9ac402acc47 |
+  | Deleted:     | 18de280c0e54fa92a739cd31f417f5f10f8a30041ef1f9c7de742541cf07e674 |
+  | Deleted:     | cd0794b5fd94988910e766ec76520bf2bcb2a01a7f79f2d3fa50c02437c21284 |
+  | Deleted:     | 152440d1ba686b6580dc79043c7bb7820523a526318e044f6f6657dac6592f50 |
+  | Deleted:     | 5c9a73b9c4ad19355ac1688f283331263b3b26f3729d1ce7e7216604f0460d54 |
+  | Deleted:     | 9b607719a62aebe658894221e14778b3d3a3a410a06ff7b35a95be9f4e6be007 |
+  | Deleted:     | f32095d4ba8a9cbc622d10ae515b127cf863e47db3d63ed140f4ae85c7afb0cc |
+
 * Ruby
 
 #+NAME: ruby
