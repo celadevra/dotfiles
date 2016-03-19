@@ -643,19 +643,199 @@ For now, I only store some configs of Git on the system.
    #+END_SRC
 
 * Mutt
+  Preparation:
+  #+BEGIN_SRC sh
+  mkdir ~/.mutt
+  #+END_SRC
+** aliases
+   :PROPERTIES:
+   :tangle:   ~/.mutt/aliases
+   :END:
+   
+   Set up aliases for some mail addresses. None at the moment.
+   #+BEGIN_SRC conf
+   
+   #+END_SRC
+** muttrc
+   :PROPERTIES:
+   :tangle:   ~/.mutt/muttrc
+   :END:
+   
+   #+BEGIN_SRC conf
+     #source "/etc/Muttrc"   # Not available on OS X
+     source "gpg --batch --passphrase-file ~/.sec/.passphrase --textmode -d ~/.sec/mutt.gpg |"
+     set realname="Haoyang Xu"
+
+     set sig_dashes
+
+     set envelope_from=yes
+     set reverse_name
+
+     set alias_file="~/.mutt/aliases"
+     source ~/.mutt/aliases
+
+     set rfc2047_parameters=yes
+
+     set query_command="goobook query %s"
+     bind editor <Tab> complete-query
+     macro index,pager a "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
+
+
+     # Account hooks
+     account-hook . 'unset imap_user ; unset imap_pass ; unset tunnel'
+     account-hook 'imaps://celadevra@imap.gmail.com/' "\
+                  set imap_user=celadevra imap_pass=$my_gpass "
+
+     # IMAP settings
+     set folder="imaps://celadevra@imap.gmail.com/"
+     mailboxes ='Work' =INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam =[Gmail]/'All Mail'
+     folder-hook 'imaps://celadevra@imap.gmail.com' ' \
+                 set folder="imaps://celadevra@imap.gmail.com/" ;\
+                 set postponed="+[Gmail]/Drafts" ;\
+                 set record="+[Gmail]/'Sent Mail'" ;\
+                 set smtp_url="smtp://xu.haoyang@mail.mepfeco.org.cn" ;\
+                 set smtp_pass=$my_mpass ;\
+                 set from="Haoyang Xu <xu.haoyang@mepfeco.org.cn> " ;\
+                 set signature="~/.mutt/signature.feco" ;\
+                 set noaskcc ;\
+                 set realname="Haoyang Xu" '
+
+     # send settings
+     send-hook '\.org\.cn' "set create_rfc2047_parameters=yes"
+
+     # Mail-check preferences
+     set timeout=60
+   #+END_SRC
+** goobookrc
+   :PROPERTIES:
+   :tangle:   ~/.goobookrc
+   :END:
+   
+   #+BEGIN_SRC conf
+     # "#" or ";" at the start of a line makes it a comment.
+     [DEFAULT]
+     # If not given here, email and password is taken from .netrc using
+     # machine google.com
+     email: snakehsu@gmail.com
+     ;password: top secret
+     # or if you want to get the password from a commmand:
+     passwordeval: gpg --batch --passphrase-file ~/.sec/.passphrase -d ~/.sec/goobook.gpg
+     # The following are optional, defaults are shown
+     ;cache_filename: ~/.goobook_cache
+     ;cache_expiry_hours: 24
+     ;filter_groupless_contacts: yes
+
+   #+END_SRC
+** notmuch
+   :PROPERTIES:
+   :tangle:   ~/.notmuch-config
+   :END:
   
-#+NAME: mutt
-#+BEGIN_SRC sh :results silent :dir mutt
-unlink $HOME/.mutt
-unlink $HOME/.muttrc
-unlink $HOME/.goobookrc
-unlink $HOME/.notmuch-config
-chmod 600 muttcert
-ln -s $PWD/dotmutt $HOME/.mutt
-ln -s $PWD/muttrc $HOME/.muttrc
-ln -s $PWD/goobookrc $HOME/.goobookrc
-ln -s $PWD/notmuch-config $HOME/.notmuch-config
-#+END_SRC
+   #+BEGIN_SRC conf
+     # .notmuch-config - Configuration file for the notmuch mail system
+     #
+     # For more information about notmuch, see http://notmuchmail.org
+
+     # Database configuration
+     #
+     # The only value supported here is 'path' which should be the top-level
+     # directory where your mail currently exists and to where mail will be
+     # delivered in the future. Files should be individual email messages.
+     # Notmuch will store its database within a sub-directory of the path
+     # configured here named ".notmuch".
+     #
+
+     [database]
+     path=/Users/snakehsu/Maildir
+
+     # User configuration
+     #
+     # Here is where you can let notmuch know how you would like to be
+     # addressed. Valid settings are
+     #
+     #       name            Your full name.
+     #       primary_email   Your primary email address.
+     #       other_email     A list (separated by ';') of other email addresses
+     #                       at which you receive email.
+     #
+     # Notmuch will use the various email addresses configured here when
+     # formatting replies. It will avoid including your own addresses in the
+     # recipient list of replies, and will set the From address based on the
+     # address to which the original email was addressed.
+     #
+
+     [user]
+     name=Haoyang Xu
+     primary_email=haoyang@expoundite.net
+
+     # Configuration for "notmuch new"
+     #
+     # The following options are supported here:
+     #
+     #       tags    A list (separated by ';') of the tags that will be
+     #               added to all messages incorporated by "notmuch new".
+     #
+     #       ignore  A list (separated by ';') of file and directory names
+     #               that will not be searched for messages by "notmuch new".
+     #
+     #               NOTE: *Every* file/directory that goes by one of those
+     #               names will be ignored, independent of its depth/location
+     #               in the mail store.
+     #
+
+     [new]
+     tags=inbox;unread;
+     ignore=[Gmail].All\ Mail;[Gmail].Important;[Gmail].Spam;[Gmail].Trash;[Gmail].Drafts;[Gmail].Sent\ Mail;[Gmail].Starred;Notes;Personal;Sent;Trash;
+
+     # Search configuration
+     #
+     # The following option is supported here:
+     #
+     #       exclude_tags
+     #               A ;-separated list of tags that will be excluded from
+     #               search results by default.  Using an excluded tag in a
+     #               query will override that exclusion.
+     #
+
+     [search]
+     exclude_tags=deleted;spam;
+
+     # Maildir compatibility configuration
+     #
+     # The following option is supported here:
+     #
+     #       synchronize_flags      Valid values are true and false.
+     #
+     #       If true, then the following maildir flags (in message filenames)
+     #       will be synchronized with the corresponding notmuch tags:
+     #
+     #               Flag    Tag
+     #               ----    -------
+     #               D       draft
+     #               F       flagged
+     #               P       passed
+     #               R       replied
+     #               S       unread (added when 'S' flag is not present)
+     #
+     #       The "notmuch new" command will notice flag changes in filenames
+     #       and update tags, while the "notmuch tag" and "notmuch restore"
+     #       commands will notice tag changes and update flags in filenames
+     #
+
+     [maildir]
+     synchronize_flags=true
+
+     # Cryptography related configuration
+     #
+     # The following option is supported here:
+     #
+     #       gpg_path
+     #               binary name or full path to invoke gpg.
+     #
+
+     [crypto]
+     gpg_path=gpg2
+   #+END_SRC
 
 * Nginx
   Here is the config file I use to set up a very simple docker image, that is built on newest Nginx image, and serve the simple function to serve contents in a directory to the Web.
@@ -802,7 +982,6 @@ rm credentials.org
 
 * Execute
 #+CALL: emacs() :results silent
-#+CALL: mutt() :results silent
 #+CALL: ruby() :results silent
 #+CALL: tmux() :results silent
 #+CALL: vim() :results silent
