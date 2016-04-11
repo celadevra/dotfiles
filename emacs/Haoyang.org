@@ -192,7 +192,7 @@ Many elements of vanilla Emacs can be safely disabled:
 (add-hook 'after-init-hook
 	  (lambda ()
             (if (eq window-system nil)
-              (load-theme 'ample t)
+              (load-theme 'molokai t)
 	    (load-theme 'aurora t))))
 #+END_SRC
 
