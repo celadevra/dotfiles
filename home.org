@@ -650,6 +650,9 @@ For now, I only store some configs of Git on the system.
   #+BEGIN_SRC sh
   mkdir ~/.mutt
   #+END_SRC
+
+  #+RESULTS:
+
 ** aliases
    :PROPERTIES:
    :tangle:   ~/.mutt/aliases
@@ -951,7 +954,7 @@ For now, I only store some configs of Git on the system.
   :tangle:   ~/.tmux.conf
   :END:
 
-  #+BEGIN_SRC conf
+  #+BEGIN_SRC conf :mkdirp yes
     # adapted from https://github.com/davidbrewer/tmux-conf/blob/master/tmux.conf
     unbind C-b
     set -g prefix `

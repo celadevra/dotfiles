@@ -30,61 +30,63 @@ This config utilizes Emacs' package support. Some additional repositories are ad
 
 #+BEGIN_SRC emacs-lisp
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("melpa" . "https://melpa.org/packages/")
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")))
 #+END_SRC
 
 Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
 
 #+BEGIN_SRC emacs-lisp
-(setq package-list '(ace-window
-                     company
-		     company-ghci
-                     company-web
-		     ess
-                     evil
-                     evil-leader
-                     evil-numbers
-                     evil-paredit
-		     evil-smartparens
-		     exec-path-from-shell
-		     flycheck-haskell
-          ;           guide-key
-	             haskell-mode
-		     haskell-snippets
-                     helm
-		     helm-ag
-                     helm-c-yasnippet
-		     helm-dash
-                     helm-git
-		     helm-projectile
-		     htmlize
-		     jade-mode
-		     js2-mode
-                     magit
-		     markdown-mode
-		     nm
-                     org
-                     org-bullets
-		     ox-pandoc
-		     pandoc-mode
-		     projectile
-                     robe
-                     smart-mode-line
-		     vc-fossil
-		     vc-darcs
-                     yasnippet
-		     yaml-mode))
+  (setq package-list '(ace-window
+                       ample-theme
+                       aurora-theme
+                       company
+                       company-ghci
+                       company-web
+                       ess
+                       evil
+                       evil-leader
+                       evil-numbers
+                       evil-paredit
+                       evil-smartparens
+                       exec-path-from-shell
+                       flycheck-haskell
+            ;           guide-key
+                       haskell-mode
+                       haskell-snippets
+                       helm
+                       helm-ag
+                       helm-c-yasnippet
+                       helm-dash
+                       helm-git
+                       helm-projectile
+                       htmlize
+                       jade-mode
+                       js2-mode
+                       magit
+                       markdown-mode
+                       nm
+                       org
+                       org-bullets
+                       ox-pandoc
+                       pandoc-mode
+                       projectile
+                       robe
+                       smart-mode-line
+                       vc-fossil
+                       vc-darcs
+                       yasnippet
+                       yaml-mode))
 
-(package-initialize)
+  (package-initialize)
 
-(unless package-archive-contents
-  (package-refresh-contents))
+  (unless package-archive-contents
+    (package-refresh-contents))
 
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+  (dolist (package package-list)
+    (unless (package-installed-p package)
+      (package-install package)))
 #+END_SRC
 * Behaviour
 I am too used to Vim keybindings, esp. the movement keys, to go back to Emacs' default.
@@ -190,8 +192,8 @@ Many elements of vanilla Emacs can be safely disabled:
 (add-hook 'after-init-hook
 	  (lambda ()
             (if (eq window-system nil)
-              (load-theme 'molokai t)
-	    (load-theme 'solarized-light t))))
+              (load-theme 'ample t)
+	    (load-theme 'aurora t))))
 #+END_SRC
 
 ** Font
@@ -200,19 +202,13 @@ Many elements of vanilla Emacs can be safely disabled:
 #+BEGIN_SRC emacs-lisp
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "Menlo-13")
+      (set-face-attribute 'default nil :font "M+ 1m-14")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
         charset (font-spec :family "Lantinghei_SC"
         :size 13)))
-	(setq face-font-rescale-alist '(("Lantinghei_SC" . 1.3)))))
-#+END_SRC
-** Auto display task list after start
-#+BEGIN_SRC emacs-lisp
-(add-hook 'after-init-hook
-          (lambda ()
-          (org-agenda-list)))
+	(setq face-font-rescale-alist '(("Lantinghei_SC" . 1.1)))))
 #+END_SRC
 ** Mode line
 
@@ -560,6 +556,13 @@ Setup capture templates:
  #+BEGIN_SRC emacs-lisp
    (add-to-list 'auto-mode-alist '("\\.page\\'" . org-mode))
  #+END_SRC
+* Elisp
+  Settings for editing in Emacs-Lisp-mode.
+
+  #+BEGIN_SRC emacs-lisp
+    (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+    (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+  #+END_SRC
 * ESS
   Initialize ESS library:
 #+BEGIN_SRC emacs-lisp
