@@ -510,8 +510,8 @@ Setup capture templates:
                                           "rss"))
            ("essays" :base-directory "~/org/publishing"
             :publishing-directory "~/org/published"
-	    :base-extension "org"
-	    :exclude "upload\.org"
+            :base-extension "org"
+            :exclude "upload\.org\\|-draft-.*?\.org"
             :html-postamble t
             :recursive t
             :auto-sitemap t
@@ -526,7 +526,7 @@ Setup capture templates:
            ("blog" :base-directory "~/org/publishing/blog"
             :publishing-directory "~/org/published/blog"
             :recursive t
-	    :with-toc nil
+            :with-toc nil
             :html-postamble t
             :html-doctype "html5"
             :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\">"
@@ -535,8 +535,8 @@ Setup capture templates:
             :base-extension "org"
             :publishing-directory "~/org/published/blog"
             :publishing-function (org-rss-publish-to-rss)
-	    :exclude ".*"
-	    :include ("rss.org")
+            :exclude ".*"
+            :include ("rss.org")
             :html-link-home "https://expoundite.net/blog"
             :html-link-use-abs-url t)))
    #+END_SRC
