@@ -2,7 +2,7 @@
 * Installation
   This section is not automatically run when exporting.
 ** Mac
-   The following deps will be installed (mostly with brew): wget, emacs, git, oh-my-zsh, rbenv, ruby-build, irssi, mutt, offlineimap, ruby, tmux, keybase, ghc and cabal.
+   The following deps will be installed (mostly with brew): wget, emacs, git, oh-my-zsh, rbenv, ruby-build, irssi, mutt, offlineimap, ruby, tmux, keybase, ghc and stack.
 
 Will also use brew cask to install the following: iterm2, quicksilver, 1password, dropbox, shiftit, bartender, devonthink-pro-office, racket, zotero standalone.
 
@@ -15,9 +15,9 @@ brew update
 #+END_SRC
 
 #+BEGIN_SRC sh
-brew install wget bash ag emacs notmuch git irssi gpg2 awscli mutt offline-imap tmux keybase mpw shadowsocks-libev
+brew install wget bash ag emacs notmuch git graphviz irssi gpg2 links mutt offline-imap tmux keybase mpw shadowsocks-libev
 brew install duplicity
-brew install ghc cabal-install
+brew install ghc haskell-stack
 brew tap homebrew/python
 brew install matplotlib matplotlib/basemap
 #+END_SRC
