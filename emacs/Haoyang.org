@@ -484,6 +484,7 @@ Setup capture templates:
     (emacs-lisp . t)
     (ruby . t)
     (R . t)
+    (dot . t)
     (python . t)
     (haskell . t)))
 (org-babel-do-load-languages 'l t)
