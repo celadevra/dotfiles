@@ -184,8 +184,7 @@ Many elements of vanilla Emacs can be safely disabled:
    
 ** Org-mode ellipsis
 #+BEGIN_SRC emacs-lisp
-  (unless (eq window-system nil)
-    (setq org-ellipsis " ¶"))
+    (setq org-ellipsis " »")
 #+END_SRC
 ** Theming
 
