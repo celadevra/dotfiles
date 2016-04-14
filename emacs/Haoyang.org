@@ -304,6 +304,7 @@ Then when the key for assigning issue is pressed, get org-mode to assign tag wit
        (evil-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle))
    #+END_SRC
 ** Org-bullets only enabled under GUI
+   Not used currently, as Terminal.app handles these bullets well enough.
 #+BEGIN_SRC emacs-lisp
   (defun hy-enable-org-bullets ()
     "Only allow org-bullets in GUI environment, as many terms don't
@@ -495,7 +496,7 @@ Setup capture templates:
    Make leading stars UTF-8 chars:
    #+BEGIN_SRC emacs-lisp
    (require 'org-bullets)
-   (add-hook 'org-mode-hook 'hy-enable-org-bullets)
+   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
    #+END_SRC
 ** Publishing
    For the past two years (2014-2015), I have mainly used [[https://jaspervdj.be/hakyll/][Hakyll]] to generate my website, with intermittent flirting with various static site generators written in Ruby or Python or JavaScript. Since I am an Emacs and Org-mode bitch I am trying to do it in Org-mode, using its native publishing capabilities.
