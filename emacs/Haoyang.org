@@ -64,6 +64,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        htmlize
                        jade-mode
                        js2-mode
+		       lush-theme
                        magit
                        markdown-mode
                        nm
@@ -192,7 +193,7 @@ Many elements of vanilla Emacs can be safely disabled:
 (add-hook 'after-init-hook
 	  (lambda ()
             (if (eq window-system nil)
-              (load-theme 'molokai t)
+              (load-theme 'lush t)
 	    (load-theme 'aurora t))))
 #+END_SRC
 
