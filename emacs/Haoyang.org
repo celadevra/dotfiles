@@ -44,6 +44,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        company
                        company-ghci
                        company-web
+		       elfeed
                        ess
                        evil
                        evil-leader
@@ -232,6 +233,7 @@ Show corresponding parentheses:
 (smartparens-global-mode 1)
 (show-smartparens-global-mode +1)
 #+END_SRC
+
 * Custom functions
 
 ** Find (open) emacs configuration files
@@ -401,6 +403,19 @@ Send mail settings:
         smtpmail-smtp-service 587)
 #+END_SRC
 
+* RSS
+  I am using [[https://github.com/skeeto/elfeed][Elfeed]] to read RSS feeds. I can read articles in Emacs, take notes in Emacs, and write up in Emacs. Sounds great.
+
+** Feeds
+   Feeds are stored in variable ~elfeed-feeds~. Elfeed can also read from an OPML file. I will start by customizing the variable, then maybe an OPML on Dropbox so other RSS clients can utilize it.
+
+   #+BEGIN_SRC elisp
+     (setq elfeed-feeds
+           '(("http://feeds.feedburner.com/RBloggers?format=xml" data blog)
+             ("http://planet.emacsen.org/atom.xml" emacs blog)
+             ("http://feeds.feedburner.com/PlacesJournal" geo)
+             ("http://blog.qgis.org/feed/" geo)))
+   #+END_SRC
 * Org-mode
 ** Scope
 
