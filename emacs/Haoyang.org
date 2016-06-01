@@ -105,6 +105,14 @@ evil-leader is a very useful add on to save a lot of key strokes.
 (evil-mode 1)
 #+END_SRC
 
+Some modes such as EWW and elfeed comes with their own shortcut keys, and it's best to set their initial state to "Emacs" in Evil.
+
+#+BEGIN_SRC elisp
+  (evil-set-initial-state 'eww-mode 'emacs)
+  (evil-set-initial-state 'elfeed-search-mode 'emacs)
+  (evil-set-initial-state 'elfeed-show-mode 'emacs)
+#+END_SRC
+
 What I do most would be text editing in contrast to code editing, thus visual line would be nice.
 
 #+BEGIN_SRC emacs-lisp
@@ -413,6 +421,7 @@ Send mail settings:
      (setq elfeed-feeds
            '(("http://feeds.feedburner.com/RBloggers?format=xml" data blog)
              ("http://planet.emacsen.org/atom.xml" emacs blog)
+	     ("http://geographyblog.eu/wp/feed/" geo blog)
              ("http://feeds.feedburner.com/PlacesJournal" geo)
              ("http://blog.qgis.org/feed/" geo)))
    #+END_SRC
