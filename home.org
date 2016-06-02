@@ -1007,7 +1007,8 @@ For now, I only store some configs of Git on the system.
     set -g message-attr bright
 
     # configure contents of status bar
-    set -g status-utf8 on
+    ## set -g status-utf8 on
+    ## above line not required in Tmux 2.2
     set -g status-left-length 40
     set -g status-left "#[fg=green]\"#S\""
 
