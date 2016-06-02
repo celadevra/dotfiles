@@ -39,8 +39,6 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
 
 #+BEGIN_SRC emacs-lisp
   (setq package-list '(ace-window
-                       ample-theme
-                       aurora-theme
                        company
                        company-ghci
                        company-web
@@ -202,7 +200,7 @@ Many elements of vanilla Emacs can be safely disabled:
 	  (lambda ()
             (if (eq window-system nil)
               (load-theme 'lush t)
-	    (load-theme 'aurora t))))
+	    (load-theme 'lush t))))
 #+END_SRC
 
 ** Font
