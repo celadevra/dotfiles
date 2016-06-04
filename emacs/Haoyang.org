@@ -555,7 +555,12 @@ Setup capture templates:
             :with-toc nil
             :html-postamble t
             :html-doctype "html5"
-            :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\">"
+            :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\"> 
+                            <style type=\"text/css\"> 
+                                h2 { font-size: 24px; } 
+                                pre.example { background-color: rgba(255,255,255,255);
+                                              border: none; }
+                            </style>"
             :publishing-function org-html-publish-to-html)
            ("rss" :base-directory "~/org/publishing/blog"
             :base-extension "org"
