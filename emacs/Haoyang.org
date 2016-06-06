@@ -577,15 +577,17 @@ Setup capture templates:
    #+BEGIN_SRC emacs-lisp
      (setq org-html-preamble-format
            '(("en" "<div class=\"leftside\" id=\"menu-closed\"><div>&#x2263;</div></div>
-	            <div class=\"middlesection\"></div>")))
+                    <div class=\"middlesection\"></div>")))
 
      (setq org-html-postamble-format
            '(("en" "<footer><hr>Created by <span class=\"author\"><a href=\"https://about.me/haoyangxu\">%a</a> (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
 
      (setq org-html-head
-           "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">
-            <script src=\"/js/minified-web.js\" type=\"text/javascript\"></script>
-	    <script src=\"/js/main.js\" type=\"text/javascript\"></script>")
+           "<link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
+	   <link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
+	   <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">
+           <script src=\"/js/minified-web.js\" type=\"text/javascript\"></script>
+           <script src=\"/js/main.js\" type=\"text/javascript\"></script>")
    #+END_SRC
 *** auto enter org-mode for .page files
    
