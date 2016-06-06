@@ -124,11 +124,14 @@ For now, I only store some configs of Git on the system.
 
 ** User information
    They can be set with ~git config --global user.name~ and ~git config --global user.email~, respectively.
+   
+   We can also specify what public key is used to sign the commits: ~git config --global user.signingkey~
 
   #+BEGIN_SRC conf
     [user]
             name = Haoyang Xu
             email = github@expoundite.net
+	    signingkey = F99C109A
   #+END_SRC
 
 ** Core configs
@@ -167,6 +170,13 @@ For now, I only store some configs of Git on the system.
             helper = osxkeychain
   #+END_SRC
 
+** Sign commits with GnuPG
+   This is set through ~git config --global commit.gpgsign~.
+   
+ #+BEGIN_SRC conf
+   [commit]
+           gpgsign = true
+ #+END_SRC
 * Irssi
   Preparation: create dir for irssi config files.
   #+BEGIN_SRC sh
