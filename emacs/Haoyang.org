@@ -542,6 +542,7 @@ Setup capture templates:
             :recursive t
             :auto-sitemap t
             :html-doctype "html5"
+	    :html-mathjax-template "<script type=\"text/javascript\" src=\"%PATH\"></script>"
             :sitemap-sans-extension t
             :publishing-function org-html-publish-to-html)
            ("assets" :base-directory "~/org/publishing/assets"
@@ -561,6 +562,7 @@ Setup capture templates:
                                 pre.example { background-color: rgba(255,255,255,255);
                                               border: none; }
                             </style>"
+	    :html-mathjax-template "<script type=\"text/javascript\" src=\"%PATH\"></script>"
             :publishing-function org-html-publish-to-html)
            ("rss" :base-directory "~/org/publishing/blog"
             :base-extension "org"
@@ -589,6 +591,22 @@ Setup capture templates:
            <script src=\"/js/minified-web.js\" type=\"text/javascript\"></script>
            <script src=\"/js/main.js\" type=\"text/javascript\"></script>")
    #+END_SRC
+*** Mathjax settings
+    By default, Org-Mode uses MathJax CDN to process math in published html files. This is a out-of-box solution. But as I am using HTTPS to serve my page, I want to make sure javascripts are served in HTTPS as well. 
+
+    #+BEGIN_SRC elisp
+      (setq org-html-mathjax-options
+            '((path "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
+              (scale 100)
+              (align "center")
+              (font "TeX")
+              (linebreaks "false")
+              (autonumber "AMS")
+              (indent "0em")
+	      (multlinewidth "85%")
+	      (tagindent ".8em")
+	      (tagside "right")))
+    #+END_SRC
 *** auto enter org-mode for .page files
    
     My personal website uses ".page" as the extension for source files, which are actually org-mode files. So I want to switch to that mode when I open them.
