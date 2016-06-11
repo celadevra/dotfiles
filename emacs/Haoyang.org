@@ -582,7 +582,7 @@ Setup capture templates:
                     <div class=\"middlesection\"></div>")))
 
      (setq org-html-postamble-format
-           '(("en" "<footer><hr>Created by <span class=\"author\"><a href=\"https://about.me/haoyangxu\">%a</a> (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
+           '(("en" "<noscript><p><a href=\"/\">Home</a> | <a href=\"/about\">About</a> | <a href=\"/sitemap\">Site Map</a></p></noscript><footer><hr>Created by <span class=\"author\"><a href=\"https://about.me/haoyangxu\">%a</a> (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
 
      (setq org-html-head
            "<link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
