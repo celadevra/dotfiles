@@ -404,14 +404,24 @@ User info:
         user-full-name "Haoyang Xu")
 #+END_SRC
 
-Send mail settings:
+Send mail settings, the documentation provided by fastmail is problematic, see [[http://stackoverflow.com/questions/22851076/sending-emails-with-emacs24-via-smtp-with-gnutls-and-extra-arguments#22898098][here]] for the correct setup:
 #+BEGIN_SRC emacs-lisp
+  (setq notmuch-fcc-dirs "INBOX.Sent")
+
   (require 'smtpmail)
+  (require 'starttls)
+
+  (defun gnutls-available-p ()
+    "Function redefined in order not to use built-in GnuTLS support"
+    nil)
+  (setq starttls-gnutls-program "gnutls-cli")
+  (setq starttls-use-gnutls t)
   (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-smtp-user "haoyang@fastmail.com"
         smtpmail-stream-type 'starttls
         smtpmail-default-smtp-server "mail.messagingengine.com"
         smtpmail-smtp-server "mail.messagingengine.com"
-        smtpmail-smtp-service 465)
+        smtpmail-smtp-service 587)
 
   ;; sign message by default
   (add-hook 'message-setup-hook 'mml-secure-message-sign-pgpmime)
