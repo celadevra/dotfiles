@@ -392,6 +392,11 @@ Start ~gpg-agent~ with emacs:
   (async-shell-command "eval $(gpg-agent --daemon)" nil)
 #+end_SRC
 
+Read mail settings:
+#+BEGIN_SRC elisp
+  (setq notmuch-crypto-process-mime t)
+#+END_SRC
+
 
 User info:
 #+BEGIN_SRC emacs-lisp
@@ -404,9 +409,12 @@ Send mail settings:
   (require 'smtpmail)
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-stream-type 'starttls
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587)
+        smtpmail-default-smtp-server "mail.messagingengine.com"
+        smtpmail-smtp-server "mail.messagingengine.com"
+        smtpmail-smtp-service 465)
+
+  ;; sign message by default
+  (add-hook 'message-setup-hook 'mml-secure-message-sign-pgpmime)
 #+END_SRC
 
 * RSS

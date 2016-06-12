@@ -762,7 +762,7 @@ For now, I only store some configs of Git on the system.
      #
 
      [database]
-     path=/Users/snakehsu/Maildir
+     path=/Users/xhy/Maildir
 
      # User configuration
      #
@@ -801,7 +801,7 @@ For now, I only store some configs of Git on the system.
 
      [new]
      tags=inbox;unread;
-     ignore=[Gmail].All\ Mail;[Gmail].Important;[Gmail].Spam;[Gmail].Trash;[Gmail].Drafts;[Gmail].Sent\ Mail;[Gmail].Starred;Notes;Personal;Sent;Trash;
+     ignore=INBOX.Drafts;INBOX.Trash;INBOX.Spam
 
      # Search configuration
      #
