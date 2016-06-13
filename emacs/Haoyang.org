@@ -105,7 +105,7 @@ evil-leader is a very useful add on to save a lot of key strokes.
 
 Some modes such as EWW and elfeed comes with their own shortcut keys, and it's best to set their initial state to "Emacs" in Evil.
 
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
   (evil-set-initial-state 'eww-mode 'emacs)
   (evil-set-initial-state 'elfeed-search-mode 'emacs)
   (evil-set-initial-state 'elfeed-show-mode 'emacs)
@@ -168,9 +168,9 @@ Let Emacs in GUI mode recognize rbenv settings:
 (add-to-list 'vc-handled-backends 'darcs)
 #+END_SRC
 ** Web browsing
-Always use built-in eww browser:
+Always use default browser:
 #+BEGIN_SRC emacs-lisp
-(setq browse-url-browser-function 'eww-browse-url)
+(setq browse-url-browser-function 'browse-url-default-browser)
 #+END_SRC
 * Look
 
@@ -393,7 +393,7 @@ Start ~gpg-agent~ with emacs:
 #+end_SRC
 
 Read mail settings:
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
   (setq notmuch-crypto-process-mime t)
 #+END_SRC
 
@@ -433,13 +433,14 @@ Send mail settings, the documentation provided by fastmail is problematic, see [
 ** Feeds
    Feeds are stored in variable ~elfeed-feeds~. Elfeed can also read from an OPML file. I will start by customizing the variable, then maybe an OPML on Dropbox so other RSS clients can utilize it.
 
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
+     (require 'elfeed)
      (setq elfeed-feeds
            '(("http://feeds.feedburner.com/RBloggers?format=xml" data blog)
              ("http://planet.emacsen.org/atom.xml" emacs blog)
-	     ("http://geographyblog.eu/wp/feed/" geo blog)
-	     ("http://wush.ghost.io/rss/" data blog)
-	     ("http://www.digital-geography.com/feed/" geo blog)
+             ("http://geographyblog.eu/wp/feed/" geo blog)
+             ("http://wush.ghost.io/rss/" data blog)
+             ("http://www.digital-geography.com/feed/" geo blog)
              ("http://feeds.feedburner.com/PlacesJournal" geo)
              ("http://blog.qgis.org/feed/" geo)))
    #+END_SRC
@@ -612,7 +613,7 @@ Setup capture templates:
 *** Mathjax settings
     By default, Org-Mode uses MathJax CDN to process math in published html files. This is a out-of-box solution. But as I am using HTTPS to serve my page, I want to make sure javascripts are served in HTTPS as well. 
 
-    #+BEGIN_SRC elisp
+    #+BEGIN_SRC emacs-lisp
       (setq org-html-mathjax-options
             '((path "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
               (scale 100)
