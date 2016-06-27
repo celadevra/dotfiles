@@ -130,7 +130,7 @@ For now, I only store some configs of Git on the system.
   #+BEGIN_SRC conf
     [user]
             name = Haoyang Xu
-            email = github@expoundite.net
+            email = haoyang@fastmail.com
 	    signingkey = F99C109A
   #+END_SRC
 
@@ -889,6 +889,7 @@ For now, I only store some configs of Git on the system.
 
         server {
             listen 80;
+            server_name expoundite.net;
             return 301 https://expoundite.net$request_uri;
         }
     }
@@ -911,13 +912,33 @@ For now, I only store some configs of Git on the system.
   #+BEGIN_SRC sh :dir /snakehsu@ssh.expoundite.net:src/docker-nginx
     docker build -t org-nginx .
   #+END_SRC
+
+  #+RESULTS: nginx-build
+  | Sending      | build        | context      | to           | Docker        | daemon                   | 15.36 | kBSending | build | context | to | Docker | daemon | 15.36 | kB |
+  | Step         | 1            | :            | FROM         | nginx         |                          |       |             |       |         |    |        |        |       |    |
+  | --->         | 6f62f48c4e55 |              |              |               |                          |       |             |       |         |    |        |        |       |    |
+  | Step         | 2            | :            | COPY         | config        | /etc/nginx/nginx.conf    |       |             |       |         |    |        |        |       |    |
+  | --->         | b7a1e233a628 |              |              |               |                          |       |             |       |         |    |        |        |       |    |
+  | Removing     | intermediate | container    | 3edf82c8f0f7 |               |                          |       |             |       |         |    |        |        |       |    |
+  | Step         | 3            | :            | COPY         | privkey.pem   | /etc/nginx/privkey.pem   |       |             |       |         |    |        |        |       |    |
+  | --->         | d7fb0bf94ba2 |              |              |               |                          |       |             |       |         |    |        |        |       |    |
+  | Removing     | intermediate | container    | 674dfd642727 |               |                          |       |             |       |         |    |        |        |       |    |
+  | Step         | 4            | :            | COPY         | chain.pem     | /etc/nginx/chain.pem     |       |             |       |         |    |        |        |       |    |
+  | --->         | bcbc46375525 |              |              |               |                          |       |             |       |         |    |        |        |       |    |
+  | Removing     | intermediate | container    | ee5297e194d1 |               |                          |       |             |       |         |    |        |        |       |    |
+  | Step         | 5            | :            | COPY         | fullchain.pem | /etc/nginx/fullchain.pem |       |             |       |         |    |        |        |       |    |
+  | --->         | 48cbed8f935f |              |              |               |                          |       |             |       |         |    |        |        |       |    |
+  | Removing     | intermediate | container    | 01e5db695aa5 |               |                          |       |             |       |         |    |        |        |       |    |
+  | Successfully | built        | 48cbed8f935f |              |               |                          |       |             |       |         |    |        |        |       |    |
+
   
   #+NAME: nginx-restart
   #+BEGIN_SRC sh :dir /snakehsu@ssh.expoundite.net:
-    docker ps | grep 'org-nginx' | awk '{ print $9 }'
     docker kill $(docker ps -a -q --filter ancestor=org-nginx --format='{{.ID}}')
     docker run -d -p 443:443 -p 80:80 -v /home/snakehsu/site:/data/www org-nginx
   #+END_SRC
+
+  #+RESULTS: nginx-restart
 
   #+NAME: nginx-cleanup
   #+BEGIN_SRC sh :dir /snakehsu@ssh.expoundite.net:
@@ -928,21 +949,28 @@ For now, I only store some configs of Git on the system.
   #+END_SRC
 
   #+RESULTS: nginx-cleanup
-  | 5a7d373e43cc |                                                                  |
-  | 3e9ea94ac4c6 |                                                                  |
-  | Deleted:     | 534e8c575bd054ae830fbc92a5dbcf7b153df0cd413da6a6ae079b3f133041e5 |
-  | Deleted:     | ce86d1d92b637a7649060428d63232c6cfbe5defb2de98cb403da6977e8f2558 |
-  | Deleted:     | 0444eb3575183be736dbbdc512641b1988363129c4732eae7b644e5e3e10af98 |
-  | Deleted:     | 45831dd8ef5c9801cfb256a3a5e2467b7e86627cbd5fce46205ed09e1ed3f7e6 |
-  | Deleted:     | ae8e1e9c54b3fcaed87ff6ded395690df8dbd2bb4e9842485ab36a89d491c6f9 |
-  | Deleted:     | bf58831fd41ca27d5d1f0c42b30b21d5963d0e6ff2b65e1054ecc9ac402acc47 |
-  | Deleted:     | 18de280c0e54fa92a739cd31f417f5f10f8a30041ef1f9c7de742541cf07e674 |
-  | Deleted:     | cd0794b5fd94988910e766ec76520bf2bcb2a01a7f79f2d3fa50c02437c21284 |
-  | Deleted:     | 152440d1ba686b6580dc79043c7bb7820523a526318e044f6f6657dac6592f50 |
-  | Deleted:     | 5c9a73b9c4ad19355ac1688f283331263b3b26f3729d1ce7e7216604f0460d54 |
-  | Deleted:     | 9b607719a62aebe658894221e14778b3d3a3a410a06ff7b35a95be9f4e6be007 |
-  | Deleted:     | f32095d4ba8a9cbc622d10ae515b127cf863e47db3d63ed140f4ae85c7afb0cc |
 
+* Music library and playing
+** Beets
+
+   Beets configuration is stored in ~$HOME/.config/beets/config.yaml~:
+
+   #+BEGIN_SRC yaml :mkdirp yes :tangle ~/.config/beets/config.yaml
+     directory: ~/Music
+     library: ~/Dropbox/musiclibrary.blb
+
+     ignore: .AppleDouble ._* *~ .DS_Store
+     ignore_hidden: yes
+
+     ui:
+         color: yes
+
+     paths:
+         default: $genre/$albumartist/$album/$track $title
+         singleton: Singletons/$artist - $title
+         comp: $genre/$album/$track $title
+         albumtype:soundtrack: Soundtracks/$album/$track $title
+   #+END_SRC
 * Ruby
   :PROPERTIES:
   :tangle:   ~/.gemrc
