@@ -210,13 +210,13 @@ Many elements of vanilla Emacs can be safely disabled:
 #+BEGIN_SRC emacs-lisp
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "PT Mono-14")
+      (set-face-attribute 'default nil :font "PT Mono-12")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
         charset (font-spec :family "Lantinghei_SC"
         :size 13)))
-	(setq face-font-rescale-alist '(("Lantinghei_SC" . 1.3)))))
+	(setq face-font-rescale-alist '(("Lantinghei_SC" . 1.1)))))
 #+END_SRC
 ** Mode line
 
