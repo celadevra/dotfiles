@@ -606,6 +606,7 @@ Setup capture templates:
      (setq org-html-head
            "<link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
 	   <link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
+	   <link href=\"https://fonts.googleapis.com/css?family=Sanchez|PT+Mono|Roboto:300\" rel=\"stylesheet\">
 	   <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">
            <script src=\"/js/minified-web.js\" type=\"text/javascript\"></script>
            <script src=\"/js/main.js\" type=\"text/javascript\"></script>")
