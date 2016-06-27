@@ -971,7 +971,7 @@ For now, I only store some configs of Git on the system.
          comp: $genre/$album/$track $title
          albumtype:soundtrack: Soundtracks/$album/$track $title
 
-     plugins: fetchart lyrics lastgenre web
+     plugins: fetchart lyrics lastgenre web bpd
    #+END_SRC
 * Ruby
   :PROPERTIES:
