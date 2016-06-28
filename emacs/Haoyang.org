@@ -65,6 +65,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        js2-mode
 		       lush-theme
 		       material-theme
+		       moe-theme
                        magit
                        markdown-mode
                        nm
@@ -197,11 +198,28 @@ Many elements of vanilla Emacs can be safely disabled:
 ** Theming
 
 #+BEGIN_SRC emacs-lisp
+(require 'moe-theme)
 (add-hook 'after-init-hook
 	  (lambda ()
             (if (eq window-system nil)
               (load-theme 'lush t)
-	    (load-theme 'material-light t))))
+	    (load-theme 'moe t))))
+#+END_SRC
+
+moe-theme has a bunch of other settings:
+
+#+BEGIN_SRC emacs-lisp
+  (setq moe-theme-highlight-buffer-id t)
+#+END_SRC
+
+Auto-switch dark and light theme according to daylight:
+
+#+BEGIN_SRC emacs-lisp
+  (require 'moe-theme-switcher)
+
+  (setq moe-theme-switch-by-sunrise-and-sunset t)
+  (setq calendar-latitude +40)
+  (setq calendar-longitude +116)
 #+END_SRC
 
 ** Font
@@ -223,7 +241,7 @@ Many elements of vanilla Emacs can be safely disabled:
 I am trying out smart-mode-line.
 #+BEGIN_SRC emacs-lisp
 (setq sml/no-confirm-load-theme t)
-(setq sml/theme 'respectful)
+(setq sml/theme 'light)
 (sml/setup)
 #+END_SRC
 
