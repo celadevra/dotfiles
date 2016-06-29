@@ -236,6 +236,12 @@ Auto-switch dark and light theme according to daylight:
         :size 13)))
 	(setq face-font-rescale-alist '(("STSong" . 1.1)))))
 #+END_SRC
+
+STSong leaves very little line spacing, thus increase it a little.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default line-spacing 3)
+#+END_SRC
 ** Mode line
 
 I am trying out smart-mode-line.
