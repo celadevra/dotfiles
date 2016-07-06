@@ -529,26 +529,32 @@ Since August 2015 I quit the (boring) day job and decided to make something of m
 #+END_SRC
 ** Capture
 
-All captured items go into a inbox file.
+All captured items go into the big 'ledger' file.
 
 #+BEGIN_SRC emacs-lisp
 (setq org-default-notes-file (if (file-exists-p "~/org/") "~/org/organizer.org" "C:/Users/haoyang/Dropbox/org/tasks.org"))
 #+END_SRC
 
-Setup capture templates:
+Setup capture templates. The data I capture are of the following kinds:
+
+- Bookmarks. Materials I don't have time to read but will need in the future.
+- Notes on materials that I read/watched.
+- Quotes.
+- Code snippets.
+- Notes on current project.
 
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
-   '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
-      "* NEW %?\n")
-     ("n" "Task Notes" entry (clock)
+   '(("b" "Bookmark" entry (file+headline org-default-notes-file "Bookmarks")
+      "* %^{Title} %^g\n %^{URI} %?\n")
+     ("n" "Work Notes" entry (clock)
       "* %^{Title|%U}\n %^C \n\n %?")
-     ("i" "Read it later" entry (file+headline "~/org/tasks.org" "Read It Later")
-      "* TODO %^{Title} %^g\n %^{Link|%x|%c} \n")
-     ("j" "Journal" entry (file+datetree "~/org/notes.org" "Chronological")
-      "* %?\nEntered on %U\n %a")
-     ("s" "Snippet" entry (file "~/org/notes.org")
-     "* %^{Title} %^g\n %U \n %^C \n %?")))
+     ("r" "Read Notes" entry (file+headline org-default-notes-file "Notes")
+      "* %^{Title} %^g\n %^{URI|%x|%c} \n %?")
+     ("q" "Quotes" entry (file+headline org-default-notes-file "Quotes")
+      "* %^{Text|%x|%c} %^g\n --%^{Source}")
+     ("s" "Snippet" entry (file+headline org-default-notes-file "Snippets")
+     "* %^{Title} %^g\n %U \n #+BEGIN_SRC \n %^C \n #+END_SRC \n %?")))
 #+END_SRC
 ** Refiling
    I refile tasks to deeper levels, so I define the maxlevel of =org-refile= to at least 2.
