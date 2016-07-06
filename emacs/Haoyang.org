@@ -470,19 +470,17 @@ Send mail settings, the documentation provided by fastmail is problematic, see [
              ("http://blog.qgis.org/feed/" geo)))
    #+END_SRC
 * Org-mode
+  I am using Org-mode with Bullet Journal system. As a result I mainly take notes with Org-mode and leave agenda management to BuJo. This configuration may be somewhat different from other people's.
 ** Scope
 
 The following controls which org-files are read for agenda items:
 
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files (list 
-                          (if (file-exists-p "~/org/tasks.org") 
-                              "~/org/tasks.org" 
-                            "C:/Users/haoyang/Dropbox/org/tasks.org")
-			    "~/org/notes.org"))
+			    "~/org/organizer.org"))
 #+END_SRC
 
-I have a "org" dir in my codes dir, version controlled with git, to store org files. In which a "project" dir are all the org files containing tasks and related notes. Each file describes a project.
+I have a "org" dir in my codes dir, version controlled with git, to store org files. 
 
 ** Task identifiers
 
@@ -522,7 +520,7 @@ Since August 2015 I quit the (boring) day job and decided to make something of m
 All captured items go into a inbox file.
 
 #+BEGIN_SRC emacs-lisp
-(setq org-default-notes-file (if (file-exists-p "~/org/") "~/org/tasks.org" "C:/Users/haoyang/Dropbox/org/tasks.org"))
+(setq org-default-notes-file (if (file-exists-p "~/org/") "~/org/organizer.org" "C:/Users/haoyang/Dropbox/org/tasks.org"))
 #+END_SRC
 
 Setup capture templates:
