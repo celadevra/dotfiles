@@ -265,6 +265,18 @@ Show corresponding parentheses:
 (show-smartparens-global-mode +1)
 #+END_SRC
 
+   It would be nice to have ANSI colors in the compilation buffer:
+
+   #+BEGIN_SRC emacs-lisp
+     ;; from http://stackoverflow.com/a/20788581
+     (ignore-errors
+       (require 'ansi-color)
+       (defun my-colorize-compilation-buffer ()
+         (when (eq major-mode 'compilation-mode)
+           (ansi-color-apply-on-region compilation-filter-start (point-max))))
+       (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+   #+END_SRC
+
 * Custom functions
 
 ** Find (open) emacs configuration files
