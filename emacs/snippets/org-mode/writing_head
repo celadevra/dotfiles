@@ -8,4 +8,5 @@
 \#+DATE: `(insert (format-time-string "%Y-%m-%d"))`
 
 \#+TAGS: DRAFT NOTES REFERENCES
+\#+TODO: NEW WRITING EDITING | DONE
 $0
