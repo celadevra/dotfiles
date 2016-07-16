@@ -42,6 +42,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        company
                        company-ghci
                        company-web
+		       deft
 		       elfeed
                        ess
                        evil
@@ -365,50 +366,52 @@ Then when the key for assigning issue is pressed, get org-mode to assign tag wit
 First, some combinations using evil-leader:
 
 #+BEGIN_SRC emacs-lisp
-(evil-leader/set-key "x" 'helm-M-x)
-(evil-leader/set-key
-  "gs" 'magit-status
-  "gb" 'magit-checkout)
-(evil-leader/set-key 
-  "oc" 'org-capture
-  "oa" 'org-agenda
-  "ohh" 'helm-org-in-buffer-headings
-  "ohc" 'helm-occur
-  "ol" 'org-store-link
-  "oL" 'org-insert-link
-  "ot" 'org-todo-list
-  "oi" 'assign-issue-number)
-(evil-leader/set-key
-  "ff" 'helm-find-files
-  "fa" 'find-file-at-point
-  "fi" 'find-init-file
-  "fd" 'dired-at-point
-  "fn" 'find-notes-file
-  "fs" 'save-buffer
-  "ft" 'find-task-file)
-(evil-leader/set-key
-  "h-" 'helm-dash-at-point
-  "ha" 'helm-ag
-  "hc" 'helm-occur
-  "hd" 'helm-dash
-  "hi" 'helm-imenu
-  "hg" 'helm-projectile-ag
-  "hp" 'helm-projectile)
-(evil-leader/set-key
-  "bb" 'helm-buffers-list
-  "bd" 'kill-buffer)
-(evil-leader/set-key
-  "vv" 'vc-next-action)
-(evil-leader/set-key
-  "w0" 'delete-window
-  "ww" 'ace-window
-  "wv" 'split-window-horizontally
-  "ws" 'split-window-vertically
-  "wl" 'evil-window-right
-  "wh" 'evil-window-left
-  "wj" 'evil-window-down
-  "wk" 'evil-window-up
-  "w=" 'balance-windows)
+  (evil-leader/set-key "x" 'helm-M-x)
+  (evil-leader/set-key
+    "gs" 'magit-status
+    "gb" 'magit-checkout)
+  (evil-leader/set-key
+    "dd" 'deft)
+  (evil-leader/set-key 
+    "oc" 'org-capture
+    "oa" 'org-agenda
+    "ohh" 'helm-org-in-buffer-headings
+    "ohc" 'helm-occur
+    "ol" 'org-store-link
+    "oL" 'org-insert-link
+    "ot" 'org-todo-list
+    "oi" 'assign-issue-number)
+  (evil-leader/set-key
+    "ff" 'helm-find-files
+    "fa" 'find-file-at-point
+    "fi" 'find-init-file
+    "fd" 'dired-at-point
+    "fn" 'deft-find-file
+    "fs" 'save-buffer
+    "ft" 'find-task-file)
+  (evil-leader/set-key
+    "h-" 'helm-dash-at-point
+    "ha" 'helm-ag
+    "hc" 'helm-occur
+    "hd" 'helm-dash
+    "hi" 'helm-imenu
+    "hg" 'helm-projectile-ag
+    "hp" 'helm-projectile)
+  (evil-leader/set-key
+    "bb" 'helm-buffers-list
+    "bd" 'kill-buffer)
+  (evil-leader/set-key
+    "vv" 'vc-next-action)
+  (evil-leader/set-key
+    "w0" 'delete-window
+    "ww" 'ace-window
+    "wv" 'split-window-horizontally
+    "ws" 'split-window-vertically
+    "wl" 'evil-window-right
+    "wh" 'evil-window-left
+    "wj" 'evil-window-down
+    "wk" 'evil-window-up
+    "w=" 'balance-windows)
 #+END_SRC
 
 ** The tricky TAB key
@@ -674,6 +677,12 @@ Setup capture templates. The data I capture are of the following kinds:
  #+BEGIN_SRC emacs-lisp
    (add-to-list 'auto-mode-alist '("\\.page\\'" . org-mode))
  #+END_SRC
+* Deft
+  #+BEGIN_SRC emacs-lisp
+    (require 'deft)
+    (setq deft-directory "~/org/notes")
+    (setq deft-recursive t)
+  #+END_SRC
 * Elisp
   Settings for editing in Emacs-Lisp-mode.
 
