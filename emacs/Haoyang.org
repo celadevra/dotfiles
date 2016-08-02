@@ -43,6 +43,8 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        company-ghci
                        company-web
 		       deft
+		       ebib
+		       ebib-handy
 		       elfeed
                        ess
                        evil
@@ -379,6 +381,7 @@ First, some combinations using evil-leader:
     "ohc" 'helm-occur
     "ol" 'org-store-link
     "oL" 'org-insert-link
+    "ob" 'ebib-handy
     "ot" 'org-todo-list
     "oi" 'assign-issue-number)
   (evil-leader/set-key
@@ -677,6 +680,17 @@ Setup capture templates. The data I capture are of the following kinds:
  #+BEGIN_SRC emacs-lisp
    (add-to-list 'auto-mode-alist '("\\.page\\'" . org-mode))
  #+END_SRC
+* Ebib
+  #+BEGIN_SRC emacs-lisp
+    (require 'ebib-handy)
+    (ebib-handy-enable)
+
+    (setq ebib-extra-fields
+          '((BibTeX "keywords" "abstract" "timestamp"
+                    "file"  "url" "crossref" "annote" "doi")
+            (biblatex "keywords" "abstract" "timestamp"
+                      "file"  "url" "crossref" "annote" "doi")))
+  #+END_SRC
 * Deft
   #+BEGIN_SRC emacs-lisp
     (require 'deft)

@@ -177,6 +177,33 @@ For now, I only store some configs of Git on the system.
    [commit]
            gpgsign = true
  #+END_SRC
+* Rime
+  Rime is the shared name of a series of input methods developed by Fo Zhen. Its configuration files are in yaml format. Users can save their settings in "patch" yaml files.
+
+** Some general settings:
+   :PROPERTIES:
+   :tangle:   ~/Library/Rime/squirrel.custom.yaml
+   :END:
+
+  #+BEGIN_SRC yaml 
+    patch:
+      style:
+        color_scheme: clean_white
+        horizontal: true
+      app_options:
+        org.gnu.Emacs:
+           ascii_mode: true
+  #+END_SRC
+  
+** Use 小鹤双拼
+   :PROPERTIES:
+   :tangle:   ~/Library/Rime/default.custom.yaml
+   :END:
+   #+BEGIN_SRC yaml
+       patch:
+         schema_list:
+           - schema: double_pinyin_flypy
+   #+END_SRC
 * Irssi
   Preparation: create dir for irssi config files.
   #+BEGIN_SRC sh
