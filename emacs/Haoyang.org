@@ -363,12 +363,25 @@ Then when the key for assigning issue is pressed, get org-mode to assign tag wit
           (setq org-hide-leading-stars t))
       (org-bullets-mode 1)))
 #+END_SRC
+** Count number of chars/words in current buffer/region
+
+   #+BEGIN_SRC emacs-lisp
+     (defun hy-word-count ()
+       "Calculate number of chars and words in the current buffer or active region."
+       (interactive)
+       (if (use-region-p)
+           (message "%d chars, %d words" (abs (- (point) (mark)))
+                    (count-words-region (point) (mark)))
+         (message "%d chars, %d words" (- (point-max) (point-min))
+                    (count-words-region (point-max) (point-min)))))
+   #+END_SRC
 * Keybindings
 ** evil-leader
 First, some combinations using evil-leader:
 
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key "x" 'helm-M-x)
+  (evil-leader/set-key "=" 'hy-word-count)
   (evil-leader/set-key
     "gs" 'magit-status
     "gb" 'magit-checkout)
