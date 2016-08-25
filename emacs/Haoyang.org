@@ -762,6 +762,10 @@ Javascript can have a lot of levels of indent, so I think making indent smaller 
   (setq-default js2-basic-offset 2)
 #+END_SRC
 * Markdown
+** Use markdown-mode for .mdwn files
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.mdwn\\'" . markdown-mode))
+#+END_SRC
 ** also use pandoc mode to edit markdown
    When in markdown-mode, start pandoc-mode automatically, too.
 #+BEGIN_SRC emacs-lisp
