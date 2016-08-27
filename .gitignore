@@ -1,0 +1,6 @@
+*.DS_Store
+/emacs/Haoyang.el
+emacs/elpa
+/emacs/projectile-bookmarks.eld
+emacs/auto-save-list
+.sync/
