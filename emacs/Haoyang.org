@@ -39,6 +39,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
 
 #+BEGIN_SRC emacs-lisp
   (setq package-list '(ace-window
+                       chinese-pyim
                        company
                        company-ghci
                        company-web
@@ -67,13 +68,13 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        htmlize
                        jade-mode
                        js2-mode
-		       lush-theme
+                       lush-theme
                        magit
                        markdown-mode
                        nm
                        org-plus-contrib
                        org-bullets
-		       org-ref
+                       org-ref
                        ox-pandoc
                        pandoc-mode
                        projectile
@@ -591,7 +592,9 @@ The following controls which org-files are read for agenda items:
 
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files (list 
-			    "~/org/organizer.org"))
+                          "~/org/tasks.org"
+                          "~/org/organizer.org"
+                          "~/org/projects/"))
 #+END_SRC
 
 I have a "org" dir in my codes dir, version controlled with git, to store org files. 
@@ -690,7 +693,7 @@ Setup capture templates. The data I capture are of the following kinds:
    One can use the following to specify the .bib file to use and the bibliography style:
 
    #+BEGIN_EXAMPLE
-     ,* References
+     * References
      <<bibliography link>>
 
      bibliographystyle:unsrt
@@ -809,6 +812,17 @@ Setup capture templates. The data I capture are of the following kinds:
                     "file"  "url" "crossref" "annote" "doi")
             (biblatex "keywords" "abstract" "timestamp"
                       "file"  "url" "crossref" "annote" "doi")))
+  #+END_SRC
+* Chinese Input
+  The experience gained from the recent adventure in Spacemacs is that chinese-pyim is a useful package for inputing Chinese in Emacs.
+  
+  #+BEGIN_SRC emacs-lisp
+    (require 'chinese-pyim)
+
+    (setq default-input-method "chinese-pyim")
+    (global-set-key (kbd "C-\\") 'toggle-input-method)
+    ;; use shuang pin
+    (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
   #+END_SRC
 * Deft
 
