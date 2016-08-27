@@ -592,7 +592,6 @@ The following controls which org-files are read for agenda items:
 
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files (list 
-                          "~/org/tasks.org"
                           "~/org/organizer.org"
                           "~/org/projects/"))
 #+END_SRC
