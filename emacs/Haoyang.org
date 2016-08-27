@@ -73,6 +73,7 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        nm
                        org-plus-contrib
                        org-bullets
+		       org-ref
                        ox-pandoc
                        pandoc-mode
                        projectile
