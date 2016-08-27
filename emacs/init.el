@@ -16,6 +16,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(erc-email-userid "haoyang@expoundite.net")
+ '(erc-nick "snakehsu")
+ '(erc-nick-uniquifier "_")
+ '(erc-port 9999)
+ '(erc-server "23.83.236.195")
+ '(erc-server-auto-reconnect t)
+ '(erc-server-reconnect-timeout 30)
  '(haskell-tags-on-save t)
  '(pyim-dicts
    (quote
