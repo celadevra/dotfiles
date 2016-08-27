@@ -42,10 +42,11 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        company
                        company-ghci
                        company-web
-		       deft
-		       ebib
-		       ebib-handy
-		       elfeed
+                       deft
+                       ebib
+                       ebib-handy
+                       elfeed
+                       elfeed-org
                        ess
                        evil
                        evil-leader
@@ -67,12 +68,10 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        jade-mode
                        js2-mode
 		       lush-theme
-		       material-theme
-		       moe-theme
                        magit
                        markdown-mode
                        nm
-                       org
+                       org-plus-contrib
                        org-bullets
                        ox-pandoc
                        pandoc-mode
@@ -201,12 +200,11 @@ Many elements of vanilla Emacs can be safely disabled:
 ** Theming
 
 #+BEGIN_SRC emacs-lisp
-(require 'moe-theme)
 (add-hook 'after-init-hook
 	  (lambda ()
             (if (eq window-system nil)
               (load-theme 'lush t)
-	    (load-theme 'moe t))))
+	    (load-theme 'tango-dark t))))
 #+END_SRC
 
 moe-theme has a bunch of other settings:
@@ -778,6 +776,7 @@ Setup capture templates. The data I capture are of the following kinds:
    (add-to-list 'auto-mode-alist '("\\.page\\'" . org-mode))
  #+END_SRC
 * Ebib
+
   #+BEGIN_SRC emacs-lisp
     (require 'ebib-handy)
     (ebib-handy-enable)
@@ -789,6 +788,7 @@ Setup capture templates. The data I capture are of the following kinds:
                       "file"  "url" "crossref" "annote" "doi")))
   #+END_SRC
 * Deft
+
   #+BEGIN_SRC emacs-lisp
     (require 'deft)
     (setq deft-directory "~/org/notes")
@@ -803,10 +803,12 @@ Setup capture templates. The data I capture are of the following kinds:
   #+END_SRC
 * ESS
   Initialize ESS library:
+
 #+BEGIN_SRC emacs-lisp
   (require 'ess-site)
 #+END_SRC
 * Company mode
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-backend-list '(company-robe
@@ -817,6 +819,7 @@ Setup capture templates. The data I capture are of the following kinds:
   '(push 'company-robe company-backends)))
 #+END_SRC
 * Robe
+
   #+BEGIN_SRC emacs-lisp
   (add-hook 'ruby-mode-hook 'robe-mode)
   #+END_SRC
