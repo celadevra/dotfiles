@@ -824,6 +824,13 @@ Setup capture templates. The data I capture are of the following kinds:
     ;; use shuang pin
     (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
   #+END_SRC
+  
+  Company may jump out trying to complete sentences you typed before, which can be annoying. chinese-pyim provides a tweak to reduce the annoyance.
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'chinese-pyim-company)
+    (setq pyim-company-max-length 6)
+  #+END_SRC
 * Deft
 
   #+BEGIN_SRC emacs-lisp

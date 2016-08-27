@@ -17,6 +17,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(haskell-tags-on-save t)
+ '(org-agenda-files
+   (quote
+    ("~/org/organizer.org" "/Users/xhy/org/projects/soul-road.org")))
  '(pyim-dicts
    (quote
     ((:name "BigDict-01" :file "/Users/xhy/.emacs.d/pyim/dicts/pyim-bigdict.pyim.gz" :coding utf-8-unix :dict-type pinyin-dict)))))
