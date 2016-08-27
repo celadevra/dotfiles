@@ -1195,7 +1195,8 @@ I only sometimes use vim to do quick editing and send git commit message, so the
      alias 'gc'='git commit'
      alias 'gp'='git push'
 
-     alias 'e' = 'emacsclient -t'
+     alias 'e'='emacsclient -t'
+     alias 'emacs'='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 
      alias 'be'='bundle exec'
 
