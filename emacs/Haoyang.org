@@ -209,22 +209,6 @@ Many elements of vanilla Emacs can be safely disabled:
 	    (load-theme 'tango-dark t))))
 #+END_SRC
 
-moe-theme has a bunch of other settings:
-
-#+BEGIN_SRC emacs-lisp
-  (setq moe-theme-highlight-buffer-id t)
-#+END_SRC
-
-Auto-switch dark and light theme according to daylight:
-
-#+BEGIN_SRC emacs-lisp
-  (require 'moe-theme-switcher)
-
-  (setq moe-theme-switch-by-sunrise-and-sunset t)
-  (setq calendar-latitude +40)
-  (setq calendar-longitude +116)
-#+END_SRC
-
 ** Fonts
    中文和英文字体显示应对齐，一个汉字对应两个英文字符。
    Chinese and English displays should align perfectly.
@@ -569,21 +553,25 @@ Send mail settings, the documentation provided by fastmail is problematic, see [
 
 * RSS
   I am using [[https://github.com/skeeto/elfeed][Elfeed]] to read RSS feeds. I can read articles in Emacs, take notes in Emacs, and write up in Emacs. Sounds great.
-
-** Feeds
-   Feeds are stored in variable ~elfeed-feeds~. Elfeed can also read from an OPML file. I will start by customizing the variable, then maybe an OPML on Dropbox so other RSS clients can utilize it.
+  
+  Thanks to the elfeed-org package I can store the feed list in an org-mode file.
+** Initialize
 
    #+BEGIN_SRC emacs-lisp
      (require 'elfeed)
-     (setq elfeed-feeds
-           '(("http://feeds.feedburner.com/RBloggers?format=xml" data blog)
-             ("http://planet.emacsen.org/atom.xml" emacs blog)
-             ("http://geographyblog.eu/wp/feed/" geo blog)
-             ("http://wush.ghost.io/rss/" data blog)
-             ("http://www.digital-geography.com/feed/" geo blog)
-             ("http://feeds.feedburner.com/PlacesJournal" geo)
-             ("http://blog.qgis.org/feed/" geo)))
+     (require 'elfeed-org)
+
+     (elfeed-org)
+
+     (setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
    #+END_SRC
+
+   #+RESULTS:
+   | ~/org/elfeed.org |
+
+** Feeds
+   Feeds are stored in +variable ~elfeed-feeds~+ ~/org/elfeed.org. Elfeed can also read from an OPML file. 
+
 * Org-mode
   I am using Org-mode with Bullet Journal system. As a result I mainly take notes with Org-mode and leave agenda management to BuJo. This configuration may be somewhat different from other people's.
 ** Scope
