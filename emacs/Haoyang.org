@@ -684,6 +684,28 @@ Setup capture templates. The data I capture are of the following kinds:
    (require 'org-bullets)
    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
    #+END_SRC
+** Org-ref
+   Org-ref is a package for inserting bibliography citations into org-mode articles. The user manual is located at https://github.com/jkitchin/org-ref/blob/master/org-ref.org.
+   
+   One can use the following to specify the .bib file to use and the bibliography style:
+
+   #+BEGIN_EXAMPLE
+     ,* References
+     <<bibliography link>>
+
+     bibliographystyle:unsrt
+     bibliography:org-ref.bib
+   #+END_EXAMPLE
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'org-ref)
+
+     (setq reftex-default-bibliography '("~/org/bibliography/references.bib"))
+
+     (setq org-ref-bibliography-notes "~/org/bibliography/notes.org"
+           org-ref-default-bibliography '("~/org/bibliography/references.bib")
+           org-ref-pdf-directory "~/org/bibliography/bibtex-pdfs/")
+   #+END_SRC
 ** Publishing
    For the past two years (2014-2015), I have mainly used [[https://jaspervdj.be/hakyll/][Hakyll]] to generate my website, with intermittent flirting with various static site generators written in Ruby or Python or JavaScript. Since I am an Emacs and Org-mode bitch I am trying to do it in Org-mode, using its native publishing capabilities.
    
