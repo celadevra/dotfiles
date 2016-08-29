@@ -115,6 +115,7 @@ Some modes such as EWW and elfeed comes with their own shortcut keys, and it's b
   (evil-set-initial-state 'eww-mode 'emacs)
   (evil-set-initial-state 'elfeed-search-mode 'emacs)
   (evil-set-initial-state 'elfeed-show-mode 'emacs)
+  (evil-set-initial-state 'deft-mode 'emacs)
 #+END_SRC
 
 What I do most would be text editing in contrast to code editing, thus visual line would be nice.
@@ -822,7 +823,7 @@ Setup capture templates. The data I capture are of the following kinds:
 
   #+BEGIN_SRC emacs-lisp
     (require 'deft)
-    (setq deft-directory "~/org/notes")
+    (setq deft-directory "~/org")
     (setq deft-recursive t)
   #+END_SRC
 * Elisp
