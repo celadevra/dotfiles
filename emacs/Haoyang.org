@@ -214,19 +214,19 @@ Many elements of vanilla Emacs can be safely disabled:
 #+BEGIN_SRC emacs-lisp
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "PT Mono-14")
+      (set-face-attribute 'default nil :font "Terminus-14")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
         charset (font-spec :family "STSong"
-        :size 15)))
-	(setq face-font-rescale-alist '(("STSong" . 1.1)))))
+        :size 13)))
+	(setq face-font-rescale-alist '(("STSong" . 1.3)))))
 #+END_SRC
 
 STSong leaves very little line spacing, thus increase it a little.
 
 #+BEGIN_SRC emacs-lisp
-  (setq-default line-spacing 3)
+  (setq-default line-spacing 1)
 #+END_SRC
 
 Some East Asia characters have ambiguous width. The following settings are from http://attonblog.blogspot.hk/2014/03/unicode-east-asian-ambiguous-2.html, which should solve the problem.
