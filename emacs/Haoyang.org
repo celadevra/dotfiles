@@ -186,6 +186,7 @@ Many elements of vanilla Emacs can be safely disabled:
 (menu-bar-mode -1)
 (scroll-bar-mode 0)
 (setq inhibit-startup-screen 1)
+(setq org-hide-emphasis-markers t)
 #+END_SRC
 
 ** Code highlighting in org code blocks
@@ -366,13 +367,13 @@ Show corresponding parentheses:
    #+BEGIN_SRC emacs-lisp
      (defun find-task-file () (interactive)
             "Find task file"
-            (find-file "~/org/tasks.org"))
+            (find-file "~/org/organizer.org"))
    #+END_SRC
 ** Find notes file
    #+BEGIN_SRC emacs-lisp
      (defun find-notes-file () (interactive)
             "Find notes file"
-            (find-file "~/org/notes.org"))
+            (find-file "~/org/organizer.org"))
    #+END_SRC
 ** Issue numbering automation in Org-mode
 
