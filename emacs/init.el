@@ -24,6 +24,7 @@
  '(erc-server-auto-reconnect t)
  '(erc-server-reconnect-timeout 30)
  '(haskell-tags-on-save t)
+ '(org-bullets-bullet-list (quote ("◎" "⦿" "➢" "✣" "✫" "✲")))
  '(pyim-dicts
    (quote
     ((:name "BigDict-01" :file "/Users/xhy/.emacs.d/pyim/dicts/pyim-bigdict.pyim.gz" :coding utf-8-unix :dict-type pinyin-dict)))))
