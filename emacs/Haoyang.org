@@ -577,15 +577,23 @@ Send mail settings, the documentation provided by fastmail is problematic, see [
   I am using Org-mode with Bullet Journal system. As a result I mainly take notes with Org-mode and leave agenda management to BuJo. This configuration may be somewhat different from other people's.
 ** Scope
 
-The following controls which org-files are read for agenda items:
+The following controls which org-files are read for agenda items. There are two types of Org-mode files I am using. The first is a 'task' or 'hub' file that I use as the Inbox for incoming information/tasks. It also serves as the place I record my life story and notes that are not important enough to deserve their own notes.
+
+The other type are "notes" in their general senses. Notes on some topics, and notes/tasks that belong to projects go there.
 
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files (list 
                           "~/org/organizer.org"
-                          "~/org/projects/"))
+                          "~/org/notes/"))
 #+END_SRC
 
 I have a "org" dir in my codes dir, version controlled with git, to store org files. 
+
+The note files have a =#+CATEGORY= attribute, which is used to identify the status of the note. These categories are used:
+
+- TOPIC: Notes on a certain topic
+- WRITING: Drafts for writing
+- PROJECT: Notes on a non-writing project
 
 ** Task identifiers
 
@@ -595,7 +603,7 @@ Since August 2015 I quit the (boring) day job and decided to make something of m
 
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "NEW(n)" "TODO(t@/!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELLED(c@/!)")))
+        '((sequence "TODO(t@/!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELLED(c@/!)")))
   (setq org-use-fast-todo-selection t)
   (setq org-use-fast-tag-selection t)
 #+END_SRC
@@ -652,7 +660,7 @@ Setup capture templates. The data I capture are of the following kinds:
 ** Refiling
    I refile tasks to deeper levels, so I define the maxlevel of =org-refile= to at least 2.
 #+BEGIN_SRC emacs-lisp
-(setq org-refile-targets '((nil . (:maxlevel . 2))))
+(setq org-refile-targets '((nil . (:maxlevel . 6))))
 #+END_SRC
 ** Code blocks
    To execute code blocks in languages other than Emacs Lisp, we must load babel support for these languages:
@@ -823,7 +831,7 @@ Setup capture templates. The data I capture are of the following kinds:
 
   #+BEGIN_SRC emacs-lisp
     (require 'deft)
-    (setq deft-directory "~/org")
+    (setq deft-directory "~/org/notes/")
     (setq deft-recursive t)
   #+END_SRC
 * Elisp
