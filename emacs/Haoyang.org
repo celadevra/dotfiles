@@ -44,8 +44,6 @@ Auto check and install packages, thanks to http://stackoverflow.com/a/10093312
                        company-ghci
                        company-web
                        deft
-                       ebib
-                       ebib-handy
                        elfeed
                        elfeed-org
                        ess
@@ -799,18 +797,6 @@ Setup capture templates. The data I capture are of the following kinds:
  #+BEGIN_SRC emacs-lisp
    (add-to-list 'auto-mode-alist '("\\.page\\'" . org-mode))
  #+END_SRC
-* Ebib
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'ebib-handy)
-    (ebib-handy-enable)
-
-    (setq ebib-extra-fields
-          '((BibTeX "keywords" "abstract" "timestamp"
-                    "file"  "url" "crossref" "annote" "doi")
-            (biblatex "keywords" "abstract" "timestamp"
-                      "file"  "url" "crossref" "annote" "doi")))
-  #+END_SRC
 * Chinese Input
   The experience gained from the recent adventure in Spacemacs is that chinese-pyim is a useful package for inputing Chinese in Emacs.
   
