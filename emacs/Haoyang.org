@@ -646,16 +646,18 @@ Setup capture templates. The data I capture are of the following kinds:
 
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
-   '(("b" "Bookmark" entry (file+headline org-default-notes-file "Bookmarks")
-      "* %^{Title} %^g\n %^{URI} %?\n")
-     ("n" "Work Notes" entry (clock)
-      "* %^{Title}\n %U \n %^C \n\n %?")
-     ("r" "Read Notes" entry (file+headline org-default-notes-file "Notes")
-      "* %^{Title} %^g\n %^{URI|%x|%c} \n %?")
-     ("q" "Quotes" entry (file+headline org-default-notes-file "Quotes")
-      "* %^{Text|%x|%c} %^g\n --%^{Source}")
-     ("s" "Snippet" entry (file+headline org-default-notes-file "Snippets")
-     "* %^{Title} %^g\n %U \n #+BEGIN_SRC \n %^C \n #+END_SRC \n %?")))
+        '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
+           "* TODO %^{Title}\n")
+          ("b" "Bookmark" entry (file+headline org-default-notes-file "Bookmarks")
+           "* %^{Title} %^g\n %^{URI} %?\n")
+          ("n" "Work Notes" entry (clock)
+           "* %^{Title}\n %U \n %^C \n\n %?")
+          ("r" "Read Notes" entry (file+headline org-default-notes-file "Notes")
+           "* %^{Title} %^g\n %^{URI|%x|%c} \n %?")
+          ("q" "Quotes" entry (file+headline org-default-notes-file "Quotes")
+           "* %^{Text|%x|%c} %^g\n --%^{Source}")
+          ("s" "Snippet" entry (file+headline org-default-notes-file "Snippets")
+           "* %^{Title} %^g\n %U \n #+BEGIN_SRC \n %^C \n #+END_SRC \n %?")))
 #+END_SRC
 ** Refiling
    I refile tasks to deeper levels, so I define the maxlevel of =org-refile= to at least 2.
