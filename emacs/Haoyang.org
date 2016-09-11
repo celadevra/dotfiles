@@ -211,10 +211,11 @@ Many elements of vanilla Emacs can be safely disabled:
 ** Fonts
    中文和英文字体显示应对齐，一个汉字对应两个英文字符。
    Chinese and English displays should align perfectly.
+
 #+BEGIN_SRC emacs-lisp
 (if (display-graphic-p nil)
     (progn ;; set English font
-      (set-face-attribute 'default nil :font "Terminus-14")
+      (set-face-attribute 'default nil :font "Anonymous Pro-14")
       ;; Chinese font
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
