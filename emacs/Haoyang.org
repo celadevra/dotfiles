@@ -114,6 +114,7 @@ Bootstrap =use-package=.
     (use-package smartparens :ensure t
       :config
       (smartparens-global-mode t)
+      (require 'smartparens-config)
       :diminish smartparens-mode)
   #+END_SRC
 * Evil-mode
