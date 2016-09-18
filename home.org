@@ -137,7 +137,7 @@ For now, I only store some configs of Git on the system.
 ** Core configs
   #+BEGIN_SRC conf
     [core]
-            excludesfile = /Users/snakehsu/.gitignore_global
+            excludesfile = $HOME/.gitignore_global
             autocrlf = input
   #+END_SRC
 ** diff and merge tools

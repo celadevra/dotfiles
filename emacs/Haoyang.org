@@ -106,6 +106,16 @@ Bootstrap =use-package=.
                (evil   . (telephone-line-airline-position-segment))))
        (telephone-line-mode 1))
    #+END_SRC
+* Smartparens
+
+  Smartparens is an extension for more effective programming with less cause by missing/unmatched parentheses.
+  
+  #+BEGIN_SRC emacs-lisp
+    (use-package smartparens :ensure t
+      :config
+      (smartparens-global-mode t)
+      :diminish smartparens-mode)
+  #+END_SRC
 * Evil-mode
   Evil-mode allows vim-style modes and keybindings in Emacs. Now you have the best editor in the best Lisp Machine.
 
@@ -259,10 +269,10 @@ Bootstrap =use-package=.
    #+END_SRC
 * Chinese-input
   #+BEGIN_SRC emacs-lisp
-    (use-package chinese-pyim :ensure chinese-pyim-basedict
+    (use-package chinese-pyim :ensure chinese-pyim-greatdict
       :config
       (setq default-input-method "chinese-pyim")
-      (chinese-pyim-basedict-enable)
+      (chinese-pyim-greatdict-enable)
       (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
       (setq pyim-enable-words-predict nil))
   #+END_SRC
