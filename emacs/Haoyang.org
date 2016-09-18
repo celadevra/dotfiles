@@ -39,9 +39,8 @@ A few sensible choices that affect the global behaviour of Emacs:
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode 0)
-  (auto-fill-mode 1)
-  (diminish auto-fill-function "F")
-  (setq fill-column 72)
+  (auto-fill-mode 1) ; toggle auto-fill-mode
+  (diminish auto-fill-function " F") ; diminish the hint to a simple "F"
   (setq inhibit-startup-screen 1)
   (setq org-hide-emphasis-markers t)
   (setq package-check-singature nil)
@@ -313,7 +312,8 @@ Bootstrap =use-package=.
 * Version control
 
   #+BEGIN_SRC emacs-lisp
-    (use-package magit :ensure t)
+    (use-package magit :ensure t
+      :diminish magit-auto-revert-mode)
   #+END_SRC
 * general.el and keybindings
 
