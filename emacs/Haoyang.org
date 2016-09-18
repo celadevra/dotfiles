@@ -265,36 +265,58 @@ Bootstrap =use-package=.
 * general.el and keybindings
 
   #+BEGIN_SRC emacs-lisp
-        (use-package general :ensure t
-         :config
-          (general-define-key
-           :states '(normal visual insert emacs)
-           :prefix "SPC"
-           :non-normal-prefix "S-SPC"
+    (use-package general :ensure t
+     :config
+      (general-define-key
+       :states '(normal visual insert emacs)
+       :prefix "SPC"
+       :non-normal-prefix "S-SPC"
 
-           ;; simple commands
-           "/" 'counsel-ag
-           "x" 'counsel-M-x
+       ;; simple commands
+       "/" 'counsel-ag
+       "x" 'counsel-M-x
 
-           ;; applications
-           "a" '(:ignore t :which-key "Applications")
-           "ad" 'dired
-           "ae" 'elfeed
+       ;; applications
+       "a" '(:ignore t :which-key "Applications")
+       "ad" 'dired
+       "ae" 'elfeed
 
-           ;; file and dir commands
-           "f"  '(:ignore t :which-key "File commands")
-           "ff" 'counsel-find-file
-           "fa" 'find-file-at-point
-           "fs" 'save-buffer
+       ;; buffer operations
+       "b" '(:ignore t :which-key "Buffer commands")
+       "bb" 'ivy-switch-buffer
+       "bl" 'ibuffer
+       "bd" 'evil-delete-buffer
+       "bp" 'evil-prev-buffer
+       "bn" 'evil-next-buffer
 
-           ;; git operations
-           "g" '(:ignore t :which-key "Git commands")
-           "gs" 'magit-status
-           "gd" 'magit-diff
-           "gl" 'magit-log)
-          (general-define-key "C-s" 'swiper))
-        (use-package which-key :ensure t
-          :config
-          (which-key-mode 1)
-          :diminish which-key-mode)
+       ;; file and dir commands
+       "f"  '(:ignore t :which-key "File commands")
+       "ff" 'counsel-find-file
+       "fa" 'find-file-at-point
+       "fs" 'save-buffer
+
+       ;; git operations
+       "g" '(:ignore t :which-key "Git commands")
+       "gs" 'magit-status
+       "gd" 'magit-diff
+       "gl" 'magit-log
+
+       ;; help and docs
+       "h" '(:ignore t :which-key "Help and documentation")
+       "hf" 'counsel-describe-function
+       "hv" 'counsel-describe-variable
+       "hw" 'woman
+       "hi" 'counsel-info-lookup-symbol
+
+       ;; org-mode
+       "o" '(:ignore t :which-key "Org-mode")
+       "oa" 'org-agenda
+       "oc" 'org-capture
+       "oo" 'counsel-outline
+       "ot" 'counsel-org-tag)
+      (general-define-key "C-s" 'swiper))
+    (use-package which-key :ensure t
+      :config
+      (which-key-mode 1)
+      :diminish which-key-mode)
   #+END_SRC
