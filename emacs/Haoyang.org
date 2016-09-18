@@ -41,7 +41,7 @@ A few sensible choices that affect the global behaviour of Emacs:
   (scroll-bar-mode 0)
   (setq inhibit-startup-screen 1)
   (setq org-hide-emphasis-markers t)
-
+  (setq package-check-singature nil)
 #+END_SRC
 
 * Dependencies
@@ -57,7 +57,7 @@ This config requires Org-mode newer than 8.0, and Emacs > 23.
 This config utilizes Emacs' package support. Some additional repositories are added.
 
 #+BEGIN_SRC emacs-lisp
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
 			 ("melpa" . "https://melpa.org/packages/")
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")))
@@ -73,17 +73,190 @@ Bootstrap =use-package=.
   (require 'use-package)
 #+END_SRC
 
+* Look
+  中文和英文字体显示应对齐，一个汉字对应两个英文字符。
+  Chinese and English displays should align perfectly.
+  
+  #+BEGIN_SRC emacs-lisp
+
+    (progn ;; set English font
+          (set-face-attribute 'default nil :font "Anonymous Pro-14")
+          ;; Chinese font
+          (dolist (charset '(kana han cjk-misc bopomofo))
+            (set-fontset-font (frame-parameter nil 'font)
+            charset (font-spec :family "Noto Sans CJK SC"
+            :size 13)))
+            (setq face-font-rescale-alist '(("Noto Sans CJK SC" . 1.6))))
+  #+END_SRC
 * Evil-mode
   Evil-mode allows vim-style modes and keybindings in Emacs. Now you have the best editor in the best Lisp Machine.
 
   #+BEGIN_SRC emacs-lisp
     (use-package evil :ensure t
                  :config
-                 (evil-mode 1))
+                 (evil-mode 1)
+                 :diminish undo-tree-mode)
   #+END_SRC
   
 * Org-mode
   #+BEGIN_SRC emacs-lisp
-    (use-package org :ensure t)
-    (use-package org-plus-contrib :ensure t)
+    (use-package org :ensure org-plus-contrib
+      :config
+      (progn
+        (setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
+        (setq org-ellipsis " >>") ; more dense ellipsis, original value is '...'
+        (setq org-agenda-files (list 
+                                "~/org/organizer.org"
+                                "~/org/notes/"))
+        (setq org-todo-keywords
+              '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELLED(c@/!)")))
+        (setq org-use-fast-todo-selection t)
+        (setq org-use-fast-tag-selection t)
+        (setq org-agenda-ndays 7)
+        (setq org-agenda-show-all-dates t)
+        (setq org-agenda-skip-scheduled-if-done t)
+        (setq org-agenda-start-on-weekday nil)
+        (setq org-reverse-note-order t) ; notes attached to item sorted in date desc order
+        (setq org-deadline-warning-days 14) ; depend on your pacing, default is 3
+        (setq org-default-notes-file "~/org/organizer.org")
+        (setq org-capture-templates
+              '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
+                 "* TODO %^{Title}\n")
+                ("b" "Bookmark" entry (file+headline org-default-notes-file "Bookmarks")
+                 "* %^{Title} %^g\n %^{URI} %?\n")
+                ("n" "Work Notes" entry (clock)
+                 "* %^{Title}\n %U \n %^C \n\n %?")
+                ("r" "Read Notes" entry (file+headline org-default-notes-file "Notes")
+                 "* %^{Title} %^g\n %^{URI|%x|%c} \n %?")
+                ("q" "Quotes" entry (file+headline org-default-notes-file "Quotes")
+                 "* %^{Text|%x|%c} %^g\n --%^{Source}")
+                ("s" "Snippet" entry (file+headline org-default-notes-file "Snippets")
+                 "* %^{Title} %^g\n %U \n #+BEGIN_SRC \n %^C \n #+END_SRC \n %?")))
+        (setq org-refile-targets '((nil . (:maxlevel . 6)))) ; default is to maxlevel 2
+        (setq org-babel-load-languages
+              '((sh . t)
+                (emacs-lisp . t)
+                (ruby . t)
+                                            ;(R . t)
+                (dot . t)
+                (python . t)
+                (haskell . t))) ; these are the langs I work with
+        (org-babel-do-load-languages 'l t) ; required for the above to work
+        (setq org-publish-project-alist
+              '(("expoundite.net" :components ("essays"
+                                               "assets"
+                                               "blog"
+                                               "rss"))
+                ("essays" :base-directory "~/org/publishing"
+                 :publishing-directory "~/org/published"
+                 :base-extension "org"
+                 :exclude "upload\.org\\|-draft-.*?\.org"
+                 :html-postamble t
+                 :recursive t
+                 :auto-sitemap t
+                 :html-doctype "html5"
+                 :html-mathjax-template "<script type=\"text/javascript\" src=\"%PATH\"></script>"
+                 :sitemap-sans-extension t
+                 :publishing-function org-html-publish-to-html)
+                ("assets" :base-directory "~/org/publishing/assets"
+                 :base-extension any
+                 :publishing-directory "~/org/published"
+                 :publishing-function org-publish-attachment
+                 :recursive t)
+                ("blog" :base-directory "~/org/publishing/blog"
+                 :publishing-directory "~/org/published/blog"
+                 :recursive t
+                 :with-toc nil
+                 :html-postamble t
+                 :html-doctype "html5"
+                 :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\"> 
+                           <style type=\"text/css\"> 
+                               h2 { font-size: 24px; } 
+                               pre.example { background-color: rgba(255,255,255,255);
+                                             border: none; }
+                           </style>"
+                 :html-mathjax-template "<script type=\"text/javascript\" src=\"%PATH\"></script>"
+                 :publishing-function org-html-publish-to-html)
+                ("rss" :base-directory "~/org/publishing/blog"
+                 :base-extension "org"
+                 :publishing-directory "~/org/published/blog"
+                 :publishing-function (org-rss-publish-to-rss)
+                 :exclude ".*"
+                 :include ("rss.org")
+                 :html-link-home "https://expoundite.net/blog"
+                 :html-link-use-abs-url t)))
+        (setq org-html-mathjax-options
+              '((path "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
+                (scale 100)
+                (align "center")
+                (font "TeX")
+                (linebreaks "false")
+                (autonumber "AMS")
+                (indent "0em")
+                (multlinewidth "85%")
+                (tagindent ".8em")
+                (tagside "right"))))
+      )
+  #+END_SRC
+** Org-bullets
+   This package makes cooler Org-mode headings.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-bullets :ensure t
+       :config
+       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+       )
+   #+END_SRC
+
+** Org-ref
+   Org-ref is a package for inserting bibliography citations into org-mode articles. The user manual is located at https://github.com/jkitchin/org-ref/blob/master/org-ref.org.
+
+   One can use the following to specify the .bib file to use and the bibliography style:
+
+    #+BEGIN_EXAMPLE
+    * References
+    <<bibliography link>>
+
+    bibliographystyle:unsrt
+    bibliography:org-ref.bib
+    #+END_EXAMPLE
+    #+BEGIN_SRC emacs-lisp
+      (use-package org-ref :ensure t
+        :config
+        (setq reftex-default-bibliography '("~/org/bibliography/references.bib"))
+        (setq org-ref-bibliography-notes "~/org/bibliography/notes.org"
+              org-ref-default-bibliography '("~/org/bibliography/references.bib")
+              org-ref-pdf-directory "~/org/bibliography/bibtex-pdfs/")
+        )
+    #+END_SRC
+** ox-rss
+   This is a package for producing RSS feeds from org-mode headings.
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'ox-rss)
+
+   #+END_SRC
+* Chinese-input
+  #+BEGIN_SRC emacs-lisp
+    (use-package chinese-pyim :ensure chinese-pyim-basedict
+      :config
+      (setq default-input-method "chinese-pyim")
+      (chinese-pyim-basedict-enable)
+      (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
+      (setq pyim-enable-words-predict nil))
+  #+END_SRC
+* Swiper and friends
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package swiper :ensure t
+      :config
+      (ivy-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) ")
+    )
+  #+END_SRC
+* Version control
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package magit :ensure t)
   #+END_SRC
