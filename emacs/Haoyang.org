@@ -104,7 +104,7 @@ Bootstrap =use-package=.
       :config
       (progn
         (setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
-        (setq org-ellipsis " >>") ; more dense ellipsis, original value is '...'
+        (setq org-ellipsis " ↲") ; more dense ellipsis, original value is '...'
         (setq org-agenda-files (list 
                                 "~/org/organizer.org"
                                 "~/org/notes/"))
@@ -275,6 +275,8 @@ Bootstrap =use-package=.
        ;; simple commands
        "/" 'counsel-ag
        "x" 'counsel-M-x
+       "U" 'counsel-unicode-char
+       "#" 'ansi-term
 
        ;; applications
        "a" '(:ignore t :which-key "Applications")
