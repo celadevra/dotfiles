@@ -309,74 +309,76 @@ Bootstrap =use-package=.
 * general.el and keybindings
 
   #+BEGIN_SRC emacs-lisp
-        (use-package general :ensure t
-         :config
-          (general-define-key
-           :states '(normal visual insert emacs)
-           :prefix "SPC"
-           :non-normal-prefix "S-SPC"
+    (use-package general :ensure t
+     :config
+      (general-define-key
+       :states '(normal visual insert emacs)
+       :prefix "SPC"
+       :non-normal-prefix "S-SPC"
 
-           ;; simple commands
-           "/" 'counsel-ag
-           "x" 'counsel-M-x
-           "U" 'counsel-unicode-char
-           "#" 'ansi-term
+       ;; simple commands
+       "/" 'counsel-ag
+       "x" 'counsel-M-x
+       "U" 'counsel-unicode-char
+       "#" 'ansi-term
 
-           ;; applications
-           "a" '(:ignore t :which-key "Applications")
-           "ad" 'dired
-           "ae" 'elfeed
+       ;; applications
+       "a" '(:ignore t :which-key "Applications")
+       "ad" 'dired
+       "ae" 'elfeed
 
-           ;; buffer operations
-           "b" '(:ignore t :which-key "Buffer commands")
-           "bb" 'ivy-switch-buffer
-           "bl" 'ibuffer
-           "bd" 'evil-delete-buffer
-           "bp" 'evil-prev-buffer
-           "bn" 'evil-next-buffer
+       ;; buffer operations
+       "b" '(:ignore t :which-key "Buffer commands")
+       "bb" 'ivy-switch-buffer
+       "bl" 'ibuffer
+       "bd" 'evil-delete-buffer
+       "bp" 'evil-prev-buffer
+       "bn" 'evil-next-buffer
 
-           ;; file and dir commands
-           "f"  '(:ignore t :which-key "File commands")
-           "ff" 'counsel-find-file
-           "fa" 'find-file-at-point
-           "fs" 'save-buffer
+       ;; file and dir commands
+       "f"  '(:ignore t :which-key "File commands")
+       "ff" 'counsel-find-file
+       "fa" 'find-file-at-point
+       "fs" 'save-buffer
 
-           ;; git operations
-           "g" '(:ignore t :which-key "Git commands")
-           "gs" 'magit-status
-           "gd" 'magit-diff
-           "gl" 'magit-log
+       ;; git operations
+       "g" '(:ignore t :which-key "Git commands")
+       "gs" 'magit-status
+       "gd" 'magit-diff
+       "gl" 'magit-log
 
-           ;; help and docs
-           "h" '(:ignore t :which-key "Help and documentation")
-           "hf" 'counsel-describe-function
-           "hv" 'counsel-describe-variable
-           "hw" 'woman
-           "hi" 'counsel-info-lookup-symbol
+       ;; help and docs
+       "h" '(:ignore t :which-key "Help and documentation")
+       "hf" 'counsel-describe-function
+       "hv" 'counsel-describe-variable
+       "hw" 'woman
+       "hi" 'counsel-info-lookup-symbol
 
-           ;; org-mode
-           "o" '(:ignore t :which-key "Org-mode")
-           "oa" 'org-agenda
-           "oc" 'org-capture
-           "oe" 'org-edit-special
-           "oo" 'counsel-outline
-           "ot" 'counsel-org-tag
+       ;; org-mode
+       "o" '(:ignore t :which-key "Org-mode")
+       "oa" 'org-agenda
+       "oc" 'org-capture
+       "oe" 'org-edit-special
+       "ol" 'org-store-link
+       "oL" 'org-insert-link
+       "oo" 'counsel-outline
+       "ot" 'counsel-org-tag
 
-           ;; window operations
-           "w" '(:ignore t :which-key "Windows")
-           "ww" 'ace-window
-           "wo" 'delete-other-windows
-           "wv" 'evil-window-vsplit
-           "ws" 'evil-window-split
-           "wj" 'evil-window-down
-           "wk" 'evil-window-up
-           "wl" 'evil-window-right
-           "wh" 'evil-window-left)
-          (general-define-key "C-s" 'swiper))
-        (use-package which-key :ensure t
-          :config
-          (which-key-mode 1)
-          :diminish which-key-mode)
+       ;; window operations
+       "w" '(:ignore t :which-key "Windows")
+       "ww" 'ace-window
+       "wo" 'delete-other-windows
+       "wv" 'evil-window-vsplit
+       "ws" 'evil-window-split
+       "wj" 'evil-window-down
+       "wk" 'evil-window-up
+       "wl" 'evil-window-right
+       "wh" 'evil-window-left)
+      (general-define-key "C-s" 'swiper))
+    (use-package which-key :ensure t
+      :config
+      (which-key-mode 1)
+      :diminish which-key-mode)
   #+END_SRC
 * Completion
   At this point in time, it seems you should go for company-mode rather than auto-complete.
