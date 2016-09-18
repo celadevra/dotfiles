@@ -226,8 +226,21 @@ Bootstrap =use-package=.
                 (indent "0em")
                 (multlinewidth "85%")
                 (tagindent ".8em")
-                (tagside "right"))))
-      )
+                (tagside "right")))
+        (setq org-html-preamble-format
+              '(("en" "<div class=\"leftside\" id=\"menu-closed\"><div>&#x2263;</div></div>
+                   <div class=\"middlesection\"></div>")))
+
+        (setq org-html-postamble-format
+              '(("en" "<footer><p><a href=\"/\">Home</a> | <a href=\"/sitemap\">Site Map</a></p><hr>Created by <span class=\"author\"><a href=\"https://about.me/haoyangxu\">%a</a> (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
+
+        (setq org-html-head
+              "<link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
+          <link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
+          <link href=\"https://fonts.googleapis.com/css?family=Sanchez|PT+Mono|Roboto:300\" rel=\"stylesheet\">
+          <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">
+          <script src=\"/js/minified-web.js\" type=\"text/javascript\"></script>
+          <script src=\"/js/main.js\" type=\"text/javascript\"></script>")))
   #+END_SRC
 ** Org-bullets
    This package makes cooler Org-mode headings.
