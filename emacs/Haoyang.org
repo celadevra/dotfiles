@@ -88,6 +88,24 @@ Bootstrap =use-package=.
             :size 13)))
             (setq face-font-rescale-alist '(("Noto Sans CJK SC" . 1.6))))
   #+END_SRC
+  
+** Telephone-line: A fancy modeline
+   #+BEGIN_SRC emacs-lisp
+     (use-package telephone-line :ensure t
+       :config
+       (setq telephone-line-lhs
+             '((evil   . (telephone-line-evil-tag-segment))
+               (accent . (telephone-line-vc-segment
+                          telephone-line-erc-modified-channels-segment
+                          telephone-line-process-segment))
+               (nil    . (telephone-line-minor-mode-segment
+                          telephone-line-buffer-segment))))
+       (setq telephone-line-rhs
+             '((nil    . (telephone-line-misc-info-segment))
+               (accent . (telephone-line-major-mode-segment))
+               (evil   . (telephone-line-airline-position-segment))))
+       (telephone-line-mode 1))
+   #+END_SRC
 * Evil-mode
   Evil-mode allows vim-style modes and keybindings in Emacs. Now you have the best editor in the best Lisp Machine.
 
@@ -321,4 +339,15 @@ Bootstrap =use-package=.
       :config
       (which-key-mode 1)
       :diminish which-key-mode)
+  #+END_SRC
+* Completion
+  At this point in time, it seems you should go for company-mode rather than auto-complete.
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package company :ensure t
+      :config
+      (add-hook 'after-init-hook 'global-company-mode)
+      (setq company-backend-list '(company-robe
+                                 company-web
+                                 company-capf)))
   #+END_SRC
