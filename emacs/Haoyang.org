@@ -113,6 +113,7 @@ Bootstrap =use-package=.
     (use-package evil :ensure t
                  :config
                  (evil-mode 1)
+		 (evil-set-initial-state 'eww-mode 'emacs)
                  :diminish undo-tree-mode)
   #+END_SRC
   
@@ -361,5 +362,15 @@ Bootstrap =use-package=.
       (add-hook 'after-init-hook 'global-company-mode)
       (setq company-backend-list '(company-robe
                                  company-web
-                                 company-capf)))
+                                 company-capf))
+      :diminish company-mode)
+  #+END_SRC
+
+* Elfeed
+  #+BEGIN_SRC emacs-lisp
+    (use-package elfeed-org :ensure t)
+    (use-package elfeed :ensure t
+      :config
+      (elfeed-org)
+      (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
   #+END_SRC
