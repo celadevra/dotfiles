@@ -235,6 +235,19 @@ Bootstrap =use-package=.
                 (multlinewidth "85%")
                 (tagindent ".8em")
                 (tagside "right")))
+        (defadvice org-html-paragraph (before fsh-org-html-paragraph-advice
+                                              (paragraph contents info) activate)
+          "Join consecutive Chinese lines into a single long line without 
+    unwanted space when exporting org-mode to html."
+          (let ((fixed-contents)
+                (orig-contents (ad-get-arg 1))
+                (reg-han "[[:multibyte:]]"))
+            (setq fixed-contents (replace-regexp-in-string
+                                  (concat "\$latex " reg-han
+                                          "\$ *\n *\$latex " reg-han "\$")
+                                  "\\1\\2" orig-contents))
+            (ad-set-arg 1 fixed-contents)))
+
         (setq org-html-preamble-format
               '(("en" "<div class=\"leftside\" id=\"menu-closed\"><div>&#x2263;</div></div>
                    <div class=\"middlesection\"></div>")))
