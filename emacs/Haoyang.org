@@ -341,6 +341,7 @@ Bootstrap =use-package=.
        "ff" 'counsel-find-file
        "fa" 'find-file-at-point
        "fs" 'save-buffer
+       "fr" 'counsel-recentf
 
        ;; git operations
        "g" '(:ignore t :which-key "Git commands")
