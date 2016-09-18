@@ -106,9 +106,10 @@ Bootstrap =use-package=.
                (evil   . (telephone-line-airline-position-segment))))
        (telephone-line-mode 1))
    #+END_SRC
-* Smartparens
+* Smartparens and rainbow delimiters
 
-  Smartparens is an extension for more effective programming with less cause by missing/unmatched parentheses.
+  Smartparens is an extension for more effective programming with less cause by
+  missing/unmatched parentheses. Rainbow delimeters is for better looking interface.
   
   #+BEGIN_SRC emacs-lisp
     (use-package smartparens :ensure t
@@ -116,6 +117,10 @@ Bootstrap =use-package=.
       (smartparens-global-mode t)
       (require 'smartparens-config)
       :diminish smartparens-mode)
+
+    (use-package rainbow-delimiters :ensure t
+      :config
+      (add-to-list 'prog-mode-hook #'rainbow-delimiters-mode))
   #+END_SRC
 * Evil-mode
   Evil-mode allows vim-style modes and keybindings in Emacs. Now you have the best editor in the best Lisp Machine.
