@@ -124,6 +124,15 @@ Bootstrap =use-package=.
       :config
       (add-to-list 'prog-mode-hook #'rainbow-delimiters-mode))
   #+END_SRC
+* Projectile
+  #+BEGIN_SRC emacs-lisp
+    (use-package projectile :ensure t
+      :config (projectile-global-mode)
+      :diminish projectile-mode "P")
+
+    (use-package counsel-projectile :ensure t
+      :config (counsel-projectile-on))
+  #+END_SRC
 * Evil-mode
   Evil-mode allows vim-style modes and keybindings in Emacs. Now you have the best editor in the best Lisp Machine.
 
@@ -361,6 +370,7 @@ Bootstrap =use-package=.
        "f"  '(:ignore t :which-key "File commands")
        "ff" 'counsel-find-file
        "fa" 'find-file-at-point
+       "fp" 'counsel-projectile
        "fs" 'save-buffer
        "fr" 'counsel-recentf
 
