@@ -39,8 +39,8 @@ A few sensible choices that affect the global behaviour of Emacs:
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode 0)
-  (auto-fill-mode 1) ; toggle auto-fill-mode
-  (diminish auto-fill-function " F") ; diminish the hint to a simple "F"
+  (auto-fill-mode) ; toggle auto-fill-mode
+  (diminish auto-fill-function "F") ; diminish the hint to a simple "F"
   (setq inhibit-startup-screen 1)
   (setq org-hide-emphasis-markers t)
   (setq package-check-singature nil)
@@ -82,15 +82,15 @@ Bootstrap =use-package=.
   #+BEGIN_SRC emacs-lisp
 
     (progn ;; set English font
-          (set-face-attribute 'default nil :font "Anonymous Pro-14")
+          (set-face-attribute 'default nil :font "Iosevka Light-12")
           ;; Chinese font
           (dolist (charset '(kana han cjk-misc bopomofo))
             (set-fontset-font (frame-parameter nil 'font)
-            charset (font-spec :family "Noto Sans CJK SC"
-            :size 13)))
-            (setq face-font-rescale-alist '(("Noto Sans CJK SC" . 1.6))))
+            charset (font-spec :family "Noto Sans CJK SC Light"
+            :size 16)))
+            (setq face-font-rescale-alist '(("Noto Sans CJK SC Light" . 1.5))))
   #+END_SRC
-  
+
 ** Telephone-line: A fancy modeline
    #+BEGIN_SRC emacs-lisp
      (use-package telephone-line :ensure t
