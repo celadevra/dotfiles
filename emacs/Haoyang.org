@@ -335,7 +335,7 @@ Bootstrap =use-package=.
 
   #+BEGIN_SRC emacs-lisp
     (use-package magit :ensure t
-      :diminish magit-auto-revert-mode)
+      :diminish auto-revert-mode)
   #+END_SRC
 * general.el and keybindings
 
