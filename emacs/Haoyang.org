@@ -322,14 +322,19 @@ Bootstrap =use-package=.
      (require 'ox-rss)
 
    #+END_SRC
-* Chinese-input
+* Deft
+  Deft is a note-taking tool allowing one to use Emacs like Notational Velocity
+  and Simplenote. I am using it to quickly access the backend of a local Ikiwiki
+  installation.
+  
   #+BEGIN_SRC emacs-lisp
-    (use-package chinese-pyim :ensure chinese-pyim-greatdict
+    (use-package deft :ensure t
       :config
-      (setq default-input-method "chinese-pyim")
-      (chinese-pyim-greatdict-enable)
-      (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
-      (setq pyim-enable-words-predict nil))
+      (setq deft-extensions '("mdwn" "txt"))
+      (setq deft-directory "~/Notes")
+      (setq deft-recursive t)
+      (setq deft-use-filename-as-title nil)
+      (setq deft-use-filter-string-for-filename t))
   #+END_SRC
 * Swiper and friends
 
