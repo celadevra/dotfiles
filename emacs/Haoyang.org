@@ -387,7 +387,8 @@ Bootstrap =use-package=.
        
        ;; deft operations
        "d" '(:ignore t :which-key "Deft")
-       "dd" 'deft-find-file
+       "dd" 'deft
+       "df" 'deft-find-file
 
        ;; file and dir commands
        "f"  '(:ignore t :which-key "File commands")
