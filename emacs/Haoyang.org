@@ -332,9 +332,10 @@ Bootstrap =use-package=.
     (use-package deft :ensure t
       :config
       (setq deft-extensions '("mdwn" "txt"))
+      (setq deft-default-extension "mdwn")
       (setq deft-directory "~/Notes")
       (setq deft-recursive t)
-      (setq deft-use-filename-as-title nil)
+      (setq deft-use-filename-as-title t)
       (setq deft-use-filter-string-for-filename t))
   #+END_SRC
 * Swiper and friends
@@ -383,6 +384,10 @@ Bootstrap =use-package=.
        "bd" 'evil-delete-buffer
        "bp" 'evil-prev-buffer
        "bn" 'evil-next-buffer
+       
+       ;; deft operations
+       "d" '(:ignore t :which-key "Deft")
+       "dd" 'deft-find-file
 
        ;; file and dir commands
        "f"  '(:ignore t :which-key "File commands")
