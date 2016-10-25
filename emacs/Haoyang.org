@@ -95,13 +95,19 @@ Bootstrap =use-package=.
   #+BEGIN_SRC emacs-lisp
 
     (progn ;; set English font
-          (set-face-attribute 'default nil :font "Iosevka Light-12")
+          (set-face-attribute 'default nil :font "Envy Code R-12")
           ;; Chinese font
           (dolist (charset '(kana han cjk-misc bopomofo))
             (set-fontset-font (frame-parameter nil 'font)
-            charset (font-spec :family "Noto Sans CJK SC Light"
-            :size 16)))
-            (setq face-font-rescale-alist '(("Noto Sans CJK SC Light" . 1.5))))
+            charset (font-spec :family "Source Han Sans CN"
+            :size 18)))
+            (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.0))))
+  #+END_SRC
+  
+  The following are theme setup.
+  #+BEGIN_SRC emacs-lisp
+    (use-package darktooth-theme :ensure t
+      :config (load-theme 'darktooth t nil))
   #+END_SRC
 
 ** Telephone-line: A fancy modeline
