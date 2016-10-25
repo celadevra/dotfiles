@@ -162,6 +162,7 @@ Bootstrap =use-package=.
                  (evil-set-initial-state 'eww-mode 'emacs)
                  (evil-set-initial-state 'elfeed-search-mode 'emacs)
                  (evil-set-initial-state 'elfeed-show-mode 'emacs)
+                 (evil-set-initial-state 'deft-mode 'emacs)
                  :diminish undo-tree-mode)
   #+END_SRC
   
