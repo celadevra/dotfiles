@@ -44,6 +44,7 @@ A few sensible choices that affect the global behaviour of Emacs:
   (setq inhibit-startup-screen 1)
   (setq org-hide-emphasis-markers t)
   (setq package-check-singature nil)
+  (setf epa-pinentry-mode 'loopback)
 #+END_SRC
 
 ** Proxies
