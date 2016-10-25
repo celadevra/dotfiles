@@ -72,10 +72,10 @@ This config requires Org-mode newer than 8.0, and Emacs > 23.
 This config utilizes Emacs' package support. Some additional repositories are added.
 
 #+BEGIN_SRC emacs-lisp
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-			 ("melpa" . "https://melpa.org/packages/")
-			 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ("org" . "http://orgmode.org/elpa/")))
+  (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                           ("melpa" . "https://melpa.org/packages/")
+                           ("marmalade" . "https://marmalade-repo.org/packages/")
+                           ("org" . "http://orgmode.org/elpa/")))
 #+END_SRC
 
 Bootstrap =use-package=.
