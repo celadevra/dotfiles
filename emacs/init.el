@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (counsel chinese-pyim-greatdict org-ref use-package org-plus-contrib org-bullets org key-chord ivy hydra f evil elfeed deft company-web company-ghci chinese-pyim ace-window)))
+    (darktooth-theme counsel chinese-pyim-greatdict use-package org-bullets org key-chord ivy hydra f evil elfeed deft company-web company-ghci chinese-pyim ace-window)))
  '(pyim-dicts nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
