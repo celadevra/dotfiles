@@ -457,7 +457,7 @@ A few sensible choices that affect the global behaviour of Emacs:
 
      (use-package intero :ensure t
        :config
-       (add-hook haskell-mode-hook 'intero-mode))
+       (add-hook 'haskell-mode-hook 'intero-mode))
    #+END_SRC
 * Applications
 ** Deft
