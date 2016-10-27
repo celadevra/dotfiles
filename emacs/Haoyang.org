@@ -454,7 +454,7 @@ A few sensible choices that affect the global behaviour of Emacs:
                '("expoundite.net"
                  :repository-directory "~/org/websrc"
                  :publishing-directory "~/org/public_html"
-                 :site-domain "http://localhost:8000"
+                 :site-domain "https://expoundite.net"
                  :site-main-title "chmod +w Web"
                  :site-sub-title "Essays"
                  :ignore ("blog" "codex" "upload.org")
@@ -466,24 +466,24 @@ A few sensible choices that affect the global behaviour of Emacs:
                '("expoundite.net/blog"
                  :repository-directory "~/org/websrc/blog"
                  :publishing-directory "~/org/public_html/blog"
-                 :site-domain "http://localhost:8000"
+                 :site-domain "https://expoundite.net/blog"
                  :site-main-title "chmod +w Web"
                  :site-sub-title "blog"
                  :ignore ("rss.org")
                  :theme (worg)
                  :default-category "journal"
-                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/blog")
+                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/tree/master/blog")
                  :web-server-port 9999))
               (owp/add-project-config
                '("expoundite.net/codex"
                  :repository-directory "~/org/websrc/codex"
                  :publishing-directory "~/org/public_html/codex"
-                 :site-domain "http://localhost:8000"
+                 :site-domain "https://expoundite.net/codex"
                  :site-main-title "chmod +w Web"
                  :site-sub-title "codex"
                  :theme (killjs worg)
                  :default-category "entry"
-                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/codex")
+                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/blob/master/codex")
                  :web-server-port 9999)))
     #+END_SRC
 ** Markdown
