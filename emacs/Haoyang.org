@@ -18,47 +18,6 @@ Ideas are from [[http://eschulte.me/emacs24-starter-kit/#installation][Emacs Sta
 (setq user-mail-address "github@expoundite.net")
 #+END_SRC
 
-* Behaviour
-
-A few sensible choices that affect the global behaviour of Emacs:
-
-#+BEGIN_SRC emacs-lisp
-  (setq delete-old-versions -1 ); delete excess backup versions silently
-  (setq version-control t ); use version control
-  (setq vc-make-backup-files t ); make backups file even when in version controlled dir
-  (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) ) ; which directory to put backups file
-  (setq vc-follow-symlinks t )       ; don't ask for confirmation when opening symlinked file
-  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)) ) ;transform backups file name
-  (setq inhibit-startup-screen t ); inhibit useless and old-school startup screen
-  (setq ring-bell-function 'ignore ); silent bell when you make a mistake
-  (setq coding-system-for-read 'utf-8 ); use utf-8 by default
-  (setq coding-system-for-write 'utf-8 )
-  (setq sentence-end-double-space nil); sentence SHOULD end with only a point.
-  (setq default-fill-column 80); toggle wrapping text at the 80th character
-  (setq initial-scratch-message "Welcome in Emacs") ; print a default message in the empty scratch buffer opened at startup
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-  (scroll-bar-mode 0)
-  (auto-fill-mode) ; toggle auto-fill-mode
-  (diminish auto-fill-function "F") ; diminish the hint to a simple "F"
-  (setq inhibit-startup-screen 1)
-  (setq org-hide-emphasis-markers t)
-  (setq package-check-singature nil)
-  (setf epa-pinentry-mode 'loopback)
-#+END_SRC
-
-** Proxies
-   It is the sad reality in China that to access many useful resources on the
-   Internet, you have to use a proxy. 
-
-   #+BEGIN_SRC emacs-lisp
-     ;(setq url-proxy-services '(("no_proxy" . "^\\(localhost|192.168.*\\)")
-     ;                           ("http"     . "127.0.0.1:8118")
-     ;                           ("https"    . "127.0.0.1:8118")))
-     ;(setenv "http_proxy" "socks5h://127.0.0.1:1080") ; elfeed uses curl, this makes curl called from emacs use proxy
-
-   #+END_SRC
-
 * Dependencies
 
 This config requires Org-mode newer than 8.0, and Emacs > 23.
@@ -88,7 +47,200 @@ Bootstrap =use-package=.
   (require 'use-package)
 #+END_SRC
 
+* Behaviour
+
+A few sensible choices that affect the global behaviour of Emacs:
+
+#+BEGIN_SRC emacs-lisp
+  (setq delete-old-versions -1 ); delete excess backup versions silently
+  (setq version-control t ); use version control
+  (setq vc-make-backup-files t ); make backups file even when in version controlled dir
+  (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) ) ; which directory to put backups file
+  (setq vc-follow-symlinks t )       ; don't ask for confirmation when opening symlinked file
+  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)) ) ;transform backups file name
+  (setq inhibit-startup-screen t ); inhibit useless and old-school startup screen
+  (setq ring-bell-function 'ignore ); silent bell when you make a mistake
+  (setq coding-system-for-read 'utf-8 ); use utf-8 by default
+  (setq coding-system-for-write 'utf-8 )
+  (setq sentence-end-double-space nil); sentence SHOULD end with only a point.
+  (setq default-fill-column 80); toggle wrapping text at the 80th character
+  (setq initial-scratch-message "Welcome in Emacs") ; print a default message in the empty scratch buffer opened at startup
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode 0)
+  (auto-fill-mode) ; toggle auto-fill-mode
+  (diminish auto-fill-function "F") ; diminish the hint to a simple "F"
+  (setq inhibit-startup-screen 1)
+  (setq org-hide-emphasis-markers t)
+  (setq package-check-singature nil)
+  (setf epa-pinentry-mode 'loopback)
+#+END_SRC
+** Evil-mode
+   Evil-mode allows vim-style modes and keybindings in Emacs. Now you have the best editor in the best Lisp Machine.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil :ensure t
+                  :config
+                  (evil-mode 1)
+                  (evil-set-initial-state 'eww-mode 'emacs)
+                  (evil-set-initial-state 'elfeed-search-mode 'emacs)
+                  (evil-set-initial-state 'elfeed-show-mode 'emacs)
+                  (evil-set-initial-state 'deft-mode 'emacs)
+                  :diminish undo-tree-mode)
+   #+END_SRC
+  
+** Swiper and friends
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package swiper :ensure t
+       :config
+       (ivy-mode 1)
+       (setq ivy-use-virtual-buffers t)
+       (setq ivy-count-format "(%d/%d) ")
+       :diminish ivy-mode
+     )
+     (use-package counsel :ensure t)
+   #+END_SRC
+
+** Version control
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package magit :ensure t
+       :diminish auto-revert-mode)
+   #+END_SRC
+** Projectile
+   #+BEGIN_SRC emacs-lisp
+     (use-package projectile :ensure t
+       :config (projectile-global-mode)
+       :diminish projectile-mode "P")
+
+     (use-package counsel-projectile :ensure t
+       :config (counsel-projectile-on))
+   #+END_SRC
+** Smartparens and rainbow delimiters
+
+   Smartparens is an extension for more effective programming with less cause by
+   missing/unmatched parentheses. Rainbow delimeters is for better looking interface.
+  
+   #+BEGIN_SRC emacs-lisp
+     (use-package smartparens :ensure t
+       :config
+       (smartparens-global-mode t)
+       (require 'smartparens-config)
+       :diminish smartparens-mode)
+
+     (use-package rainbow-delimiters :ensure t
+       :config
+       (add-to-list 'prog-mode-hook #'rainbow-delimiters-mode))
+   #+END_SRC
+** general.el and keybindings
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package general :ensure t
+      :config
+       (general-define-key
+	:states '(normal visual insert emacs)
+	:prefix "SPC"
+	:non-normal-prefix "S-SPC"
+
+	;; simple commands
+	"/" 'counsel-ag
+	"x" 'counsel-M-x
+	"U" 'counsel-unicode-char
+	"#" 'ansi-term
+
+	;; applications
+	"a" '(:ignore t :which-key "Applications")
+	"ad" 'dired
+	"ae" 'elfeed
+
+	;; buffer operations
+	"b" '(:ignore t :which-key "Buffer commands")
+	"bb" 'ivy-switch-buffer
+	"bl" 'ibuffer
+	"bd" 'evil-delete-buffer
+	"bp" 'evil-prev-buffer
+	"bn" 'evil-next-buffer
+       
+	;; deft operations
+	"d" '(:ignore t :which-key "Deft")
+	"dd" 'deft
+	"df" 'deft-find-file
+
+	;; file and dir commands
+	"f"  '(:ignore t :which-key "File commands")
+	"ff" 'counsel-find-file
+	"fa" 'find-file-at-point
+	"fp" 'counsel-projectile
+	"fs" 'save-buffer
+	"fr" 'counsel-recentf
+
+	;; git operations
+	"g" '(:ignore t :which-key "Git commands")
+	"gs" 'magit-status
+	"gd" 'magit-diff
+	"gl" 'magit-log
+
+	;; help and docs
+	"h" '(:ignore t :which-key "Help and documentation")
+	"hf" 'counsel-describe-function
+	"hv" 'counsel-describe-variable
+	"hw" 'woman
+	"hi" 'counsel-info-lookup-symbol
+
+	;; org-mode
+	"o" '(:ignore t :which-key "Org-mode")
+	"oa" 'org-agenda
+	"oc" 'org-capture
+	"oe" 'org-edit-special
+	"ol" 'org-store-link
+	"oL" 'org-insert-link
+	"oo" 'counsel-outline
+	"ot" 'counsel-org-tag
+
+	;; window operations
+	"w" '(:ignore t :which-key "Windows")
+	"ww" 'ace-window
+	"wo" 'delete-other-windows
+	"wv" 'evil-window-vsplit
+	"ws" 'evil-window-split
+	"wj" 'evil-window-down
+	"wk" 'evil-window-up
+	"wl" 'evil-window-right
+	"wh" 'evil-window-left)
+       (general-define-key "C-s" 'swiper))
+     (use-package which-key :ensure t
+       :config
+       (which-key-mode 1)
+       :diminish which-key-mode)
+   #+END_SRC
+** Completion
+   At this point in time, it seems you should go for company-mode rather than auto-complete.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package company :ensure t
+       :config
+       (add-hook 'after-init-hook 'global-company-mode)
+       (setq company-backend-list '(company-robe
+                                  company-web
+                                  company-capf))
+       :diminish company-mode)
+   #+END_SRC
+
+** Proxies
+   It is the sad reality in China that to access many useful resources on the
+   Internet, you have to use a proxy. 
+
+   #+BEGIN_SRC emacs-lisp
+     ;(setq url-proxy-services '(("no_proxy" . "^\\(localhost|192.168.*\\)")
+     ;                           ("http"     . "127.0.0.1:8118")
+     ;                           ("https"    . "127.0.0.1:8118")))
+     ;(setenv "http_proxy" "socks5h://127.0.0.1:1080") ; elfeed uses curl, this makes curl called from emacs use proxy
+
+   #+END_SRC
+
 * Look
+** Font
   中文和英文字体显示应对齐，一个汉字对应两个英文字符。
   Chinese and English displays should align perfectly.
   
@@ -104,6 +256,7 @@ Bootstrap =use-package=.
             (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.0))))
   #+END_SRC
   
+** Theme
   The following are theme setup.
   #+BEGIN_SRC emacs-lisp
     (use-package darktooth-theme :ensure t
@@ -127,46 +280,8 @@ Bootstrap =use-package=.
                (evil   . (telephone-line-airline-position-segment))))
        (telephone-line-mode 1))
    #+END_SRC
-* Smartparens and rainbow delimiters
-
-  Smartparens is an extension for more effective programming with less cause by
-  missing/unmatched parentheses. Rainbow delimeters is for better looking interface.
-  
-  #+BEGIN_SRC emacs-lisp
-    (use-package smartparens :ensure t
-      :config
-      (smartparens-global-mode t)
-      (require 'smartparens-config)
-      :diminish smartparens-mode)
-
-    (use-package rainbow-delimiters :ensure t
-      :config
-      (add-to-list 'prog-mode-hook #'rainbow-delimiters-mode))
-  #+END_SRC
-* Projectile
-  #+BEGIN_SRC emacs-lisp
-    (use-package projectile :ensure t
-      :config (projectile-global-mode)
-      :diminish projectile-mode "P")
-
-    (use-package counsel-projectile :ensure t
-      :config (counsel-projectile-on))
-  #+END_SRC
-* Evil-mode
-  Evil-mode allows vim-style modes and keybindings in Emacs. Now you have the best editor in the best Lisp Machine.
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package evil :ensure t
-                 :config
-                 (evil-mode 1)
-                 (evil-set-initial-state 'eww-mode 'emacs)
-                 (evil-set-initial-state 'elfeed-search-mode 'emacs)
-                 (evil-set-initial-state 'elfeed-show-mode 'emacs)
-                 (evil-set-initial-state 'deft-mode 'emacs)
-                 :diminish undo-tree-mode)
-  #+END_SRC
-  
-* Org-mode
+* Languages
+** Org-mode
   #+BEGIN_SRC emacs-lisp
     (use-package org :ensure org-plus-contrib
       :config
@@ -290,184 +405,81 @@ Bootstrap =use-package=.
           <script src=\"/js/minified-web.js\" type=\"text/javascript\"></script>
           <script src=\"/js/main.js\" type=\"text/javascript\"></script>")))
   #+END_SRC
-** Org-bullets
-   This package makes cooler Org-mode headings.
+*** Org-bullets
+    This package makes cooler Org-mode headings.
 
-   #+BEGIN_SRC emacs-lisp
-     (use-package org-bullets :ensure t
-       :config
-       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-       )
-   #+END_SRC
-
-** Org-ref
-   Org-ref is a package for inserting bibliography citations into org-mode articles. The user manual is located at https://github.com/jkitchin/org-ref/blob/master/org-ref.org.
-
-   One can use the following to specify the .bib file to use and the bibliography style:
-
-    #+BEGIN_EXAMPLE
-    * References
-    <<bibliography link>>
-
-    bibliographystyle:unsrt
-    bibliography:org-ref.bib
-    #+END_EXAMPLE
     #+BEGIN_SRC emacs-lisp
-      (use-package org-ref :ensure t
-        :config
-        (setq reftex-default-bibliography '("~/org/bibliography/references.bib"))
-        (setq org-ref-bibliography-notes "~/org/bibliography/notes.org"
-              org-ref-default-bibliography '("~/org/bibliography/references.bib")
-              org-ref-pdf-directory "~/org/bibliography/bibtex-pdfs/")
-        )
+      (use-package org-bullets :ensure t
+	:config
+	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+	)
     #+END_SRC
-** ox-rss
-   This is a package for producing RSS feeds from org-mode headings.
 
+*** Org-ref
+    Org-ref is a package for inserting bibliography citations into org-mode articles. The user manual is located at https://github.com/jkitchin/org-ref/blob/master/org-ref.org.
+
+    One can use the following to specify the .bib file to use and the bibliography style:
+
+     #+BEGIN_EXAMPLE
+     * References
+     <<bibliography link>>
+
+     bibliographystyle:unsrt
+     bibliography:org-ref.bib
+     #+END_EXAMPLE
+     #+BEGIN_SRC emacs-lisp
+       (use-package org-ref :ensure t
+         :config
+         (setq reftex-default-bibliography '("~/org/bibliography/references.bib"))
+         (setq org-ref-bibliography-notes "~/org/bibliography/notes.org"
+               org-ref-default-bibliography '("~/org/bibliography/references.bib")
+               org-ref-pdf-directory "~/org/bibliography/bibtex-pdfs/")
+         )
+     #+END_SRC
+*** ox-rss
+    This is a package for producing RSS feeds from org-mode headings.
+
+    #+BEGIN_SRC emacs-lisp
+      (require 'ox-rss)
+
+    #+END_SRC
+** Markdown
    #+BEGIN_SRC emacs-lisp
-     (require 'ox-rss)
-
+     (use-package markdown-mode :ensure t
+       :commands (markdown-mode gfm-mode)
+       :mode (("\\.mdwn\\'" . markdown-mode)
+              ("\\.md\\'" . markdown-mode)
+              ("README\\.md\\'" . gfm-mode)))
    #+END_SRC
-* Deft
-  Deft is a note-taking tool allowing one to use Emacs like Notational Velocity
-  and Simplenote. I am using it to quickly access the backend of a local Ikiwiki
-  installation.
+** Haskell
+   #+BEGIN_SRC emacs-lisp
+     (use-package haskell-mode :ensure t)
+
+     (use-package intero :ensure t
+       :config
+       (add-hook haskell-mode-hook 'intero-mode))
+   #+END_SRC
+* Applications
+** Deft
+   Deft is a note-taking tool allowing one to use Emacs like Notational Velocity
+   and Simplenote. I am using it to quickly access the backend of a local Ikiwiki
+   installation.
   
-  #+BEGIN_SRC emacs-lisp
-    (use-package deft :ensure t
-      :config
-      (setq deft-extensions '("mdwn" "txt"))
-      (setq deft-default-extension "mdwn")
-      (setq deft-directory "~/Notes")
-      (setq deft-recursive t)
-      (setq deft-use-filename-as-title t)
-      (setq deft-use-filter-string-for-filename t))
-  #+END_SRC
-* Markdown
-  #+BEGIN_SRC emacs-lisp
-    (use-package markdown-mode :ensure t
-      :commands (markdown-mode gfm-mode)
-      :mode (("\\.mdwn\\'" . markdown-mode)
-             ("\\.md\\'" . markdown-mode)
-             ("README\\.md\\'" . gfm-mode)))
-  #+END_SRC
-* Swiper and friends
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package swiper :ensure t
-      :config
-      (ivy-mode 1)
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) ")
-      :diminish ivy-mode
-    )
-    (use-package counsel :ensure t)
-  #+END_SRC
-* Version control
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package magit :ensure t
-      :diminish auto-revert-mode)
-  #+END_SRC
-* general.el and keybindings
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package general :ensure t
-     :config
-      (general-define-key
-       :states '(normal visual insert emacs)
-       :prefix "SPC"
-       :non-normal-prefix "S-SPC"
-
-       ;; simple commands
-       "/" 'counsel-ag
-       "x" 'counsel-M-x
-       "U" 'counsel-unicode-char
-       "#" 'ansi-term
-
-       ;; applications
-       "a" '(:ignore t :which-key "Applications")
-       "ad" 'dired
-       "ae" 'elfeed
-
-       ;; buffer operations
-       "b" '(:ignore t :which-key "Buffer commands")
-       "bb" 'ivy-switch-buffer
-       "bl" 'ibuffer
-       "bd" 'evil-delete-buffer
-       "bp" 'evil-prev-buffer
-       "bn" 'evil-next-buffer
-       
-       ;; deft operations
-       "d" '(:ignore t :which-key "Deft")
-       "dd" 'deft
-       "df" 'deft-find-file
-
-       ;; file and dir commands
-       "f"  '(:ignore t :which-key "File commands")
-       "ff" 'counsel-find-file
-       "fa" 'find-file-at-point
-       "fp" 'counsel-projectile
-       "fs" 'save-buffer
-       "fr" 'counsel-recentf
-
-       ;; git operations
-       "g" '(:ignore t :which-key "Git commands")
-       "gs" 'magit-status
-       "gd" 'magit-diff
-       "gl" 'magit-log
-
-       ;; help and docs
-       "h" '(:ignore t :which-key "Help and documentation")
-       "hf" 'counsel-describe-function
-       "hv" 'counsel-describe-variable
-       "hw" 'woman
-       "hi" 'counsel-info-lookup-symbol
-
-       ;; org-mode
-       "o" '(:ignore t :which-key "Org-mode")
-       "oa" 'org-agenda
-       "oc" 'org-capture
-       "oe" 'org-edit-special
-       "ol" 'org-store-link
-       "oL" 'org-insert-link
-       "oo" 'counsel-outline
-       "ot" 'counsel-org-tag
-
-       ;; window operations
-       "w" '(:ignore t :which-key "Windows")
-       "ww" 'ace-window
-       "wo" 'delete-other-windows
-       "wv" 'evil-window-vsplit
-       "ws" 'evil-window-split
-       "wj" 'evil-window-down
-       "wk" 'evil-window-up
-       "wl" 'evil-window-right
-       "wh" 'evil-window-left)
-      (general-define-key "C-s" 'swiper))
-    (use-package which-key :ensure t
-      :config
-      (which-key-mode 1)
-      :diminish which-key-mode)
-  #+END_SRC
-* Completion
-  At this point in time, it seems you should go for company-mode rather than auto-complete.
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package company :ensure t
-      :config
-      (add-hook 'after-init-hook 'global-company-mode)
-      (setq company-backend-list '(company-robe
-                                 company-web
-                                 company-capf))
-      :diminish company-mode)
-  #+END_SRC
-
-* Elfeed
-  #+BEGIN_SRC emacs-lisp
-    (use-package elfeed-org :ensure t)
-    (use-package elfeed :ensure t
-      :config
-      (elfeed-org)
-      (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
-  #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package deft :ensure t
+       :config
+       (setq deft-extensions '("mdwn" "txt"))
+       (setq deft-default-extension "mdwn")
+       (setq deft-directory "~/Notes")
+       (setq deft-recursive t)
+       (setq deft-use-filename-as-title t)
+       (setq deft-use-filter-string-for-filename t))
+   #+END_SRC
+** Elfeed
+   #+BEGIN_SRC emacs-lisp
+     (use-package elfeed-org :ensure t)
+     (use-package elfeed :ensure t
+       :config
+       (elfeed-org)
+       (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
+   #+END_SRC
