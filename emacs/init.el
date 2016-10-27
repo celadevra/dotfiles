@@ -10,7 +10,7 @@
  '(elfeed-curl-extra-arguments (quote ("-xsocks5h://127.0.0.1:1080")))
  '(package-selected-packages
    (quote
-    (darktooth-theme counsel chinese-pyim-greatdict org-bullets org key-chord ivy hydra f evil elfeed deft company-web company-ghci chinese-pyim ace-window)))
+    (org-webpage haskell-mode intero darktooth-theme counsel chinese-pyim-greatdict org-bullets org key-chord ivy hydra f evil elfeed deft company-web company-ghci chinese-pyim ace-window)))
  '(pyim-dicts nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
