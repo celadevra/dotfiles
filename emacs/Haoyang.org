@@ -443,6 +443,49 @@ A few sensible choices that affect the global behaviour of Emacs:
       (require 'ox-rss)
 
     #+END_SRC
+*** org-webpage
+    Org-webpage is a package that generate static sites from Org files. It is
+    easier to set up than using Org's own publishing functions.
+
+    #+BEGIN_SRC emacs-lisp
+            (use-package org-webpage :ensure t
+              :config
+              (owp/add-project-config
+               '("expoundite.net"
+                 :repository-directory "~/org/websrc"
+                 :publishing-directory "~/org/public_html"
+                 :site-domain "http://localhost:8000"
+                 :site-main-title "chmod +w Web"
+                 :site-sub-title "Essays"
+                 :ignore ("blog" "codex" "upload.org")
+                 :theme (worg)
+                 :default-category "essays"
+                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net")
+                 :web-server-port 9999))
+              (owp/add-project-config
+               '("expoundite.net/blog"
+                 :repository-directory "~/org/websrc/blog"
+                 :publishing-directory "~/org/public_html/blog"
+                 :site-domain "http://localhost:8000"
+                 :site-main-title "chmod +w Web"
+                 :site-sub-title "blog"
+                 :ignore ("rss.org")
+                 :theme (worg)
+                 :default-category "journal"
+                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/blog")
+                 :web-server-port 9999))
+              (owp/add-project-config
+               '("expoundite.net/codex"
+                 :repository-directory "~/org/websrc/codex"
+                 :publishing-directory "~/org/public_html/codex"
+                 :site-domain "http://localhost:8000"
+                 :site-main-title "chmod +w Web"
+                 :site-sub-title "codex"
+                 :theme (killjs worg)
+                 :default-category "entry"
+                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/codex")
+                 :web-server-port 9999)))
+    #+END_SRC
 ** Markdown
    #+BEGIN_SRC emacs-lisp
      (use-package markdown-mode :ensure t
