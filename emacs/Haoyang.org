@@ -449,44 +449,48 @@ A few sensible choices that affect the global behaviour of Emacs:
     easier to set up than using Org's own publishing functions.
 
     #+BEGIN_SRC emacs-lisp
-            (use-package org-webpage :ensure t
-              :config
-              (owp/add-project-config
-               '("expoundite.net"
-                 :repository-directory "~/org/websrc"
-                 :publishing-directory "~/org/public_html"
-                 :site-domain "https://expoundite.net"
-                 :site-main-title "chmod +w Web"
-                 :site-sub-title "Essays"
-                 :ignore ("blog" "codex" "upload.org")
-                 :theme (worg)
-                 :default-category "essays"
-                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net")
-                 :web-server-port 9999))
-              (owp/add-project-config
-               '("expoundite.net/blog"
-                 :repository-directory "~/org/websrc/blog"
-                 :publishing-directory "~/org/public_html/blog"
-                 :site-domain "https://expoundite.net/blog"
-                 :site-main-title "chmod +w Web"
-                 :site-sub-title "blog"
-                 :ignore ("rss.org")
-                 :theme (worg)
-                 :default-category "journal"
-                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/tree/master/blog")
-                 :web-server-port 9999))
-              (owp/add-project-config
-               '("expoundite.net/codex"
-                 :repository-directory "~/org/websrc/codex"
-                 :publishing-directory "~/org/public_html/codex"
-                 :site-domain "https://expoundite.net/codex"
-                 :site-main-title "chmod +w Web"
-                 :site-sub-title "codex"
-                 :theme (killjs worg)
-                 :default-category "entry"
-                 :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/blob/master/codex")
-                 :web-server-port 9999)))
+      (use-package org-webpage :ensure t
+        :config
+        (owp/add-project-config
+         '("expoundite.net"
+           :repository-directory "~/org/websrc"
+           :remote (rclone "local" "/tmp/website")
+           :site-domain "https://expoundite.net"
+           :site-main-title "chmod +w Web"
+           :site-sub-title "Essays"
+           :ignore ("blog" "codex" "upload.org")
+           :theme (worg)
+           :default-category "essays"
+           :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net")
+           :web-server-port 9999))
+        (owp/add-project-config
+         '("expoundite.net/blog"
+           :repository-directory "~/org/websrc/blog"
+           :remote (rclone "local" "/tmp/website/blog")
+           :site-domain "https://expoundite.net/blog"
+           :site-main-title "chmod +w Web"
+           :site-sub-title "blog"
+           :ignore ("rss.org")
+           :theme (worg)
+           :default-category "journal"
+           :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/tree/master/blog")
+           :web-server-port 9999))
+        (owp/add-project-config
+         '("expoundite.net/codex"
+           :repository-directory "~/org/websrc/codex"
+           :remote (rclone "local" "/tmp/website/codex")
+           :site-domain "https://expoundite.net/codex"
+           :site-main-title "chmod +w Web"
+           :site-sub-title "codex"
+           :theme (killjs worg)
+           :default-category "entry"
+           :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/blob/master/codex")
+           :web-server-port 9999)))
     #+END_SRC
+
+    #+RESULTS:
+    : t
+
 ** Markdown
    #+BEGIN_SRC emacs-lisp
      (use-package markdown-mode :ensure t
