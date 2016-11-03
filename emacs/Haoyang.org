@@ -507,10 +507,12 @@ A few sensible choices that affect the global behaviour of Emacs:
    : t
    
    #+BEGIN_SRC emacs-lisp
-          (use-package js2-mode :ensure t
-            :config
-            (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-            (add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode)))
+     (use-package js2-mode :ensure t
+       :config
+       (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+       (add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
+       (setq js2-strict-missing-semi-warning nil)
+       (setq js2-missing-semi-one-line-override t))
    #+END_SRC
 
    #+RESULTS:
