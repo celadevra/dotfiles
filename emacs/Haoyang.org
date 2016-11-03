@@ -458,33 +458,10 @@ A few sensible choices that affect the global behaviour of Emacs:
            :site-domain "https://expoundite.net"
            :site-main-title "chmod +w Web"
            :site-sub-title "Essays"
-           :ignore ("blog" "codex" "upload.org")
+           :ignore ("upload.org")
            :theme (worg)
-           :default-category "essays"
+	   :default-category "essay"
            :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net")
-           :web-server-port 9999))
-        (owp/add-project-config
-         '("expoundite.net/blog"
-           :repository-directory "~/org/websrc/blog"
-           :remote (rclone "local" "/tmp/website/blog")
-           :site-domain "https://expoundite.net/blog"
-           :site-main-title "chmod +w Web"
-           :site-sub-title "blog"
-           :ignore ("rss.org")
-           :theme (worg)
-           :default-category "journal"
-           :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/tree/master/blog")
-           :web-server-port 9999))
-        (owp/add-project-config
-         '("expoundite.net/codex"
-           :repository-directory "~/org/websrc/codex"
-           :remote (rclone "local" "/tmp/website/codex")
-           :site-domain "https://expoundite.net/codex"
-           :site-main-title "chmod +w Web"
-           :site-sub-title "codex"
-           :theme (killjs worg)
-           :default-category "entry"
-           :source-browse-url ("GitHub" "https://github.com/celadevra/expoundite.net/blob/master/codex")
            :web-server-port 9999)))
     #+END_SRC
 
@@ -507,6 +484,38 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config
        (add-hook 'haskell-mode-hook 'intero-mode))
    #+END_SRC
+** Web and JavaScript
+   Web development is complex and requires no less than a full-blown IDE.
+   Luckily, Emacs has some nice extensions for writing HTML, (S)CSS, templates,
+   and JS codes.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package web-mode :ensure t
+       :config
+       (add-to-list 'auto-mode-alist '("\\.jade\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+       (setq web-mode-enable-current-element-highlight t)
+       (defun my-web-mode-hook ()
+         "hooks for webmode"
+         (setq web-mode-markup-indent-offset 2)
+         (setq web-mode-css-indent-offset 2)
+         (setq web-mode-code-indent-offset 2))
+       (add-hook 'web-mode-hook 'my-web-mode-hook))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+   
+   #+BEGIN_SRC emacs-lisp
+          (use-package js2-mode :ensure t
+            :config
+            (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+            (add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode)))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+
 * Applications
 ** Deft
    Deft is a note-taking tool allowing one to use Emacs like Notational Velocity
