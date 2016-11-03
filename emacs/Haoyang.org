@@ -492,7 +492,7 @@ A few sensible choices that affect the global behaviour of Emacs:
    #+BEGIN_SRC emacs-lisp
      (use-package web-mode :ensure t
        :config
-       (add-to-list 'auto-mode-alist '("\\.jade\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
        (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
        (setq web-mode-enable-current-element-highlight t)
        (defun my-web-mode-hook ()
