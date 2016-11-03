@@ -228,6 +228,12 @@ A few sensible choices that affect the global behaviour of Emacs:
        :diminish company-mode)
    #+END_SRC
 
+** Yasnippet
+   #+BEGIN_SRC emacs-lisp
+     (use-package yasnippet :ensure t
+       :config
+       (yas-global-mode t))
+   #+END_SRC
 ** Proxies
    It is the sad reality in China that to access many useful resources on the
    Internet, you have to use a proxy. 
@@ -494,6 +500,8 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config
        (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
        (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.less\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
        (setq web-mode-enable-current-element-highlight t)
        (defun my-web-mode-hook ()
          "hooks for webmode"
