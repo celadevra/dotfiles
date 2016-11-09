@@ -254,7 +254,7 @@ A few sensible choices that affect the global behaviour of Emacs:
   #+BEGIN_SRC emacs-lisp
 
     (progn ;; set English font
-          (set-face-attribute 'default nil :font "Envy Code R-12")
+          (set-face-attribute 'default nil :font "Anonymous Pro-12")
           ;; Chinese font
           (dolist (charset '(kana han cjk-misc bopomofo))
             (set-fontset-font (frame-parameter nil 'font)
@@ -524,6 +524,12 @@ A few sensible choices that affect the global behaviour of Emacs:
 
    #+RESULTS:
    : t
+   
+   #+BEGIN_SRC emacs-lisp
+     (use-package less-css-mode :ensure t)
+   #+END_SRC
+
+   #+RESULTS:
 
 * Applications
 ** Deft
@@ -534,8 +540,8 @@ A few sensible choices that affect the global behaviour of Emacs:
    #+BEGIN_SRC emacs-lisp
      (use-package deft :ensure t
        :config
-       (setq deft-extensions '("mdwn" "txt"))
-       (setq deft-default-extension "mdwn")
+       (setq deft-extensions '("md" "txt"))
+       (setq deft-default-extension "md")
        (setq deft-directory "~/Notes")
        (setq deft-recursive t)
        (setq deft-use-filename-as-title t)
