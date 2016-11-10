@@ -330,61 +330,7 @@ A few sensible choices that affect the global behaviour of Emacs:
                 (python . t)
                 (haskell . t))) ; these are the langs I work with
         (org-babel-do-load-languages 'l t) ; required for the above to work
-        (setq org-publish-project-alist
-              '(("expoundite.net" :components ("essays"
-                                               "assets"
-                                               "blog"
-                                               "rss"))
-                ("essays" :base-directory "~/org/publishing"
-                 :publishing-directory "~/org/published"
-                 :base-extension "org"
-                 :exclude "upload\.org\\|-draft-.*?\.org"
-                 :html-postamble t
-                 :recursive t
-                 :auto-sitemap t
-                 :html-doctype "html5"
-                 :html-mathjax-template "<script type=\"text/javascript\" src=\"%PATH\"></script>"
-                 :sitemap-sans-extension t
-                 :publishing-function org-html-publish-to-html)
-                ("assets" :base-directory "~/org/publishing/assets"
-                 :base-extension any
-                 :publishing-directory "~/org/published"
-                 :publishing-function org-publish-attachment
-                 :recursive t)
-                ("blog" :base-directory "~/org/publishing/blog"
-                 :publishing-directory "~/org/published/blog"
-                 :recursive t
-                 :with-toc nil
-                 :html-postamble t
-                 :html-doctype "html5"
-                 :html-head-extra "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://expoundite.net/blog/rss.xml\" title=\"RSS Feed\"> 
-                           <style type=\"text/css\"> 
-                               h2 { font-size: 24px; } 
-                               pre.example { background-color: rgba(255,255,255,255);
-                                             border: none; }
-                           </style>"
-                 :html-mathjax-template "<script type=\"text/javascript\" src=\"%PATH\"></script>"
-                 :publishing-function org-html-publish-to-html)
-                ("rss" :base-directory "~/org/publishing/blog"
-                 :base-extension "org"
-                 :publishing-directory "~/org/published/blog"
-                 :publishing-function (org-rss-publish-to-rss)
-                 :exclude ".*"
-                 :include ("rss.org")
-                 :html-link-home "https://expoundite.net/blog"
-                 :html-link-use-abs-url t)))
-        (setq org-html-mathjax-options
-              '((path "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
-                (scale 100)
-                (align "center")
-                (font "TeX")
-                (linebreaks "false")
-                (autonumber "AMS")
-                (indent "0em")
-                (multlinewidth "85%")
-                (tagindent ".8em")
-                (tagside "right")))
-        (defadvice org-html-paragraph (before fsh-org-html-paragraph-advice
+          (defadvice org-html-paragraph (before fsh-org-html-paragraph-advice
                                               (paragraph contents info) activate)
           "Join consecutive Chinese lines into a single long line without 
     unwanted space when exporting org-mode to html."
@@ -396,21 +342,6 @@ A few sensible choices that affect the global behaviour of Emacs:
                                           "\$ *\n *\$latex " reg-han "\$")
                                   "\\1\\2" orig-contents))
             (ad-set-arg 1 fixed-contents)))
-
-        (setq org-html-preamble-format
-              '(("en" "<div class=\"leftside\" id=\"menu-closed\"><div>&#x2263;</div></div>
-                   <div class=\"middlesection\"></div>")))
-
-        (setq org-html-postamble-format
-              '(("en" "<footer><p><a href=\"/\">Home</a> | <a href=\"/sitemap\">Site Map</a></p><hr>Created by <span class=\"author\"><a href=\"https://about.me/haoyangxu\">%a</a> (%e) on %d</span> <br>under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a><p>Last Modified at %C</p></footer>")))
-
-        (setq org-html-head
-              "<link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
-          <link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
-          <link href=\"https://fonts.googleapis.com/css?family=Sanchez|PT+Mono|Roboto:300\" rel=\"stylesheet\">
-          <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">
-          <script src=\"/js/minified-web.js\" type=\"text/javascript\"></script>
-          <script src=\"/js/main.js\" type=\"text/javascript\"></script>")))
   #+END_SRC
 *** Org-bullets
     This package makes cooler Org-mode headings.
