@@ -133,6 +133,12 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config
        (add-to-list 'prog-mode-hook #'rainbow-delimiters-mode))
    #+END_SRC
+** Flycheck
+   #+BEGIN_SRC emacs-lisp
+     (use-package flycheck :ensure t
+       ;; intero installs flycheck as a dep, but still
+       :init (global-flycheck-mode))
+   #+END_SRC
 ** general.el and keybindings
 
    #+BEGIN_SRC emacs-lisp
@@ -224,7 +230,7 @@ A few sensible choices that affect the global behaviour of Emacs:
        (add-hook 'after-init-hook 'global-company-mode)
        (setq company-backend-list '(company-robe
                                   company-web
-                                  company-capf))
+                                  company-jedi))
        :diminish company-mode)
    #+END_SRC
 
@@ -238,13 +244,15 @@ A few sensible choices that affect the global behaviour of Emacs:
    It is the sad reality in China that to access many useful resources on the
    Internet, you have to use a proxy. 
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      ;(setq url-proxy-services '(("no_proxy" . "^\\(localhost|192.168.*\\)")
      ;                           ("http"     . "127.0.0.1:8118")
      ;                           ("https"    . "127.0.0.1:8118")))
      ;(setenv "http_proxy" "socks5h://127.0.0.1:1080") ; elfeed uses curl, this makes curl called from emacs use proxy
 
    #+END_SRC
+   
+   Update: Not using elfeed now, so proxies are not really needed.
 
 * Look
 ** Font
@@ -341,7 +349,7 @@ A few sensible choices that affect the global behaviour of Emacs:
                                   (concat "\$latex " reg-han
                                           "\$ *\n *\$latex " reg-han "\$")
                                   "\\1\\2" orig-contents))
-            (ad-set-arg 1 fixed-contents)))
+            (ad-set-arg 1 fixed-contents)))))
   #+END_SRC
 *** Org-bullets
     This package makes cooler Org-mode headings.
@@ -421,6 +429,23 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config
        (add-hook 'haskell-mode-hook 'intero-mode))
    #+END_SRC
+** Python
+   #+BEGIN_SRC emacs-lisp
+     (use-package python-mode :ensure t
+       :config
+       (setq python-shell-interpreter "ipython")
+       (setq python-shell-interpreter-args "--gui=wx --matplotlib=wx --colors=linux")
+       (setq python-shell-prompt-regexp "In \\[0-9]+\\]: ")
+       (setq python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
+       (setq python-shell-completion-setup-code
+          "from IPython.core.completerlib import module_completion")
+       (setq python-shell-completion-module-string-code
+          "';'.join(module_completion('''%s'''))\n")
+       (setq python-shell-completion-string-code
+          "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
+
+     (use-package company-jedi :ensure t)
+   #+END_SRC
 ** Web and JavaScript
    Web development is complex and requires no less than a full-blown IDE.
    Luckily, Emacs has some nice extensions for writing HTML, (S)CSS, templates,
@@ -477,12 +502,4 @@ A few sensible choices that affect the global behaviour of Emacs:
        (setq deft-recursive t)
        (setq deft-use-filename-as-title t)
        (setq deft-use-filter-string-for-filename t))
-   #+END_SRC
-** Elfeed
-   #+BEGIN_SRC emacs-lisp
-     (use-package elfeed-org :ensure t)
-     (use-package elfeed :ensure t
-       :config
-       (elfeed-org)
-       (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
    #+END_SRC
