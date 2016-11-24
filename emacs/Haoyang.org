@@ -431,13 +431,14 @@ A few sensible choices that affect the global behaviour of Emacs:
    #+END_SRC
 ** Python
    #+BEGIN_SRC emacs-lisp
-          (use-package python-mode :ensure t
-   	 :config
-   	 (setq py-shell-name "ipython")
-   	 (setq py-ipython-command-args "--simple-prompt --colors=linux")
-   	 (add-hook 'python-mode-hook 'eldoc-mode))
+      (use-package python-mode :ensure t
+     :config
+     (setq py-shell-name "ipython")
+     (setq py-ipython-command-args "--simple-prompt --colors=linux")
+     (add-hook 'python-mode-hook 'eldoc-mode)
+     :diminish eldoc-mode)
 
-          (use-package company-jedi :ensure t)
+      (use-package company-jedi :ensure t)
    #+END_SRC
 ** Web and JavaScript
    Web development is complex and requires no less than a full-blown IDE.
