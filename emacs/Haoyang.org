@@ -431,12 +431,25 @@ A few sensible choices that affect the global behaviour of Emacs:
    #+END_SRC
 ** Python
    #+BEGIN_SRC emacs-lisp
-      (use-package python-mode :ensure t
-     :config
-     (setq py-shell-name "ipython")
-     (setq py-ipython-command-args "--simple-prompt --colors=linux"))
+     (use-package python :ensure t
+       :config
+       (setq-default python-shell-interpreter "ipython")
+       (setq-default python-shell-buffer-name "IPython")
+       (setq python-shell-interpreter-args "--simple-prompt --colors=linux")
+       (setq python-shell-prompt-input-regexp "In \\[0-9]+\\]: ")
+       (setq python-shell-prompt-output-regexp "Out\\[0-9]+\\]: ")
+       (setq python-shell-completion-setup-code
+          "from IPython.core.completerlib import module_completion"
+          python-shell-completion-module-string-code
+          "';'.join(module_completion('''%s'''))\n"
+          python-shell-completion-string-code
+          "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
 
-      (use-package company-jedi :ensure t)
+     (use-package pyvenv :ensure t
+       :config
+       (add-hook 'pyvenv-post-activate-hooks 'pyvenv-restart-python))
+
+     (use-package company-jedi :ensure t)
    #+END_SRC
 ** Web and JavaScript
    Web development is complex and requires no less than a full-blown IDE.
