@@ -1,0 +1,1 @@
+("~/Codes/writings/" "~/org/publishing/" "~/Codes/dotfiles/" "~/org/published/" "~/Dropbox/org/")

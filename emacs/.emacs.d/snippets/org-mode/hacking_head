@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Org hacking project head
+# key: orghack_
+# binding: direct-keybinding
+# --
+\#+TITLE: $1
+\#+AUTHOR: Haoyang Xu
+\#+DATE: `(insert (format-time-string "%Y-%m-%d"))`
+
+\#+TAGS: later bug enhancement
+$0

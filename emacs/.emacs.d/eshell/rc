@@ -1,0 +1,15 @@
+;; prompt
+(defun my-eshell-prompt ()
+  (concat
+   (propertize (eshell/pwd) 'face `(:foreground "SteelBlue2"))
+   (propertize (format-time-string " %H:%M" (current-time)) 'face `(:foreground "orange"))
+   (propertize " $ " 'face `(:foreground "green"))))
+
+(setq eshell-prompt-function 'my-eshell-prompt)
+(setq eshell-highlight-prompt nil)
+
+;; aliases
+
+(eshell/alias "gst" "git status")
+(eshell/alias "gc" "git commit")
+(eshell/alias "gcb" "git checkout -b")

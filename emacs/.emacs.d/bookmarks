@@ -1,0 +1,25 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored-marker"
+ (filename . "~/org/organizer.org")
+ (front-context-string . "** TODO [#C] 转帐到")
+ (rear-context-string . "-30 Fri>\n* Task\n")
+ (position . 6640))
+("org-refile-last-stored"
+ (filename . "~/org/organizer.org")
+ (front-context-string . "** TODO [#C] 转帐到")
+ (rear-context-string . "-30 Fri>\n* Task\n")
+ (position . 6640))
+("FSIM"
+ (filename . "~/org/writing/20160829-T3-FSIM-file-naming-conventions.org")
+ (front-context-string . "#+TITLE: FSIM fi")
+ (rear-context-string)
+ (position . 1))
+("org-capture-last-stored"
+ (filename . "~/org/organizer.org")
+ (front-context-string . "** TODO 买口腔溃疡含片\n")
+ (rear-context-string . "ODO 买或者找到灰猫的指甲钳\n")
+ (position . 6599))
+)
