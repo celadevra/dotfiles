@@ -261,6 +261,7 @@ A few sensible choices that affect the global behaviour of Emacs:
   
   #+BEGIN_SRC emacs-lisp
 
+  (if (eq window-system 'x)
     (progn ;; set English font
           (set-face-attribute 'default nil :font "Anonymous Pro-12")
           ;; Chinese font
@@ -268,7 +269,7 @@ A few sensible choices that affect the global behaviour of Emacs:
             (set-fontset-font (frame-parameter nil 'font)
             charset (font-spec :family "Source Han Sans CN"
             :size 18)))
-            (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.0))))
+            (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.0)))))
   #+END_SRC
   
 ** Theme
