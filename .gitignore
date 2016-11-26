@@ -1,8 +1,10 @@
 *.DS_Store
 /emacs/Haoyang.el
 emacs/.emacs.d/elpa
-/emacs/projectile-bookmarks.eld
-emacs/auto-save-list
+emacs/.emacs.d/backups
+emacs/.emacs.d/recentf
+emacs/.emacs.d/auto-save-list
+emacs/.emacs.d/projectile-bookmarks.eld
 .sync/
 /emacs/bookmarks
 emacs/pyim
