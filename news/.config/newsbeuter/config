@@ -1,0 +1,3 @@
+proxy alarmpi:8118
+use-proxy true
+browser "/usr/bin/firefox %u"
