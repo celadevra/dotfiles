@@ -10,3 +10,5 @@ emacs/url
 emacs/test
 emacs/.org-id-locations
 creds/*
+
+news/.config/newsbeuter/cache.db
