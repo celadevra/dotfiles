@@ -1,0 +1,12 @@
+# Rime user dictionary
+#@/db_name	terra_pinyin.userdb
+#@/db_type	userdb
+#@/rime_version	1.2.9
+#@/tick	7
+#@/user_id	26f951d1-14ac-4473-a64a-1185f705c4b6
+ai4 	愛	c=2 d=1.98511 t=5
+ba4 ba5 	爸爸	c=1 d=1 t=4
+he2 	和	c=1 d=1 t=6
+ma1 ma5 	媽媽	c=1 d=1 t=7
+ni3 de5 	你的	c=1 d=1 t=3
+zhong1 	中	c=1 d=1 t=7
