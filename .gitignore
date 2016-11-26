@@ -4,3 +4,9 @@ emacs/elpa
 /emacs/projectile-bookmarks.eld
 emacs/auto-save-list
 .sync/
+/emacs/bookmarks
+emacs/pyim
+emacs/url
+emacs/test
+emacs/.org-id-locations
+creds/*
