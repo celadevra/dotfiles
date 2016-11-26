@@ -9,3 +9,4 @@ emacs/pyim
 emacs/url
 emacs/test
 emacs/.org-id-locations
+creds/*
