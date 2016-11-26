@@ -1,7 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'morhetz/gruvbox'
-Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 """"""""""""""""""""""
 " Look               "
