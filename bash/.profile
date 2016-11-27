@@ -70,7 +70,7 @@ complete -cf sudo
 
 # set editors and other default apps
 export GIT_EDITOR="vim"
-export EDITOR="emacsclient -a -t"
+export EDITOR="emacsclient -a '' -t"
 export BROWSER=/usr/bin/firefox
 export LC_CTYPE=zh_CN.UTF-8
 export PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
@@ -103,7 +103,7 @@ alias 'gaa'='git add -A'
 alias 'gc'='git commit'
 alias 'gp'='git push'
 
-alias 'e'='emacsclient -t'
+alias 'e'='emacsclient -t -a ""'
 alias 'emacs'='emacs -nw'
 
 alias 'be'='bundle exec'
