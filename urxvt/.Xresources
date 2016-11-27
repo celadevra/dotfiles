@@ -51,7 +51,7 @@ XTerm*faceName: Terminus:size=11:antialias=true
 XTerm*selectToClipboard: true
 
 !URxvt.font: 9x
-URxvt.font: xft:Fira Code:size=10, xft:WenQuanYi Micro Hei:antialias=true, xft:Symbola
+URxvt.font: xft:Fira Code:size=10, xft:WenQuanYi Micro Hei Mono:size=12, xft:Symbola
 URxvt.depth: 32
 URxvt.background: #000000
 URxvt*scrollBar:                      false
@@ -60,7 +60,7 @@ URxvt*cursorBlink:                    true
 URxvt*background:                     black
 URxvt*foreground:                     grey
 URxvt*saveLines:                      5000
-URxvt.letterSpace: -1
+!URxvt.letterSpace: -1
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:                  true
