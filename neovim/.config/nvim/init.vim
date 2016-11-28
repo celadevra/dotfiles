@@ -4,6 +4,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'neomake/neomake'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 """"""""""""""""""""""
 " Look               "
@@ -17,3 +18,4 @@ let g:gruvbox_italic=1
 set et
 set shiftwidth=4
 autocmd! BufWritePost * Neomake
+call deoplete#enable()
