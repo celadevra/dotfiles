@@ -5,7 +5,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'neomake/neomake'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/echodoc'
+Plug 'Shougo/echodoc.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
 call plug#end()
 """"""""""""""""""""""
 " Look               "
@@ -24,3 +27,4 @@ set et
 set shiftwidth=4
 autocmd! BufWritePost * Neomake
 call deoplete#enable()
+set noshowmode
