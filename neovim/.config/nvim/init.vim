@@ -12,6 +12,10 @@ call plug#end()
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_italic=1
+
+set number
+set relativenumber
+set numberwidth=3
 """"""""""""""""""""""
 " Behaviour          "
 """"""""""""""""""""""
