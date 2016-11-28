@@ -28,3 +28,9 @@ set shiftwidth=4
 autocmd! BufWritePost * Neomake
 call deoplete#enable()
 set noshowmode
+""" > Denite settings
+if executable('ag')
+    let g:denite_source_grep_command='ag'
+    let g:denite_source_grep_default_opts='--nocolor --nogroup -S -C0'
+    let g:denite_source_grep_recursive_opt=''
+endif
