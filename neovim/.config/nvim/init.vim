@@ -16,3 +16,4 @@ let g:gruvbox_italic=1
 """"""""""""""""""""""
 set et
 set shiftwidth=4
+autocmd! BufWritePost * Neomake
