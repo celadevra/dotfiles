@@ -101,6 +101,8 @@ alias 'gst'='git status'
 alias 'ga'='git add'
 alias 'gaa'='git add -A'
 alias 'gc'='git commit'
+alias 'gb'='git branch'
+alias 'gcb'='git checkout -b'
 alias 'gp'='git push'
 
 alias 'e'='emacsclient -t -a ""'
