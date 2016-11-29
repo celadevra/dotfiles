@@ -8,6 +8,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/echodoc.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'jmcantrell/vim-virtualenv'
 
 call plug#end()
 """"""""""""""""""""""
