@@ -14,3 +14,4 @@ emacs/.org-id-locations
 creds/*
 
 news/.config/newsbeuter/cache.db
+.tmuxp.yaml
