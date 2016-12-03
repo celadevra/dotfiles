@@ -349,9 +349,10 @@ A few sensible choices that affect the global behaviour of Emacs:
    #+END_SRC
 ** Git Gutter
    #+BEGIN_SRC emacs-lisp
-     (use-package git-gutter :ensure t
-       :config
-       (global-git-gutter-mode +1))
+          (use-package git-gutter :ensure t
+            :config
+            (global-git-gutter-mode +1)
+            :diminish global-git-gutter-mode) 
    #+END_SRC
 
    #+RESULTS:
