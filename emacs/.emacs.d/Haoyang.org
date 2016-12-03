@@ -309,9 +309,12 @@ A few sensible choices that affect the global behaviour of Emacs:
 ** Theme
   The following are theme setup.
   #+BEGIN_SRC emacs-lisp
-    (use-package darktooth-theme :ensure t
-      :config (load-theme 'darktooth t nil))
+    (use-package gruvbox-theme :ensure t
+      :config (load-theme 'gruvbox t nil))
   #+END_SRC
+
+  #+RESULTS:
+  : t
 
 ** Telephone-line: A fancy modeline
    #+BEGIN_SRC emacs-lisp
@@ -498,6 +501,7 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config
        (setq-default python-shell-interpreter "ipython")
        (setq-default python-shell-buffer-name "IPython")
+       (add-to-list 'python-shell-completion-native-disabled-interpreters "ipython")
        (setq python-shell-interpreter-args "--simple-prompt --colors=linux")
        (setq python-shell-prompt-input-regexp "In \\[0-9]+\\]: ")
        (setq python-shell-prompt-output-regexp "Out\\[0-9]+\\]: ")
