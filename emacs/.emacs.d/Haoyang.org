@@ -294,15 +294,16 @@ A few sensible choices that affect the global behaviour of Emacs:
   elisp source code.
 
   #+BEGIN_SRC emacs-lisp
-    (if (not (display-graphic-p))
-        (let ((disptab (make-display-table)))
-          (aset disptab 8230
-                (vector (make-glyph-code ?⋯)))
-          (aset disptab 8220
-                (vector (make-glyph-code ?❝)))
-          (aset disptab 8221
-                (vector (make-glyph-code ?❞)))
-          (set-window-display-table nil disptab)))
+    (add-hook 'tty-setup-hook
+              (lambda ()
+                (let ((disptab (make-display-table)))
+                  (aset disptab 8230
+                        (vector (make-glyph-code ?⋯)))
+                  (aset disptab 8220
+                        (vector (make-glyph-code ?❝)))
+                  (aset disptab 8221
+                        (vector (make-glyph-code ?❞)))
+                  (set-window-display-table nil disptab))))
   #+END_SRC
 
 ** Theme
