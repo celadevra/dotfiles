@@ -53,12 +53,12 @@ XTerm*selectToClipboard: true
 !URxvt.font: 9x
 URxvt.font: xft:Fira Code:size=10, xft:WenQuanYi Micro Hei Mono:size=12, xft:Symbola
 URxvt.depth: 32
-URxvt.background: #000000
+URxvt.background: #101010
 URxvt*scrollBar:                      false
 URxvt*mouseWheelScrollPage:           false
 URxvt*cursorBlink:                    true
-URxvt*background:                     black
-URxvt*foreground:                     grey
+URxvt*background:                     #101010
+URxvt*foreground:                     #f2f2f2
 URxvt*saveLines:                      5000
 !URxvt.letterSpace: -1
 
@@ -102,22 +102,22 @@ URxvt*saveLines:                      5000
 ! URxvt*insecure:                       boolean
 ! URxvt*cursorUnderline:                boolean
 ! URxvt*pointerBlank:                   boolean
-! URxvt*color0:                         color
-! URxvt*color1:                         color
-! URxvt*color2:                         color
-! URxvt*color3:                         color
-! URxvt*color4:                         color
-! URxvt*color5:                         color
-! URxvt*color6:                         color
-! URxvt*color7:                         color
-! URxvt*color8:                         color
-! URxvt*color9:                         color
-! URxvt*color10:                        color
-! URxvt*color11:                        color
-! URxvt*color12:                        color
-! URxvt*color13:                        color
-! URxvt*color14:                        color
-! URxvt*color15:                        color
+URxvt*color0:                         #6c6c6c
+URxvt*color1:                         #e9897c
+URxvt*color2:                         #b6e77d
+URxvt*color3:                         #ecebbe
+URxvt*color4:                         #a9cdeb
+URxvt*color5:                         #ea96eb
+URxvt*color6:                         #c9caec
+URxvt*color7:                         #f2f2f2
+URxvt*color8:                         #747474
+URxvt*color9:                         #f99286
+URxvt*color10:                        #c3f786
+URxvt*color11:                        #fcfbcc
+URxvt*color12:                        #b6defb
+URxvt*color13:                        #fba1fb
+URxvt*color14:                        #d7d9fc
+URxvt*color15:                        #e2e2e2
 ! URxvt*colorBD:                        color
 ! URxvt*colorIT:                        color
 ! URxvt*colorUL:                        color
