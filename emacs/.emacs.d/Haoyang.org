@@ -262,7 +262,7 @@ A few sensible choices that affect the global behaviour of Emacs:
   
   #+BEGIN_SRC emacs-lisp
 
-  (if (eq window-system 'x)
+  (if (display-graphic-p)
     (progn ;; set English font
           (set-face-attribute 'default nil :font "Anonymous Pro-12")
           ;; Chinese font
@@ -273,6 +273,38 @@ A few sensible choices that affect the global behaviour of Emacs:
             (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.0)))))
   #+END_SRC
   
+  Under terminal, Emacs seems unable to set the character width of HORIZONTAL
+  ELLIPSIS (#x2026), LEFT DOUBLE QUOTATION MARK (#x201c), and LEFT DOUBLE
+  QUOTATION MARK (#x201d) correctly. As a result, Emacs users under tty gets
+  confused when the cursor seems to be on a space after the above characters,
+  but is actually on those characters themselves. And when they try to insert or
+  delete characters, nasty surprise happens.
+
+  One solution implemented here is setting a display table for tty. The display
+  table tells Emacs to display another glyph when the input is one of the above
+  3 glyphs. 
+
+  Some input methods such as Rime can be customized to insert alternative glyph
+  as well, but in that case your file actually contains punctuations different
+  from what other people use, which causes further problems.
+  
+  The best solution, though, is to make Emacs treat …, “, and ” characters as
+  half-width character instead of full-width. I haven't figured out how to do
+  that, and my preliminary investigation suggests that to do so involves Emacs'
+  elisp source code.
+
+  #+BEGIN_SRC emacs-lisp
+    (if (not (display-graphic-p))
+        (let ((disptab (make-display-table)))
+          (aset disptab 8230
+                (vector (make-glyph-code ?⋯)))
+          (aset disptab 8220
+                (vector (make-glyph-code ?❝)))
+          (aset disptab 8221
+                (vector (make-glyph-code ?❞)))
+          (set-window-display-table nil disptab)))
+  #+END_SRC
+
 ** Theme
   The following are theme setup.
   #+BEGIN_SRC emacs-lisp
