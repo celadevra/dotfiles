@@ -330,6 +330,23 @@ A few sensible choices that affect the global behaviour of Emacs:
                (evil   . (telephone-line-airline-position-segment))))
        (telephone-line-mode 1))
    #+END_SRC
+** Relative line number
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package relative-line-numbers :ensure t
+       :config
+       (global-relative-line-numbers-mode t)
+       (setq relative-line-numbers-motion-function 'forward-visible-line)
+       (defun relative-abs-line-numbers-format (offset)
+           "The default formatting function.
+     Return the absolute value of OFFSET, converted to string."
+           (if (= 0 offset)
+               (number-to-string (line-number-at-pos))
+             (number-to-string (abs offset))))
+       (set-face-attribute 'relative-line-numbers-current-line nil :weight 'bold :foreground "#090909" :background "#3390ff")
+       (setq relative-line-numbers-format 'relative-abs-line-numbers-format))
+
+   #+END_SRC
 * Languages
 ** Org-mode
   #+BEGIN_SRC emacs-lisp
