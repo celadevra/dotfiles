@@ -347,6 +347,16 @@ A few sensible choices that affect the global behaviour of Emacs:
        (setq relative-line-numbers-format 'relative-abs-line-numbers-format))
 
    #+END_SRC
+** Git Gutter
+   #+BEGIN_SRC emacs-lisp
+     (use-package git-gutter :ensure t
+       :config
+       (global-git-gutter-mode +1))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+
 * Languages
 ** Org-mode
   #+BEGIN_SRC emacs-lisp
