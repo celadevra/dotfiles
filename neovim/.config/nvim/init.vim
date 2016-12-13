@@ -25,6 +25,10 @@ set numberwidth=3
 " Behaviour          "
 """"""""""""""""""""""
 set et
+set showcmd
+" more natural split
+set splitbelow
+set splitright
 set shiftwidth=4
 autocmd! BufWritePost * Neomake
 call deoplete#enable()
