@@ -229,7 +229,7 @@ A few sensible choices that affect the global behaviour of Emacs:
      (use-package company :ensure t
        :config
        (add-hook 'after-init-hook 'global-company-mode)
-       (setq company-backend-list '(company-robe
+       (setq company-backends '(company-robe
                                   company-web
                                   company-jedi))
        :diminish company-mode)
