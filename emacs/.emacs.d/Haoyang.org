@@ -265,13 +265,13 @@ A few sensible choices that affect the global behaviour of Emacs:
 
   (if (display-graphic-p)
     (progn ;; set English font
-          (set-face-attribute 'default nil :font "Anonymous Pro-12")
+          (set-face-attribute 'default nil :font "Envy Code R-10")
           ;; Chinese font
           (dolist (charset '(kana han cjk-misc bopomofo))
             (set-fontset-font (frame-parameter nil 'font)
             charset (font-spec :family "Source Han Sans CN"
-            :size 18)))
-            (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.0)))))
+            :size 14)))
+            (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.3)))))
   #+END_SRC
   
   Under terminal, Emacs seems unable to set the character width of HORIZONTAL
