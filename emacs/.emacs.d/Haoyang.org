@@ -214,7 +214,8 @@ A few sensible choices that affect the global behaviour of Emacs:
         "wj" 'evil-window-down
         "wk" 'evil-window-up
         "wl" 'evil-window-right
-        "wh" 'evil-window-left)
+        "wh" 'evil-window-left
+        "wr" 'window-configuration-to-register)
        (general-define-key "C-s" 'swiper)
        (general-define-key :keymaps 'org-mode-map :states '(insert normal emacs) "TAB" 'org-cycle))
      (use-package which-key :ensure t
