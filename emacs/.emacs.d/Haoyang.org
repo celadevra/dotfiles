@@ -47,6 +47,15 @@ Bootstrap =use-package=.
   (require 'use-package)
 #+END_SRC
 
+** Custom functions
+
+   Custom functions are also loaded with ~use-package~.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package celadevra
+       :load-path "lisp/")
+   #+END_SRC
+
 * Behaviour
 
 A few sensible choices that affect the global behaviour of Emacs:
@@ -363,31 +372,26 @@ A few sensible choices that affect the global behaviour of Emacs:
       (progn
         (setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
         (setq org-ellipsis " ↲") ; more dense ellipsis, original value is '...'
-        (setq org-agenda-files (list "~/org/organizer.org"))
+        (setq org-agenda-files (list (xhy/get-journal-name)))
         (setq org-todo-keywords
-              '((sequence "TO-READ(r@)" "TO-WRITE(w@)" "TO-DO(t@)" "TO-LEARN(l@)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELLED(c@)")))
+              '((sequence "·(t)" "|" "X(d)")
+                (sequence "|" "-(n)" "O(e)")))
         (setq org-use-fast-todo-selection t)
         (setq org-use-fast-tag-selection t)
-        (setq org-agenda-ndays 7)
+        (setq org-agenda-span 7)
         (setq org-agenda-show-all-dates t)
         (setq org-agenda-skip-scheduled-if-done t)
         (setq org-agenda-start-on-weekday nil)
         (setq org-reverse-note-order t) ; notes attached to item sorted in date desc order
         (setq org-deadline-warning-days 14) ; depend on your pacing, default is 3
-        (setq org-default-notes-file "~/org/organizer.org")
+        (setq org-default-notes-file (xhy/get-journal-name))
         (setq org-capture-templates
-              '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
-                 "* TO-DO %^{Title}\n")
-                ("b" "Bookmark" entry (file+headline org-default-notes-file "Bookmarks")
-                 "* TO-READ %^{Title} %^g\n %^{URI} %?\n")
-                ("n" "Work Notes" entry (clock)
-                 "* %^{Title}\n %U \n %^C \n\n %?")
-                ("r" "Read Notes" entry (file+headline org-default-notes-file "Notes")
-                 "* %^{Title} %^g\n %^{URI|%x|%c} \n %?")
-                ("q" "Quotes" entry (file+headline "~/org/wiki/quotes.org" "Quotes")
-                 "* %^{Text|%x|%c} %^g\n --%^{Source}")
-                ("s" "Snippet" entry (file+headline org-default-notes-file "Snippets")
-                 "* %^{Title} %^g\n %U \n #+BEGIN_SRC \n %^C \n #+END_SRC \n %?")))
+              '(("t" "Task" entry (file+datetree+prompt org-default-notes-file)
+                 "* · %^{Title}\n")
+                ("n" "Notes" entry (file+datetree+prompt org-default-notes-file)
+                 "* - %<'%H:%M:%S'> %^{Title}\n%c\n%?")
+                ("e" "Events" entry (file+datetree org-default-notes-file)
+                 "* O %^{Title}\n")))
         (setq org-refile-targets '((nil . (:maxlevel . 6)))) ; default is to maxlevel 2
         (setq org-babel-load-languages
               '((sh . t)
