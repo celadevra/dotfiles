@@ -168,6 +168,7 @@ A few sensible choices that affect the global behaviour of Emacs:
         "a" '(:ignore t :which-key "Applications")
         "ad" 'dired
         "ae" 'elfeed
+	"aw" 'eww
 
         ;; buffer operations
         "b" '(:ignore t :which-key "Buffer commands")
@@ -378,55 +379,59 @@ A few sensible choices that affect the global behaviour of Emacs:
 * Languages
 ** Org-mode
   #+BEGIN_SRC emacs-lisp
-    (use-package org :ensure org-plus-contrib
-      :config
-      (progn
-        (add-hook 'org-mode-hook 'visual-line-mode)
-        (setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
-        (setq org-ellipsis " ↲") ; more dense ellipsis, original value is '...'
-        (setq org-agenda-files (list (xhy/get-journal-name)))
-        (setq org-todo-keywords
-              '((sequence "·(t)" "|" "X(d)")
-                (sequence "|" "-(n)" "O(e)")))
-        (setq org-use-fast-todo-selection t)
-        (setq org-use-fast-tag-selection t)
-        (setq org-agenda-span 7)
-        (setq org-agenda-show-all-dates t)
-        (setq org-agenda-skip-scheduled-if-done t)
-        (setq org-agenda-start-on-weekday nil)
-        (setq org-reverse-note-order t) ; notes attached to item sorted in date desc order
-        (setq org-deadline-warning-days 14) ; depend on your pacing, default is 3
-        (setq org-default-notes-file (xhy/get-journal-name))
-        (setq org-capture-templates
-              '(("t" "Task" entry (file+datetree+prompt org-default-notes-file)
-                 "* · %^{Title}\n")
-                ("n" "Notes" entry (file+datetree+prompt org-default-notes-file)
-                 "* - %<%H:%M:%S> %^{Title}\n%?")
-                ("e" "Events" entry (file+datetree org-default-notes-file)
-                 "* O %^{Title}\n")))
-        (setq org-refile-targets '((nil . (:maxlevel . 6)))) ; default is to maxlevel 2
-        (setq org-babel-load-languages
-              '((sh . t)
-                (emacs-lisp . t)
-                (ruby . t)
-                (R . t)
-                (dot . t)
-                (python . t)
-                (haskell . t))) ; these are the langs I work with
-        (org-babel-do-load-languages 'l t) ; required for the above to work
-          (defadvice org-html-paragraph (before fsh-org-html-paragraph-advice
-                                              (paragraph contents info) activate)
-          "Join consecutive Chinese lines into a single long line without 
+        (use-package org
+  	:load-path "/usr/share/emacs/site-lisp/org"
+  	:config
+  	(progn
+  	  (add-hook 'org-mode-hook 'auto-fill-mode)
+  	  (setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
+  	  (setq org-ellipsis " ↲") ; more dense ellipsis, original value is '...'
+  	  (setq org-agenda-files (list (xhy/get-journal-name)))
+  	  (setq org-todo-keywords
+  		'((sequence "·(t)" "|" "X(d)")
+  		  (sequence "|" "-(n)" "O(e)")))
+  	  (setq org-use-fast-todo-selection t)
+  	  (setq org-use-fast-tag-selection t)
+  	  (setq org-agenda-span 7)
+  	  (setq org-agenda-show-all-dates t)
+  	  (setq org-agenda-skip-scheduled-if-done t)
+  	  (setq org-agenda-start-on-weekday nil)
+  	  (setq org-reverse-note-order t) ; notes attached to item sorted in date desc order
+  	  (setq org-deadline-warning-days 14) ; depend on your pacing, default is 3
+  	  (setq org-default-notes-file (xhy/get-journal-name))
+  	  (setq org-capture-templates
+  		'(("t" "Task" entry (file+datetree+prompt org-default-notes-file)
+  		   "* · %^{Title}\n")
+  		  ("n" "Notes" entry (file+datetree+prompt org-default-notes-file)
+  		   "* - %<%H:%M:%S> %^{Title}\n%?")
+  		  ("e" "Events" entry (file+datetree org-default-notes-file)
+  		   "* O %^{Title}\n")))
+  	  (setq org-refile-targets '((nil . (:maxlevel . 6)))) ; default is to maxlevel 2
+  	  (setq org-babel-load-languages
+  		'((sh . t)
+  		  (emacs-lisp . t)
+  		  (ruby . t)
+  		  (R . t)
+  		  (dot . t)
+  		  (python . t)
+  		  (haskell . t))) ; these are the langs I work with
+  	  (org-babel-do-load-languages 'l t) ; required for the above to work
+  	  (defadvice org-html-paragraph (before org-html-paragraph-advice
+  						(paragraph contents info) activate)
+  	    "Join consecutive Chinese lines into a single long line without
     unwanted space when exporting org-mode to html."
-          (let ((fixed-contents)
-                (orig-contents (ad-get-arg 1))
-                (reg-han "[[:multibyte:]]"))
-            (setq fixed-contents (replace-regexp-in-string
-                                  (concat "\$latex " reg-han
-                                          "\$ *\n *\$latex " reg-han "\$")
-                                  "\\1\\2" orig-contents))
-            (ad-set-arg 1 fixed-contents)))))
+  	    (let* ((origin-contents (ad-get-arg 1))
+  		   (fix-regexp "[[:multibyte:]]")
+  		   (fixed-contents
+  		    (replace-regexp-in-string
+  		     (concat
+  		      "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
+  	      (ad-set-arg 1 fixed-contents)))))
   #+END_SRC
+
+  #+RESULTS:
+  : t
+
 *** Org-bullets
     This package makes cooler Org-mode headings.
 
