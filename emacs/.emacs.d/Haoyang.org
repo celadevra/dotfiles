@@ -240,8 +240,19 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config
        (add-hook 'after-init-hook 'global-company-mode)
        (setq company-backends '(company-robe
-                                  company-web
-                                  company-jedi))
+                                company-web
+                                company-jedi
+                                company-nxml
+                                company-css
+                                company-semantic
+                                company-eclim
+                                company-capf
+                                company-files
+                                company-dabbrev-code
+                                company-gtags
+                                company-etags
+                                company-keywords
+                                company-dabbrev))
        :diminish company-mode)
    #+END_SRC
 
@@ -370,6 +381,7 @@ A few sensible choices that affect the global behaviour of Emacs:
     (use-package org :ensure org-plus-contrib
       :config
       (progn
+        (add-hook 'org-mode-hook 'visual-line-mode)
         (setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
         (setq org-ellipsis " ↲") ; more dense ellipsis, original value is '...'
         (setq org-agenda-files (list (xhy/get-journal-name)))
@@ -389,7 +401,7 @@ A few sensible choices that affect the global behaviour of Emacs:
               '(("t" "Task" entry (file+datetree+prompt org-default-notes-file)
                  "* · %^{Title}\n")
                 ("n" "Notes" entry (file+datetree+prompt org-default-notes-file)
-                 "* - %<'%H:%M:%S'> %^{Title}\n%c\n%?")
+                 "* - %<%H:%M:%S> %^{Title}\n%?")
                 ("e" "Events" entry (file+datetree org-default-notes-file)
                  "* O %^{Title}\n")))
         (setq org-refile-targets '((nil . (:maxlevel . 6)))) ; default is to maxlevel 2
@@ -420,9 +432,9 @@ A few sensible choices that affect the global behaviour of Emacs:
 
     #+BEGIN_SRC emacs-lisp
       (use-package org-bullets :ensure t
-	:config
-	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-	)
+        :config
+        (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+        (setq org-bullets-bullet-list '("»" "»" "»" "»" "»")))
     #+END_SRC
 
 *** Org-ref
