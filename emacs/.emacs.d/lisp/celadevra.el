@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(defvar org-journal-dir "~/org/journal/"
+(defvar org-journal-dir "~/org/journals/"
   "Location of journal files.  The trailing slash is important.")
 
 (defun xhy/get-journal-name ()

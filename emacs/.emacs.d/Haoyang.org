@@ -590,3 +590,14 @@ A few sensible choices that affect the global behaviour of Emacs:
        (setq deft-use-filename-as-title t)
        (setq deft-use-filter-string-for-filename t))
    #+END_SRC
+** Elfeed
+   #+BEGIN_SRC emacs-lisp
+     (use-package elfeed :ensure elfeed-org
+       :config
+       (require 'elfeed-org)
+       (elfeed-org)
+       (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
