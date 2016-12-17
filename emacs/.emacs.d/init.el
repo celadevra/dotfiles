@@ -7,10 +7,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(elfeed-curl-extra-arguments (quote ("-xsocks5h://127.0.0.1:1080")))
+ '(elfeed-curl-extra-arguments (quote ("-xhttp://alarmpi:8118")))
  '(package-selected-packages
    (quote
-    (org pyvenv company-jedi ox-gfm less-css-mode yasnippet js2-mode web-mode org-webpage haskell-mode intero darktooth-theme org-bullets key-chord hydra f evil deft company-web company-ghci ace-window)))
+    (gruvbox-theme relative-line-numbers pyvenv company-jedi ox-gfm less-css-mode yasnippet js2-mode web-mode org-webpage haskell-mode intero org-bullets key-chord hydra f evil deft company-web company-ghci ace-window)))
  '(pyim-dicts nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
