@@ -28,8 +28,8 @@ xhost +local:root > /dev/null 2>&1
 complete -cf sudo
 
 # set editors and other default apps
-export GIT_EDITOR="vim"
-export EDITOR="emacsclient -a '' -t"
+export GIT_EDITOR="nvim"
+export EDITOR="nvim"
 export BROWSER=/usr/bin/firefox
 export LC_CTYPE=zh_CN.UTF-8
 export PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
