@@ -263,6 +263,10 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config
        (yas-global-mode t))
    #+END_SRC
+** Paths
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'exec-path "/usr/local/bin")
+   #+END_SRC
 ** Proxies
    It is the sad reality in China that to access many useful resources on the
    Internet, you have to use a proxy. 
