@@ -15,7 +15,7 @@ Ideas are from [[http://eschulte.me/emacs24-starter-kit/#installation][Emacs Sta
 
 #+BEGIN_SRC emacs-lisp
 (setq user-full-name "Haoyang Xu")
-(setq user-mail-address "github@expoundite.net")
+(setq user-mail-address "haoyang@expoundite.net")
 #+END_SRC
 
 * Dependencies
@@ -90,13 +90,15 @@ A few sensible choices that affect the global behaviour of Emacs:
 
    #+BEGIN_SRC emacs-lisp
      (use-package evil :ensure t
-                  :config
-                  (evil-mode 1)
-                  (evil-set-initial-state 'eww-mode 'emacs)
-                  (evil-set-initial-state 'elfeed-search-mode 'emacs)
-                  (evil-set-initial-state 'elfeed-show-mode 'emacs)
-                  (evil-set-initial-state 'deft-mode 'emacs)
-                  :diminish undo-tree-mode)
+       :config
+       (evil-mode 1)
+       (evil-set-initial-state 'eww-mode 'emacs)
+       (evil-set-initial-state 'elfeed-search-mode 'emacs)
+       (evil-set-initial-state 'elfeed-show-mode 'emacs)
+       (evil-set-initial-state 'deft-mode 'emacs)
+       (evil-set-initial-state 'wl-folder-mode 'emacs)
+       (evil-set-initial-state 'wl-summary-mode 'emacs)
+       :diminish undo-tree-mode)
    #+END_SRC
   
 ** Swiper and friends
@@ -604,6 +606,22 @@ A few sensible choices that affect the global behaviour of Emacs:
        (require 'elfeed-org)
        (elfeed-org)
        (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+** notmuch
+   #+BEGIN_SRC emacs-lisp
+     (use-package notmuch :ensure t
+       :config
+       (setq smtpmail-smtp-server "smtp.qq.com"
+   	  smtpmail-smtp-service 465
+   	  smtpmail-stream-type 'ssl
+   	  smtpmail-debug-info t
+   	  smtpmail-debug-verb t
+   	  message-send-mail-function 'message-smtpmail-send-it)
+       (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
+       (setq notmuch-crypto-process-mime t))
    #+END_SRC
 
    #+RESULTS:
