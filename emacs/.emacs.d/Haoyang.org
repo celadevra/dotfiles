@@ -368,7 +368,7 @@ A few sensible choices that affect the global behaviour of Emacs:
    #+END_SRC
 ** Relative line number
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (use-package relative-line-numbers :ensure t
        :config
        (global-relative-line-numbers-mode t)
@@ -622,6 +622,22 @@ A few sensible choices that affect the global behaviour of Emacs:
    	  message-send-mail-function 'message-smtpmail-send-it)
        (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
        (setq notmuch-crypto-process-mime t))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+** Chinese PYIM
+   #+BEGIN_SRC emacs-lisp
+     (use-package chinese-pyim :ensure nil
+       :config
+       (use-package chinese-pyim-greatdict :ensure nil
+         :config (chinese-pyim-greatdict-enable))
+       (setq default-input-method "chinese-pyim")
+       (setq pyim-default-scheme 'xiaohe-shuangpin)
+       (setq-default pyim-english-input-switch-functions
+   		  '(pyim-probe-evil-normal-mode))
+       (setq pyim-use-tooltip 'popup)
+       (setq pyim-page-length 5))
    #+END_SRC
 
    #+RESULTS:
