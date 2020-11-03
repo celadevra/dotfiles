@@ -28,25 +28,6 @@ This config requires Org-mode newer than 8.0, and Emacs > 23.
 
 #+END_SRC
 
-This config utilizes Emacs' package support. Some additional repositories are added.
-
-#+BEGIN_SRC emacs-lisp
-  (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                           ("melpa" . "https://melpa.org/packages/")
-                           ("marmalade" . "https://marmalade-repo.org/packages/")
-                           ("org" . "http://orgmode.org/elpa/")))
-#+END_SRC
-
-Bootstrap =use-package=.
-
-#+BEGIN_SRC emacs-lisp
-  (unless (package-installed-p 'use-package) ; unless it is already installed
-    (package-refresh-contents) ; updage packages archive
-    (package-install 'use-package)) ; and install the most recent version of use-package
-
-  (require 'use-package)
-#+END_SRC
-
 * Behaviour
 
 A few sensible choices that affect the global behaviour of Emacs:
