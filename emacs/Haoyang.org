@@ -61,13 +61,13 @@ A few sensible choices that affect the global behaviour of Emacs:
 
    #+BEGIN_SRC emacs-lisp
      (use-package evil :ensure t
-                  :config
-                  (evil-mode 1)
-                  (evil-set-initial-state 'eww-mode 'emacs)
-                  (evil-set-initial-state 'elfeed-search-mode 'emacs)
-                  (evil-set-initial-state 'elfeed-show-mode 'emacs)
-                  (evil-set-initial-state 'deft-mode 'emacs)
-                  :diminish undo-tree-mode)
+		  :config
+		  (evil-mode 1)
+		  (evil-set-initial-state 'eww-mode 'emacs)
+		  (evil-set-initial-state 'elfeed-search-mode 'emacs)
+		  (evil-set-initial-state 'elfeed-show-mode 'emacs)
+		  (evil-set-initial-state 'deft-mode 'emacs)
+		  :diminish undo-tree-mode)
    #+END_SRC
   
 ** Swiper and friends
@@ -339,8 +339,7 @@ A few sensible choices that affect the global behaviour of Emacs:
     #+BEGIN_SRC emacs-lisp
       (use-package org-bullets :ensure t
 	:config
-	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-	)
+	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
     #+END_SRC
 
 *** Org-ref
