@@ -45,7 +45,7 @@ A few sensible choices that affect the global behaviour of Emacs:
   (setq coding-system-for-write 'utf-8 )
   (setq sentence-end-double-space nil); sentence SHOULD end with only a point.
   (setq default-fill-column 80); toggle wrapping text at the 80th character
-  (setq initial-scratch-message "Welcome in Emacs") ; print a default message in the empty scratch buffer opened at startup
+  (setq initial-scratch-message "; Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode 0)
