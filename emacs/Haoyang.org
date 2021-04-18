@@ -50,7 +50,7 @@ A few sensible choices that affect the global behaviour of Emacs:
   (menu-bar-mode -1)
   (scroll-bar-mode 0)
   (auto-fill-mode) ; toggle auto-fill-mode
-  (diminish auto-fill-function "F") ; diminish the hint to a simple "F"
+  ;(diminish auto-fill-function "F") ; diminish the hint to a simple "F"
   (setq inhibit-startup-screen 1)
   (setq org-hide-emphasis-markers t)
   (setq package-check-singature nil)
@@ -95,8 +95,7 @@ A few sensible choices that affect the global behaviour of Emacs:
        :config (projectile-global-mode)
        :diminish projectile-mode "P")
 
-     (use-package counsel-projectile :ensure t
-       :config (counsel-projectile-on))
+     (use-package counsel-projectile :ensure t)
    #+END_SRC
 ** Smartparens and rainbow delimiters
 
