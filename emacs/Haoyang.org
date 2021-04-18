@@ -364,13 +364,6 @@ A few sensible choices that affect the global behaviour of Emacs:
                org-ref-pdf-directory "~/org/bibliography/bibtex-pdfs/")
          )
      #+END_SRC
-*** ox-rss
-    This is a package for producing RSS feeds from org-mode headings.
-
-    #+BEGIN_SRC emacs-lisp
-      (require 'ox-rss)
-
-    #+END_SRC
 *** org-webpage
     Org-webpage is a package that generate static sites from Org files. It is
     easier to set up than using Org's own publishing functions.
