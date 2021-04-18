@@ -283,55 +283,55 @@ A few sensible choices that affect the global behaviour of Emacs:
     (use-package org :ensure org-plus-contrib
       :config
       (progn
-        (setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
-        (setq org-ellipsis " ↲") ; more dense ellipsis, original value is '...'
-        (setq org-agenda-files (list "~/org/organizer.org"))
-        (setq org-todo-keywords
-              '((sequence "TO-READ(r@)" "TO-WRITE(w@)" "TO-DO(t@)" "TO-LEARN(l@)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELLED(c@)")))
-        (setq org-use-fast-todo-selection t)
-        (setq org-use-fast-tag-selection t)
-        (setq org-agenda-ndays 7)
-        (setq org-agenda-show-all-dates t)
-        (setq org-agenda-skip-scheduled-if-done t)
-        (setq org-agenda-start-on-weekday nil)
-        (setq org-reverse-note-order t) ; notes attached to item sorted in date desc order
-        (setq org-deadline-warning-days 14) ; depend on your pacing, default is 3
-        (setq org-default-notes-file "~/org/organizer.org")
-        (setq org-capture-templates
-              '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
-                 "* TO-DO %^{Title}\n")
-                ("b" "Bookmark" entry (file+headline org-default-notes-file "Bookmarks")
-                 "* TO-READ %^{Title} %^g\n %^{URI} %?\n")
-                ("n" "Work Notes" entry (clock)
-                 "* %^{Title}\n %U \n %^C \n\n %?")
-                ("r" "Read Notes" entry (file+headline org-default-notes-file "Notes")
-                 "* %^{Title} %^g\n %^{URI|%x|%c} \n %?")
-                ("q" "Quotes" entry (file+headline "~/org/wiki/quotes.org" "Quotes")
-                 "* %^{Text|%x|%c} %^g\n --%^{Source}")
-                ("s" "Snippet" entry (file+headline org-default-notes-file "Snippets")
-                 "* %^{Title} %^g\n %U \n #+BEGIN_SRC \n %^C \n #+END_SRC \n %?")))
-        (setq org-refile-targets '((nil . (:maxlevel . 6)))) ; default is to maxlevel 2
-        (setq org-babel-load-languages
-              '((sh . t)
-                (emacs-lisp . t)
-                (ruby . t)
-                (R . t)
-                (dot . t)
-                (python . t)
-                (haskell . t))) ; these are the langs I work with
-        (org-babel-do-load-languages 'l t) ; required for the above to work
-          (defadvice org-html-paragraph (before fsh-org-html-paragraph-advice
-                                              (paragraph contents info) activate)
-          "Join consecutive Chinese lines into a single long line without 
+	(setq org-hide-emphasis-markers t) ; hide markers around bold/emphasis/delete etc, original value is nil.
+	(setq org-ellipsis " ↲") ; more dense ellipsis, original value is '...'
+	(setq org-agenda-files (list "~/org/organizer.org"))
+	(setq org-todo-keywords
+	      '((sequence "TO-READ(r@)" "TO-WRITE(w@)" "TO-DO(t@)" "TO-LEARN(l@)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELLED(c@)")))
+	(setq org-use-fast-todo-selection t)
+	(setq org-use-fast-tag-selection t)
+	(setq org-agenda-ndays 7)
+	(setq org-agenda-show-all-dates t)
+	(setq org-agenda-skip-scheduled-if-done t)
+	(setq org-agenda-start-on-weekday nil)
+	(setq org-reverse-note-order t) ; notes attached to item sorted in date desc order
+	(setq org-deadline-warning-days 14) ; depend on your pacing, default is 3
+	(setq org-default-notes-file "~/org/organizer.org")
+	(setq org-capture-templates
+	      '(("t" "Task" entry (file+headline org-default-notes-file "Inbox")
+		 "* TO-DO %^{Title}\n")
+		("b" "Bookmark" entry (file+headline org-default-notes-file "Bookmarks")
+		 "* TO-READ %^{Title} %^g\n %^{URI} %?\n")
+		("n" "Work Notes" entry (clock)
+		 "* %^{Title}\n %U \n %^C \n\n %?")
+		("r" "Read Notes" entry (file+headline org-default-notes-file "Notes")
+		 "* %^{Title} %^g\n %^{URI|%x|%c} \n %?")
+		("q" "Quotes" entry (file+headline "~/org/wiki/quotes.org" "Quotes")
+		 "* %^{Text|%x|%c} %^g\n --%^{Source}")
+		("s" "Snippet" entry (file+headline org-default-notes-file "Snippets")
+		 "* %^{Title} %^g\n %U \n #+BEGIN_SRC \n %^C \n #+END_SRC \n %?")))
+	(setq org-refile-targets '((nil . (:maxlevel . 6)))) ; default is to maxlevel 2
+	(setq org-babel-load-languages
+	      '((shell . t)
+		(emacs-lisp . t)
+		(ruby . t)
+		(R . t)
+		(dot . t)
+		(python . t)
+		(haskell . t))) ; these are the langs I work with
+	(org-babel-do-load-languages 'l t) ; required for the above to work
+	  (defadvice org-html-paragraph (before fsh-org-html-paragraph-advice
+					      (paragraph contents info) activate)
+	  "Join consecutive Chinese lines into a single long line without 
     unwanted space when exporting org-mode to html."
-          (let ((fixed-contents)
-                (orig-contents (ad-get-arg 1))
-                (reg-han "[[:multibyte:]]"))
-            (setq fixed-contents (replace-regexp-in-string
-                                  (concat "\$latex " reg-han
-                                          "\$ *\n *\$latex " reg-han "\$")
-                                  "\\1\\2" orig-contents))
-            (ad-set-arg 1 fixed-contents)))))
+	  (let ((fixed-contents)
+		(orig-contents (ad-get-arg 1))
+		(reg-han "[[:multibyte:]]"))
+	    (setq fixed-contents (replace-regexp-in-string
+				  (concat "\$latex " reg-han
+					  "\$ *\n *\$latex " reg-han "\$")
+				  "\\1\\2" orig-contents))
+	    (ad-set-arg 1 fixed-contents)))))
   #+END_SRC
 *** Org-bullets
     This package makes cooler Org-mode headings.
