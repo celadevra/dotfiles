@@ -93,10 +93,11 @@ A few sensible choices that affect the global behaviour of Emacs:
    #+BEGIN_SRC emacs-lisp
      (use-package projectile :ensure t
        :config (projectile-global-mode)
-       :diminish projectile-mode "P")
+       :diminish (Projectile . "P"))
 
      (use-package counsel-projectile :ensure t)
    #+END_SRC
+
 ** Smartparens and rainbow delimiters
 
    Smartparens is an extension for more effective programming with less cause by
@@ -212,7 +213,7 @@ A few sensible choices that affect the global behaviour of Emacs:
        (setq company-backend-list '(company-robe
                                   company-web
                                   company-jedi))
-       :diminish company-mode)
+       :diminish company-mode "|→")
    #+END_SRC
 
 ** Yasnippet
@@ -242,15 +243,15 @@ A few sensible choices that affect the global behaviour of Emacs:
   
   #+BEGIN_SRC emacs-lisp
 
-  (if (eq window-system 'x)
+  (if (or (eq window-system 'ns) (eq window-system 'x))
     (progn ;; set English font
           (set-face-attribute 'default nil :font "IBM Plex Mono-12")
           ;; Chinese font
           (dolist (charset '(kana han cjk-misc bopomofo))
             (set-fontset-font (frame-parameter nil 'font)
-            charset (font-spec :family "Source Han Sans CN"
-            :size 18)))
-            (setq face-font-rescale-alist '(("Source Han Sans CN" . 1.0)))))
+            charset (font-spec :family "Noto Sans CJK SC"
+            :size 12)))
+            (setq face-font-rescale-alist '(("Noto Sans CJK SC" . 1.2)))))
   #+END_SRC
   
 ** Theme
